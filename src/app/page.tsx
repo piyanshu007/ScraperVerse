@@ -113,7 +113,9 @@ const Icon = {
 
 interface Monitor {
   id: string; name: string; url: string;
-  selectors: Record<string, string>; schema: Record<string, any>; createdAt: string;
+  selectors: Record<string, string>; schema: Record<string, any>;
+  collectorId?: string;
+  createdAt: string;
 }
 interface Scraper {
   id: string; monitorId: string; status: 'HEALTHY' | 'DEGRADED' | 'FAILED';
