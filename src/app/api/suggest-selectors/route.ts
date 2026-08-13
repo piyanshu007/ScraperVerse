@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     if (!openRouterApiKey) {
       return NextResponse.json({ error: 'OPENROUTER_API_KEY is not configured in .env' }, { status: 500 });
     }
-    const openRouterModel = 'nvidia/nemotron-3-ultra-550b-a55b:free';
+    const openRouterModel = 'openrouter/auto';
 
     const systemPrompt = `You are a CSS selector assistant. Analyze the given HTML structure and identify the correct CSS selectors for capturing a list of products/items.
 Return a valid JSON object matching this schema:
