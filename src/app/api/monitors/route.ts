@@ -9,7 +9,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, url, fields, schema } = body;
+    const { name, url, fields, schema, collectorId } = body;
 
     if (!name || !url || !fields || !schema) {
       return NextResponse.json(
@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
       url,
       selectors: fields, // e.g. { container: '.product-card', name: '.name', price: '.price', ... }
       schema,
+      collectorId: collectorId || undefined,
       createdAt: new Date().toISOString(),
     };
 

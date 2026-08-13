@@ -220,6 +220,7 @@ export default function Home() {
   const [ratingSel, setRatingSel] = useState('.rating');
   const [availSel, setAvailSel] = useState('.availability');
   const [discountSel, setDiscountSel] = useState('.discount');
+  const [monitorCollectorId, setMonitorCollectorId] = useState('');
   const [runningId, setRunningId] = useState<string | null>(null);
   const [logs, setLogs] = useState<string[]>([
     '[INFO] WebPulse AI — Self-Healing Intelligence Terminal',
@@ -309,6 +310,7 @@ export default function Home() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: monitorName, url: monitorUrl,
+        collectorId: monitorCollectorId || undefined,
         fields: { container: containerSel, name: nameSel, price: priceSel, rating: ratingSel, availability: availSel, discount: discountSel },
         schema: {
           name: { type: 'string', required: true },
@@ -319,6 +321,7 @@ export default function Home() {
         },
       }),
     });
+    setMonitorCollectorId('');
     fetchDb(true);
     setActiveTab('overview');
   };
@@ -722,6 +725,10 @@ export default function Home() {
                         </div>
                         <input className="form-input" type="text" value={monitorUrl} onChange={e => setMonitorUrl(e.target.value)} required placeholder="e.g. https://example.com/products" />
                       </div>
+                      <div className="form-group">
+                        <label className="form-label">Bright Data Collector ID (Optional)</label>
+                        <input className="form-input" type="text" value={monitorCollectorId} onChange={e => setMonitorCollectorId(e.target.value)} placeholder="e.g. c_msrjcn9m1olzit7wp7 (falls back to default .env if empty)" />
+                      </div>
                       <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '14px' }}>
                         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 800, color: 'var(--white-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>
                           Initial CSS Selector Configuration
@@ -769,6 +776,12 @@ export default function Home() {
                             <StatusBadge status={scr?.status || 'HEALTHY'} />
                           </div>
                           <div style={{ background: '#060606', border: '1px solid var(--border-subtle)', padding: '12px', fontFamily: 'var(--font-mono)', fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                            <div style={{ borderBottom: '1px dashed var(--white-faint)', paddingBottom: '6px', marginBottom: '4px', fontSize: '11px', display: 'flex', justifyContent: 'space-between' }}>
+                              <span style={{ color: 'var(--white-muted)', fontWeight: 800, textTransform: 'uppercase', fontSize: '10px' }}>Collector ID</span>
+                              <span style={{ color: 'var(--yellow)', fontWeight: 700 }}>
+                                {mon.collectorId ? `${mon.collectorId.substring(0, 8)}••••` : 'Default (.env)'}
+                              </span>
+                            </div>
                             {Object.entries(mon.selectors).map(([k, v]) => (
                               <div key={k} style={{ display: 'flex', gap: '16px' }}>
                                 <span style={{ color: 'var(--white-muted)', textTransform: 'uppercase', fontSize: '10px', fontWeight: 800, minWidth: '90px' }}>{k}</span>

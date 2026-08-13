@@ -33,7 +33,7 @@ export async function POST(
     logActivity(`Starting extraction run for monitor: "${monitor.name}"`, 'info');
 
     // Perform primary extraction
-    const scrapeResult = await scrapeWithBrightData(monitor.url, config, useRealBrightData);
+    const scrapeResult = await scrapeWithBrightData(monitor.url, config, useRealBrightData, monitor.collectorId);
 
     const runId = `run_${Date.now()}`;
     const timestamp = new Date().toISOString();

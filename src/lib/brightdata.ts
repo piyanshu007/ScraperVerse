@@ -16,10 +16,11 @@ export interface ScrapeResult {
 export async function scrapeWithBrightData(
   url: string,
   _config: unknown,        // kept for API compatibility — selectors live in the collector
-  _useRealBrightData = true
+  _useRealBrightData = true,
+  customCollectorId?: string
 ): Promise<ScrapeResult> {
   const apiKey      = process.env.BRIGHTDATA_API_KEY!;
-  const collectorId = process.env.BRIGHTDATA_COLLECTOR_ID!;
+  const collectorId = customCollectorId || process.env.BRIGHTDATA_COLLECTOR_ID!;
 
   if (!apiKey || !collectorId) {
     return {

@@ -9,6 +9,7 @@ export interface Monitor {
   url: string;
   selectors: Record<string, string>;
   schema: Record<string, { type: 'string' | 'number'; required: boolean; min?: number; max?: number }>;
+  collectorId?: string;
   createdAt: string;
 }
 
