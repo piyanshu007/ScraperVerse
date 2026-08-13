@@ -250,6 +250,41 @@ export default function Home() {
     fetchDb(true);
   };
 
+  const [aiLoading, setAiLoading] = useState(false);
+
+  const handleAiSuggest = async () => {
+    if (!monitorUrl) {
+      alert('Please enter a Target URL first.');
+      return;
+    }
+    setAiLoading(true);
+    addLog(`Requesting AI selector suggestions for: ${monitorUrl}`);
+    try {
+      const res = await fetch('/api/suggest-selectors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: monitorUrl }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      if (data.container) setContainerSel(data.container);
+      if (data.name) setNameSel(data.name);
+      if (data.price) setPriceSel(data.price);
+      if (data.rating) setRatingSel(data.rating);
+      if (data.availability) setAvailSel(data.availability);
+      if (data.discount !== undefined) setDiscountSel(data.discount);
+      
+      addLog(`[SUCCESS] AI generated selectors successfully applied!`);
+    } catch (e: any) {
+      addLog(`[ERROR] AI selector suggestions failed: ${e.message}`);
+      alert(`AI Suggestion failed: ${e.message}`);
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     await fetch('/api/monitors', {
@@ -624,7 +659,14 @@ export default function Home() {
                         <input className="form-input" type="text" value={monitorName} onChange={e => setMonitorName(e.target.value)} required />
                       </div>
                       <div className="form-group">
-                        <label className="form-label">Target URL</label>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <label className="form-label">Target URL</label>
+                          <button type="button" className="btn btn-outline" style={{ padding: '4px 10px', fontSize: '9px', textTransform: 'uppercase', height: 'auto', border: '1px solid var(--magenta)' }}
+                            disabled={aiLoading}
+                            onClick={handleAiSuggest}>
+                            {aiLoading ? <><Icon.Spinner /> Analysing DOM...</> : '⚡ AI Auto-Suggest'}
+                          </button>
+                        </div>
                         <input className="form-input" type="text" value={monitorUrl} onChange={e => setMonitorUrl(e.target.value)} required placeholder="e.g. https://example.com/products" />
                       </div>
                       <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '14px' }}>
