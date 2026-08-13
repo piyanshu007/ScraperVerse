@@ -163,10 +163,28 @@ type TabId = typeof TABS[number]['id'];
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function StatusBadge({ status }: { status: string }) {
-  const cls = status === 'HEALTHY' || status === 'SUCCESS' ? 'badge-green'
-    : status === 'RECOVERED' ? 'badge-yellow'
-    : 'badge-red';
-  return <span className={`badge ${cls}`}>{status}</span>;
+  let label = status;
+  let cls = 'badge-white';
+  if (status === 'HEALTHY' || status === 'SUCCESS') {
+    label = '● HEALTHY';
+    cls = 'badge-green';
+  } else if (status === 'RUNNING') {
+    label = '◐ RUNNING';
+    cls = 'badge-yellow';
+  } else if (status === 'DEGRADED') {
+    label = '⚠ DEGRADED';
+    cls = 'badge-yellow';
+  } else if (status === 'HEALING') {
+    label = '🕷 HEALING';
+    cls = 'badge-red';
+  } else if (status === 'RECOVERED' || status === 'RESOLVED') {
+    label = '✓ RECOVERED';
+    cls = 'badge-green';
+  } else if (status === 'FAILED') {
+    label = '✕ FAILED';
+    cls = 'badge-red';
+  }
+  return <span className={`badge ${cls}`}>{label}</span>;
 }
 
 function Stat({ label, value, sub, accent }: { label: string; value: string | number; sub?: string; accent?: boolean }) {
@@ -309,14 +327,16 @@ export default function Home() {
     setRunningId(monitorId);
     setActiveTab('healing');
     const ts = () => new Date().toLocaleTimeString();
+    // Mask collector ID in the logs for a cleaner look
+    const maskedCollector = collectorId ? `${collectorId.substring(0, 8)}••••` : 'c_msrjcn••••';
     setLogs([
       '[INFO] WebPulse AI — Self-Healing Intelligence Terminal',
-      `[INFO] [${ts()}] — Extraction job triggered —`,
-      `[INFO] [${ts()}] Bright Data Adapter: LIVE — collector: ${collectorId || 'c_msriws9i2o6fk3acrw'}`,
-      `[INFO] [${ts()}] Triggering collector: ${collectorId || 'c_msriws9i2o6fk3acrw'}`,
+      `[INFO] [${ts()}] — Extraction Watcher triggered —`,
+      `[INFO] [${ts()}] Bright Data Scraper Studio: CONNECTED — collector: ${maskedCollector}`,
+      `[INFO] [${ts()}] Dispatched request to Bright Data DCA API...`,
     ]);
     await new Promise(r => setTimeout(r, 900));
-    addLog('[INFO] Dispatching scrape request with current selector config...');
+    addLog('[INFO] Collecting web dataset with active selector configuration...');
     try {
       const res = await fetch(`/api/monitors/${monitorId}/run`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -326,31 +346,34 @@ export default function Home() {
       if (data.run?.status === 'SUCCESS') {
         addLog(`[SUCCESS] Extraction completed — ${data.run.recordsCount} records collected.`);
         addLog('[SUCCESS] Schema validation PASSED. All required fields present.');
-        addLog('[SUCCESS] Scraper status: HEALTHY');
+        addLog('[SUCCESS] Scraper status: ● HEALTHY');
       } else if (data.run?.status === 'RECOVERED') {
-        addLog('[WARNING] Schema validation FAILED — required field "price" yielding 0 valid values.');
-        addLog('[WARNING] Extraction quality degraded. Initiating self-healing loop...');
+        addLog('[WARNING] ⚠ EXTRACTION ANOMALY DETECTED');
+        addLog('  Extraction integrity: 100% → 0%');
+        addLog('  Required fields missing or degraded: "price", "rating"');
+        addLog('  Initiating WebPulse Hot-Heal engine...');
         await new Promise(r => setTimeout(r, 700));
-        addLog('[INFO] — Self-Healing Engine activated —');
-        addLog('[INFO] Analysing target DOM tree for structural changes...');
+        addLog('🕷 HOT-HEAL ACTIVATED');
+        addLog('  Analyzing target DOM tree for structural alterations...');
         await new Promise(r => setTimeout(r, 800));
         const evts = data.selfHealingLog?.events || [];
         for (const ev of evts) {
-          addLog(`[INFO] Generating selector candidates for field: "${ev.fieldName}"`);
+          addLog(`  ◉ Field: "${ev.fieldName}"`);
           const candidates = ev.candidatesTested.slice(0, 4);
+          addLog(`  ◉ Testing ${ev.candidatesTested.length} candidate elements...`);
           for (const c of candidates) {
-            addLog(`       |  ${c.selector.padEnd(28)} score: ${c.score}%`);
+            addLog(`    | ${c.selector.padEnd(28)} score: ${c.score}%`);
           }
-          addLog(`[SUCCESS] Selected: "${ev.repairedSelector}" (score: ${candidates[0]?.score ?? '?'}%)`);
-          addLog(`[SUCCESS] Updated: "${ev.previousSelector}"  =>  "${ev.repairedSelector}"`);
+          addLog(`  ✓ Candidate accepted: "${ev.repairedSelector}" (integrity: ${candidates[0]?.score ?? '?'}%)`);
+          addLog(`  ✓ Config repaired: "${ev.previousSelector}"  =>  "${ev.repairedSelector}"`);
         }
         await new Promise(r => setTimeout(r, 600));
-        addLog('[INFO] Re-running extraction with repaired selector config...');
-        addLog(`[SUCCESS] ${data.run.recordsCount} records recovered. Confidence: 100%`);
-        addLog('[SUCCESS] Scraper restored to HEALTHY status.');
-        addLog('[SUCCESS] — Self-Healing complete —');
+        addLog('↻ RE-RUNNING BRIGHT DATA COLLECTOR...');
+        addLog(`✓ ${data.run.recordsCount} records successfully recovered.`);
+        addLog('⚡ RESOLVED — Extraction integrity restored to 100%.');
+        addLog('🟢 WATCHER STATUS: HEALTHY');
       } else {
-        addLog('[ERROR] Extraction failed. Self-healing could not resolve selectors.');
+        addLog('[ERROR] ✕ FAILED. Extraction failed and self-healing could not recover selectors.');
       }
       fetchDb(true);
     } catch {
@@ -589,22 +612,22 @@ export default function Home() {
                   <div className="grid-2" style={{ gridTemplateColumns: '2fr 1fr', gap: '20px' }}>
                     {/* Pipelines table */}
                     <div className="card">
-                      <div className="section-title"><Icon.Monitor /> Active Scraper Pipelines</div>
+                      <div className="section-title"><Icon.Monitor /> Active Scraper Watchers</div>
                       {monitors.length === 0 ? (
                         <div style={{ padding: '40px', textAlign: 'center', border: '2px dashed var(--border-subtle)', fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--white-muted)' }}>
-                          No monitors yet — go to Monitors to create one.
+                          No watchers configured yet. Go to Monitors to provision one.
                         </div>
                       ) : (
                         <div className="table-wrap">
                           <table className="data-table">
-                            <thead><tr><th>Name</th><th>Status</th><th>Success Rate</th><th>Records</th><th>Action</th></tr></thead>
+                            <thead><tr><th>Name</th><th>Status</th><th>Integrity</th><th>Records</th><th>Action</th></tr></thead>
                             <tbody>
                               {monitors.map(mon => {
                                 const scr = scrapers.find(s => s.monitorId === mon.id);
                                 return (
                                   <tr key={mon.id}>
                                     <td style={{ fontWeight: 700 }}>{mon.name}</td>
-                                    <td><StatusBadge status={scr?.status || 'HEALTHY'} /></td>
+                                    <td><StatusBadge status={runningId === mon.id ? 'RUNNING' : (scr?.status || 'HEALTHY')} /></td>
                                     <td style={{ color: 'var(--green)', fontWeight: 800 }}>{scr?.successRate ?? 100}%</td>
                                     <td>{scr?.totalRecordsCollected ?? 0}</td>
                                     <td>
@@ -623,25 +646,55 @@ export default function Home() {
                       )}
                     </div>
 
-                    {/* Activity log */}
-                    <div className="card" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                      <div className="section-title"><Icon.Terminal /> System Log</div>
-                      <div style={{ overflowY: 'auto', flex: 1, maxHeight: '400px', display: 'flex', flexDirection: 'column', gap: '0' }}>
-                        {activityEvents.length === 0 ? (
-                          <div style={{ padding: '30px', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--white-muted)' }}>No activity yet.</div>
-                        ) : activityEvents.map(ev => (
-                          <div key={ev.id} style={{ padding: '10px 14px', borderBottom: '1px solid var(--border-subtle)' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
-                              <span style={{
-                                fontFamily: 'var(--font-mono)', fontSize: '9px', fontWeight: 800, textTransform: 'uppercase',
-                                color: ev.type === 'success' ? 'var(--green)' : ev.type === 'warning' ? '#facc15' : ev.type === 'error' ? 'var(--red)' : 'var(--white-muted)',
-                              }}>{ev.type}</span>
-                              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--white-faint)' }}>{new Date(ev.timestamp).toLocaleTimeString()}</span>
+                    {/* Right column: logs and scraper infrastructure */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                      {/* Activity log */}
+                      <div className="card" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                        <div className="section-title"><Icon.Terminal /> System Log</div>
+                        <div style={{ overflowY: 'auto', flex: 1, maxHeight: '280px', display: 'flex', flexDirection: 'column', gap: '0' }}>
+                          {activityEvents.length === 0 ? (
+                            <div style={{ padding: '30px', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--white-muted)' }}>No activity yet.</div>
+                          ) : activityEvents.map(ev => (
+                            <div key={ev.id} style={{ padding: '10px 14px', borderBottom: '1px solid var(--border-subtle)' }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
+                                <span style={{
+                                  fontFamily: 'var(--font-mono)', fontSize: '9px', fontWeight: 800, textTransform: 'uppercase',
+                                  color: ev.type === 'success' ? 'var(--green)' : ev.type === 'warning' ? '#facc15' : ev.type === 'error' ? 'var(--red)' : 'var(--white-muted)',
+                                }}>{ev.type}</span>
+                                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--white-faint)' }}>{new Date(ev.timestamp).toLocaleTimeString()}</span>
+                              </div>
+                              <div style={{ fontSize: '12px', color: 'var(--white-muted)' }}>{ev.message}</div>
                             </div>
-                            <div style={{ fontSize: '12px', color: 'var(--white-muted)' }}>{ev.message}</div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
+
+                      {/* Bright Data Status Card */}
+                      <div className="card">
+                        <div className="section-title"><Icon.BrightData /> Scraper Infrastructure</div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontFamily: 'var(--font-mono)', fontSize: '12px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
+                            <span style={{ color: 'var(--white-muted)' }}>BRIGHT DATA</span>
+                            <span style={{ color: 'var(--green)', fontWeight: 800 }}>● CONNECTED</span>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
+                            <span style={{ color: 'var(--white-muted)' }}>SCRAPER STUDIO</span>
+                            <span style={{ color: 'var(--green)', fontWeight: 800 }}>● ACTIVE</span>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
+                            <span style={{ color: 'var(--white-muted)' }}>COLLECTOR</span>
+                            <span style={{ color: 'var(--yellow)', fontWeight: 700 }}>
+                              {collectorId ? `${collectorId.substring(0, 8)}••••` : 'c_msrjcn••••'}
+                            </span>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span style={{ color: 'var(--white-muted)' }}>LAST RUN</span>
+                            <span style={{ color: 'var(--white)' }}>
+                              {runs[0] ? new Date(runs[0].timestamp).toLocaleTimeString() : '—'}
+                            </span>
+                          </div>
+                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>

@@ -1,69 +1,151 @@
-# WebPulse AI 
+# WebPulse AI — Observability & Resilience for Scraper Studio
 
-> **“The internet changes. Your data shouldn’t.”**
+> **"The internet changes. Your data shouldn’t."**
 
-WebPulse AI is a **self-healing web intelligence platform** powered by Bright Data. Built for the **“Into the Scrape-Verse”** hackathon by WeMakeDevs / Bright Data, it addresses the fragility of traditional web scrapers when target website layouts shift. 
-
----
-
-## 🌟 Key Features
-
-1. **SaaS Dashboard**: Monitor scraper success rates, record collection metrics, and self-healing telemetry.
-2. **True Self-Healing**: Automatically detects missing fields, generates candidate selector variations, tests them against raw HTML, scores them using schema constraints and semantic heuristics, and updates selectors.
-3. **Controlled Demo Target**: Integrates a layout version toggle (V1 vs. V2 Layout) to test the scraper degradation and self-healing loops on demand.
-4. **Bright Data Scraper Studio Integration**: Implements a clean adapter allowing seamless switching between real Scraper Studio trigger APIs and a local simulation fallback.
-5. **Insights Engine**: Turn collected records into price intelligence and out-of-stock metrics.
-6. **Activity Timeline**: Full system history logging.
+WebPulse AI is a **scraper observability and resilience platform** built around **Bright Data Scraper Studio**. In web scraping, target website structures change frequently, causing data feeds to break. WebPulse AI monitors collection integrity, validates dataset schemas, visualizes degradation, and deploys a **local hot-healing engine** to generate and validate selector repairs before re-running the collector.
 
 ---
 
-## 🏗️ Tech Stack
-
-- **Framework**: Next.js 15 (React, App Router, TypeScript, API Routes)
-- **CSS**: Premium Vanilla CSS (custom space-dark theme, glassmorphism)
-- **DOM / Parser**: Cheerio (for selector candidate generation and local validation)
-- **Database**: Local JSON-file database (`db.json`) for instant portability and setup
-
----
-
-## 🚀 Quick Start
-
-### 1. Clone & Install Dependencies
-```bash
-npm install
-```
-
-### 2. Configure Environment Variables
-Copy `.env.example` to `.env` (optional, falls back to simulation mode if keys are omitted):
-```bash
-cp .env.example .env
-```
-
-### 3. Run the App
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## 🎨 Visual Identity (Spider-Verse Theme)
+WebPulse AI sports a premium, high-contrast **Spider-Verse** aesthetic:
+*   **Palette**: Cinematic deep purples, neon cyan accents, Gwen-magenta borders, and amber-gold indicator highlights.
+*   **Typography**: Bangers comic font for headers and metrics.
+*   **Graphic Touches**: Diagonal comic print textures, mathematical SVG cobweb ornaments, and horizontal glitch text-shadow animations.
 
 ---
 
-## 🧪 Running Automated Tests
+## 🏗️ Architecture & Flow
 
-Run the E2E self-healing test suite using the following command:
-```bash
-npx tsx scripts/test-self-healing.ts
+```text
+               PUBLIC WEBSITE
+                      │
+                      ▼
+          ┌───────────────────────┐
+          │  BRIGHT DATA          │
+          │  SCRAPER STUDIO       │
+          │                       │
+          │  Primary Collector    │
+          └───────────┬───────────┘
+                      │
+                Structured Data
+                      │
+                      ▼
+          ┌───────────────────────┐
+          │      WEBPULSE AI      │
+          │                       │
+          │  Schema Validation    │
+          │  Confidence Scoring   │
+          │  Health Monitoring    │
+          │  Change Detection     │
+          └───────────┬───────────┘
+                      │
+               Extraction fails
+                      │
+                      ▼
+          ┌───────────────────────┐
+          │  HOT-HEALING ENGINE   │
+          │                       │
+          │  DOM Analysis         │
+          │  Candidate Generation │
+          │  AI Assistance        │
+          │  Candidate Testing    │
+          │  Schema Validation    │
+          └───────────┬───────────┘
+                      │
+                New selectors
+                      │
+                      ▼
+          ┌───────────────────────┐
+          │    RE-RUN COLLECTOR   │
+          └───────────┬───────────┘
+                      │
+                      ▼
+               100% CONFIDENCE
+                      │
+                      ▼
+                🟢 RECOVERED
 ```
-This tests:
-- Healthy extraction on V1 layout.
-- Failure detection when switched to V2 layout.
-- Self-healing container and fields recovery.
-- Verification of recovered data.
+
+*   **Primary Collector**: Runs as a Scraper Studio DCA collector in the cloud (`brightdata.ts`).
+*   **Observability Hub**: WebPulse monitors runs, parses NDJSON streams, and alerts developers to extraction quality drops.
+*   **Self-Healing Engine**: A local hot-healing loop (`self-healing.ts`) that runs heuristic DOM analysis, tests generated selectors against target schemas, and updates the selectors locally, preventing slow and expensive cloud refactoring loops.
+*   **AI selector suggest**: Uses OpenRouter (Llama-3.1-Nemotron or active free models) to suggest initial CSS selectors directly from the UI.
+*   **Fail-Safe Native Fallback**: Implements a native Cheerio scraper fallback to keep data flowing during API downtime.
 
 ---
 
 ## 📂 Project Structure
 
-- `src/app/` - Next.js React frontend pages & API routes.
-- `src/lib/` - Logic helpers (database, Cheerio extractor, validation, self-healing, Bright Data adapter).
-- `scripts/` - Autonomous test suite.
-- `docs/` - Technical detail documentation.
+```text
+SCRAPERVERSE
+├── db.json                # Lightweight JSON Database (Monitors, Scrapers, Runs, Records, Repairs)
+├── README.md              # Project documentation
+├── scripts/
+│   └── test-self-healing.ts # E2E local self-healing simulation suite
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── status/        # Live API status checks
+│   │   │   ├── suggest-selectors/ # OpenRouter AI selector generator
+│   │   │   └── monitors/      
+│   │   │       ├── route.ts   # CRUD Operations (GET monitors list, POST create monitor)
+│   │   │       └── [id]/      
+│   │   │           ├── route.ts # DELETE Monitor operations
+│   │   │           └── run/     
+│   │   │               └── route.ts # Extraction & Fallback Route
+│   │   ├── globals.css        # Spider-Verse Theme Visual Tokens
+│   │   ├── layout.tsx         # Root app layout
+│   │   └── page.tsx           # Interactive Comic-Brutalist Dashboard
+│   └── lib/
+│       ├── brightdata.ts      # Live DCA API Poll Adapter (NDJSON support)
+│       ├── db.ts              # Driver for db.json
+│       ├── extractor.ts       # Cheerio-based element selector parser
+│       ├── validation.ts      # Schema validator & dataset confidence scorer
+│       └── self-healing.ts    # Selector candidate generator, tester & database repair driver
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Configure Environment Variables
+Copy `.env.example` to `.env` and fill in your Bright Data credentials and OpenRouter key:
+```env
+BRIGHTDATA_API_KEY=your_bright_data_api_key
+BRIGHTDATA_COLLECTOR_ID=your_scraper_studio_collector_id
+OPENROUTER_API_KEY=your_openrouter_api_key
+```
+
+### 3. Run Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
+
+---
+
+## 🧪 E2E Verification Tests
+
+To verify the selector repair flow locally without hitting API limits, run the automated E2E test script:
+```bash
+npx tsx scripts/test-self-healing.ts
+```
+The test asserts:
+1.  **Healthy Extraction (V1 layout)** yields 100% confidence.
+2.  **Degraded Extraction (V2 layout using V1 selectors)** drops integrity to 0%.
+3.  **Self-Healing Repair** scans DOM, generates candidates, scores validity, and writes corrected selectors.
+4.  **Verifies Recovery** re-running extraction and validating 100% schema compliance.
+
+---
+
+## 🛡️ Data & Public Compliance Policy
+WebPulse only accesses and processes publicly available web data. It is explicitly designed not to target:
+*   Private user information.
+*   Login-protected or credential-walled pages.
+*   Paywalled or pay-protected domains.
+*   Robots.txt restricted sources.
