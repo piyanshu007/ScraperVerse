@@ -1,0 +1,319 @@
+{
+  "monitors": [
+    {
+      "id": "mon_1786639800922",
+      "name": "BOOKS CATALOG",
+      "url": "https://books.toscrape.com/",
+      "selectors": {
+        "container": "article.product_pod",
+        "name": "h3 a",
+        "price": ".price_color",
+        "rating": ".star-rating",
+        "availability": ".instock.availability",
+        "discount": ".discount"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-13T16:50:00.922Z"
+    }
+  ],
+  "scrapers": [
+    {
+      "id": "scr_1786639800922",
+      "monitorId": "mon_1786639800922",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 20,
+      "lastRun": "2026-08-13T16:55:59.478Z",
+      "lastSuccessfulRun": "2026-08-13T16:55:59.478Z"
+    }
+  ],
+  "runs": [
+    {
+      "id": "run_1786640159478",
+      "monitorId": "mon_1786639800922",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "status": "SUCCESS",
+      "recordsCount": 20
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_1786640160916_aetrx",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "It's Only the Himalayas",
+        "price": 45.17,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160916_i0vas",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Libertarianism for Beginners",
+        "price": 51.33,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_u8mp6",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Mesaerion: The Best Science ...",
+        "price": 37.59,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_znb8z",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Olio",
+        "price": 23.88,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_cp9vn",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Our Band Could Be ...",
+        "price": 57.25,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_816yo",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Rip it Up and ...",
+        "price": 35.02,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_b3pyf",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Scott Pilgrim's Precious Little ...",
+        "price": 52.29,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_mi1n1",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Set Me Free",
+        "price": 17.46,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_6eddi",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Shakespeare's Sonnets",
+        "price": 20.66,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_d3ndk",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Starving Hearts (Triangular Trade ...",
+        "price": 13.99,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_lvdti",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "The Black Maria",
+        "price": 52.15,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_0pzx5",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "The Boys in the ...",
+        "price": 22.6,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_9126y",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "The Coming Woman: A ...",
+        "price": 17.93,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_x0yi1",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "The Dirty Little Secrets ...",
+        "price": 33.34,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_bcgm3",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "The Requiem Red",
+        "price": 22.65,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_4pagk",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Sapiens: A Brief History ...",
+        "price": 54.23,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_fhh8v",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Sharp Objects",
+        "price": 47.82,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_iw9mk",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Soumission",
+        "price": 50.1,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_rw9ll",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "Tipping the Velvet",
+        "price": 53.74,
+        "availability": "In stock"
+      }
+    },
+    {
+      "id": "rec_1786640160915_9lurn",
+      "monitorId": "mon_1786639800922",
+      "runId": "run_1786640159478",
+      "timestamp": "2026-08-13T16:55:59.478Z",
+      "data": {
+        "name": "A Light in the ...",
+        "price": 51.77,
+        "availability": "In stock"
+      }
+    }
+  ],
+  "repairEvents": [],
+  "activityEvents": [
+    {
+      "id": "act_1786639800925_60u5h",
+      "timestamp": "2026-08-13T16:50:00.925Z",
+      "message": "Created monitor: \"BOOKS CATALOG\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
+    {
+      "id": "act_1786637331095_0nfk7",
+      "timestamp": "2026-08-13T16:08:51.095Z",
+      "message": "Extraction run failed: Timed out waiting for Bright Data results (90 s).",
+      "type": "error"
+    },
+    {
+      "id": "act_1786636929964_dd97y",
+      "timestamp": "2026-08-13T16:02:09.964Z",
+      "message": "Created monitor: \"BOOKS CATALOG\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
+    {
+      "id": "act_1786635906548_n8co6",
+      "timestamp": "2026-08-13T15:45:06.548Z",
+      "message": "Created monitor: \"Books Catalog\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
+    {
+      "id": "act_1786634108302_c5jgi",
+      "timestamp": "2026-08-13T15:15:08.302Z",
+      "message": "Created monitor: \"Books Catalog\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    }
+  ],
+  "activeDemoVersion": 1
+}
