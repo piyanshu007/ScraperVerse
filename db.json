@@ -40,16 +40,16 @@
       "createdAt": "2026-08-13T16:50:00.922Z"
     },
     {
-      "id": "mon_1786645452355",
+      "id": "mon_1786646228694",
       "name": "Amazon Product",
       "url": "https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
       "selectors": {
-        "container": "article.product_pod",
-        "name": "h3 a",
-        "price": ".price_color",
-        "rating": ".star-rating",
-        "availability": ".availability",
-        "discount": ".discount"
+        "container": "div#a-page",
+        "name": "span#productTitle",
+        "price": "span.a-price-whole",
+        "rating": "i[data-hook='rating-out-of-text']",
+        "availability": "div#availability span",
+        "discount": "span.a-offscreen"
       },
       "schema": {
         "name": {
@@ -76,7 +76,7 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-13T18:24:12.355Z"
+      "createdAt": "2026-08-13T18:37:08.694Z"
     }
   ],
   "scrapers": [
@@ -90,19 +90,19 @@
       "lastSuccessfulRun": "2026-08-13T16:55:59.478Z"
     },
     {
-      "id": "scr_1786645452355",
-      "monitorId": "mon_1786645452355",
+      "id": "scr_1786646228694",
+      "monitorId": "mon_1786646228694",
       "status": "FAILED",
       "successRate": 0,
       "totalRecordsCollected": 0,
-      "lastRun": "2026-08-13T18:30:05.752Z"
+      "lastRun": "2026-08-13T18:43:03.720Z"
     }
   ],
   "runs": [
     {
-      "id": "run_1786645805752",
-      "monitorId": "mon_1786645452355",
-      "timestamp": "2026-08-13T18:30:05.752Z",
+      "id": "run_1786646583720",
+      "monitorId": "mon_1786646228694",
+      "timestamp": "2026-08-13T18:43:03.720Z",
       "status": "FAILED",
       "recordsCount": 0
     },
@@ -338,6 +338,24 @@
   ],
   "repairEvents": [],
   "activityEvents": [
+    {
+      "id": "act_1786646586347_kpscn",
+      "timestamp": "2026-08-13T18:43:06.347Z",
+      "message": "Extraction run failed: Timed out waiting for Bright Data results (90 s).",
+      "type": "error"
+    },
+    {
+      "id": "act_1786646228698_rhkpw",
+      "timestamp": "2026-08-13T18:37:08.698Z",
+      "message": "Created monitor: \"Amazon Product\" for URL: https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
+      "type": "success"
+    },
+    {
+      "id": "act_1786646062438_qfgta",
+      "timestamp": "2026-08-13T18:34:22.438Z",
+      "message": "Starting extraction run for monitor: \"Amazon Product\"",
+      "type": "info"
+    },
     {
       "id": "act_1786645806124_0zgzp",
       "timestamp": "2026-08-13T18:30:06.124Z",

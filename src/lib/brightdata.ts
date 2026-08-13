@@ -108,7 +108,7 @@ export async function scrapeWithBrightData(
         continue;
       }
 
-      if (Array.isArray(json) && json.length > 0) {
+      if (Array.isArray(json)) {
         console.log(`[BrightData] Done — ${json.length} records.`);
         return {
           records: json as ExtractedRecord[],
@@ -130,16 +130,14 @@ export async function scrapeWithBrightData(
         .map(line => { try { return JSON.parse(line); } catch { return null; } })
         .filter(Boolean) as ExtractedRecord[];
 
-      if (records.length > 0) {
-        console.log(`[BrightData] Done (NDJSON) — ${records.length} records.`);
-        return {
-          records,
-          collectionId,
-          isMock: false,
-          rawHtml: '',
-          status: 'SUCCESS',
-        };
-      }
+      console.log(`[BrightData] Done (NDJSON) — ${records.length} records.`);
+      return {
+        records,
+        collectionId,
+        isMock: false,
+        rawHtml: '',
+        status: 'SUCCESS',
+      };
     }
 
     console.log(`[BrightData] Attempt ${attempt}/${MAX_ATTEMPTS} — no data yet, retrying…`);
