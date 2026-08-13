@@ -664,7 +664,7 @@ export default function Home() {
                           <button type="button" className="btn btn-outline" style={{ padding: '4px 10px', fontSize: '9px', textTransform: 'uppercase', height: 'auto', border: '1px solid var(--magenta)' }}
                             disabled={aiLoading}
                             onClick={handleAiSuggest}>
-                            {aiLoading ? <><Icon.Spinner /> Analysing DOM...</> : '⚡ AI Auto-Suggest'}
+                            {aiLoading ? <><Icon.Spinner /> Analysing DOM...</> : 'AI Auto-Suggest'}
                           </button>
                         </div>
                         <input className="form-input" type="text" value={monitorUrl} onChange={e => setMonitorUrl(e.target.value)} required placeholder="e.g. https://example.com/products" />
