@@ -212,59 +212,111 @@ export async function POST(
 
     const healingResult = await healScraper(monitorId, rawHtml, config, monitor.schema);
 
-    if (healingResult.success && healingResult.events.length > 0) {
-      // Re-run extraction locally on the saved HTML using the repaired configuration
-      const recoveredRecords = extractData(rawHtml, healingResult.repairedConfig);
-      const recoveryValidation = validateDataset(recoveredRecords, monitor.schema);
+    if (healingResult.success) {
+      if (healingResult.events.length > 0) {
+        // Re-run extraction locally on the saved HTML using the repaired configuration
+        const recoveredRecords = extractData(rawHtml, healingResult.repairedConfig);
+        const recoveryValidation = validateDataset(recoveredRecords, monitor.schema);
 
-      const recoveredRun: ExtractionRun = {
-        id: runId,
-        monitorId,
-        timestamp,
-        status: 'RECOVERED',
-        recordsCount: recoveredRecords.length,
-        collectionId: scrapeResult.collectionId,
-      };
-
-      // Reload database because healScraper modifies selectors and scrapers in DB
-      const freshDb = readDb();
-      freshDb.runs.unshift(recoveredRun);
-      
-      const freshScraper = freshDb.scrapers.find(s => s.monitorId === monitorId);
-      if (freshScraper) {
-        freshScraper.lastRun = timestamp;
-        freshScraper.lastSuccessfulRun = timestamp;
-        freshScraper.status = 'HEALTHY';
-        freshScraper.totalRecordsCollected += recoveredRecords.length;
-        
-        const runs = freshDb.runs.filter(r => r.monitorId === monitorId);
-        const successRuns = runs.filter(r => r.status !== 'FAILED');
-        freshScraper.successRate = Math.round((successRuns.length / runs.length) * 100);
-      }
-
-      // Add recovered records
-      for (const recData of recoveredRecords) {
-        const newRecord: ExtractionRecord = {
-          id: `rec_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
-          runId,
+        const recoveredRun: ExtractionRun = {
+          id: runId,
           monitorId,
-          data: recData,
           timestamp,
+          status: 'RECOVERED',
+          recordsCount: recoveredRecords.length,
+          collectionId: scrapeResult.collectionId,
         };
-        freshDb.records.unshift(newRecord);
+
+        // Reload database because healScraper modifies selectors and scrapers in DB
+        const freshDb = readDb();
+        freshDb.runs.unshift(recoveredRun);
+        
+        const freshScraper = freshDb.scrapers.find(s => s.monitorId === monitorId);
+        if (freshScraper) {
+          freshScraper.lastRun = timestamp;
+          freshScraper.lastSuccessfulRun = timestamp;
+          freshScraper.status = 'HEALTHY';
+          freshScraper.totalRecordsCollected += recoveredRecords.length;
+          
+          const runs = freshDb.runs.filter(r => r.monitorId === monitorId);
+          const successRuns = runs.filter(r => r.status !== 'FAILED');
+          freshScraper.successRate = Math.round((successRuns.length / runs.length) * 100);
+        }
+
+        // Add recovered records
+        for (const recData of recoveredRecords) {
+          const newRecord: ExtractionRecord = {
+            id: `rec_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+            runId,
+            monitorId,
+            data: recData,
+            timestamp,
+          };
+          freshDb.records.unshift(newRecord);
+        }
+
+        writeDb(freshDb);
+        logActivity(`Self-healing succeeded. Extraction recovered for "${monitor.name}".`, 'success');
+
+        return NextResponse.json({
+          run: recoveredRun,
+          scraper: freshScraper || scraper,
+          records: recoveredRecords,
+          validation: recoveryValidation,
+          selfHealingAttempted: true,
+          selfHealingLog: healingResult,
+        });
+      } else {
+        // success is true, but no selectors changed. Means either everything was already valid
+        // or optional fields couldn't be resolved (which is fine). Save original records.
+        const successRun: ExtractionRun = {
+          id: runId,
+          monitorId,
+          timestamp,
+          status: 'SUCCESS',
+          recordsCount: scrapeResult.records.length,
+          collectionId: scrapeResult.collectionId,
+        };
+
+        const freshDb = readDb();
+        freshDb.runs.unshift(successRun);
+        
+        const freshScraper = freshDb.scrapers.find(s => s.monitorId === monitorId);
+        if (freshScraper) {
+          freshScraper.lastRun = timestamp;
+          freshScraper.lastSuccessfulRun = timestamp;
+          freshScraper.status = 'HEALTHY';
+          freshScraper.totalRecordsCollected += scrapeResult.records.length;
+          
+          const runs = freshDb.runs.filter(r => r.monitorId === monitorId);
+          const successRuns = runs.filter(r => r.status !== 'FAILED');
+          freshScraper.successRate = Math.round((successRuns.length / runs.length) * 100);
+        }
+
+        // Add records
+        for (const recData of scrapeResult.records) {
+          const newRecord: ExtractionRecord = {
+            id: `rec_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+            runId,
+            monitorId,
+            data: recData,
+            timestamp,
+          };
+          freshDb.records.unshift(newRecord);
+        }
+
+        writeDb(freshDb);
+        logActivity(`Extraction validated successfully (unresolved optional fields ignored).`, 'success');
+
+        return NextResponse.json({
+          run: successRun,
+          scraper: freshScraper || scraper,
+          records: scrapeResult.records,
+          validation: validationReport,
+          selfHealingAttempted: true,
+          selfHealingLog: healingResult,
+        });
       }
-
-      writeDb(freshDb);
-      logActivity(`Self-healing succeeded. Extraction recovered for "${monitor.name}".`, 'success');
-
-      return NextResponse.json({
-        run: recoveredRun,
-        scraper: freshScraper || scraper,
-        records: recoveredRecords,
-        validation: recoveryValidation,
-        selfHealingAttempted: true,
-        selfHealingLog: healingResult,
-      });
     }
 
     // Scenario C: Self-healing failed to find a valid repair

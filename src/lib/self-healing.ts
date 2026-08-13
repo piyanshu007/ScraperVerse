@@ -268,8 +268,10 @@ export async function healScraper(
         candidatesTested: candidateScoring.slice(0, 10), // Limit history to top 10
       });
     } else {
-      overallSuccess = false;
-      logActivity(`Could not find a valid repair candidate for field "${fieldName}"`, 'error');
+      if (schema[fieldName].required) {
+        overallSuccess = false;
+      }
+      logActivity(`Could not find a valid repair candidate for optional or required field "${fieldName}" (Required: ${schema[fieldName].required})`, 'warning');
     }
   }
 
