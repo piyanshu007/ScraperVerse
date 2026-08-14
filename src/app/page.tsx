@@ -410,6 +410,17 @@ export default function Home() {
   const avgPrice = records.length
     ? Math.round(records.reduce((a, r) => a + (Number(r.data.price) || 0), 0) / records.length)
     : 0;
+  const getCurrencySymbol = (recMonitorId?: string) => {
+    const mon = monitors.find(m => m.id === recMonitorId);
+    if (!mon) return '₹';
+    const url = mon.url.toLowerCase();
+    if (url.includes('books.toscrape.com') || url.includes('book')) return '£';
+    if (url.includes('.in') || url.includes('amazon.in')) return '₹';
+    if (url.includes('.uk')) return '£';
+    return '$';
+  };
+  const latestRecord = records[0];
+  const activeCurrencySymbol = latestRecord ? getCurrencySymbol(latestRecord.monitorId) : '₹';
   const outOfStock = records.filter(r => r.data.availability?.toLowerCase().includes('out')).length;
   const discounted  = records.filter(r => r.data.discount).length;
 
@@ -882,7 +893,7 @@ export default function Home() {
                           {records.map(rec => (
                             <tr key={rec.id}>
                               <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data.name || '—'}</td>
-                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>₹{rec.data.price || '—'}</td>
+                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data.price || '—'}</td>
                               <td>{rec.data.rating ? `${rec.data.rating} / 5` : '—'}</td>
                               <td style={{ color: rec.data.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
                                 {rec.data.availability || '—'}
@@ -902,7 +913,7 @@ export default function Home() {
               {activeTab === 'insights' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   <div className="grid-3">
-                    <Stat label="Avg. Tracked Price" value={`₹${avgPrice}`}   sub={`across ${records.length} records`} accent />
+                    <Stat label="Avg. Tracked Price" value={`${activeCurrencySymbol}${avgPrice}`}   sub={`across ${records.length} records`} accent />
                     <Stat label="Out of Stock"        value={outOfStock}       sub="products unavailable" />
                     <Stat label="Active Discounts"    value={discounted}       sub="products with deals"  accent />
                   </div>
@@ -916,7 +927,7 @@ export default function Home() {
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         {[
-                          { Icon: Icon.Check, color: 'var(--green)',  label: 'SUMMARY',   text: `Tracking ${records.length} product records. Average price: ₹${avgPrice}.` },
+                          { Icon: Icon.Check, color: 'var(--green)',  label: 'SUMMARY',   text: `Tracking ${records.length} product records. Average price: ${activeCurrencySymbol}${avgPrice}.` },
                           { Icon: Icon.Alert, color: '#facc15',       label: 'INVENTORY', text: `${outOfStock} products out of stock. ${discounted} active promotions tracked.` },
                           { Icon: Icon.Heal,  color: 'var(--green)',  label: 'HEALING',   text: `Self-healing engine has executed ${repairEvents.length} repair event(s). All selectors at 100% confidence.` },
                         ].map(row => (
