@@ -419,7 +419,7 @@ export default function Home() {
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <header className="app-header">
             <div className="logo-container">
-              <div className="logo-icon"><Icon.Logo /></div>
+              <div className="logo-icon"><img src="/logo.png" alt="WebPulse AI Logo" /></div>
               <span className="logo-text">WebPulse AI</span>
               <span className="logo-badge">Bright Data</span>
             </div>
@@ -552,7 +552,7 @@ export default function Home() {
         {/* ── Header ── */}
         <header className="app-header">
           <div className="logo-container" onClick={() => setShowDashboard(false)}>
-            <div className="logo-icon"><Icon.Logo /></div>
+            <div className="logo-icon"><img src="/logo.png" alt="WebPulse AI Logo" /></div>
             <span className="logo-text">WebPulse AI</span>
             <span className="logo-badge">Bright Data</span>
           </div>
