@@ -1,10 +1,86 @@
 {
-  "monitors": [],
-  "scrapers": [],
-  "runs": [],
-  "records": [],
+  "monitors": [
+    {
+      "id": "mon_1786708199109",
+      "name": "AMAZON PROD",
+      "url": "https://amzn.in/d/06f2Fxtb",
+      "selectors": {
+        "container": "div#ppd",
+        "name": "span#productTitle",
+        "price": "span#priceblock_ourprice",
+        "rating": "span#acrPopover",
+        "availability": "div#availability",
+        "discount": ""
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-14T11:49:59.109Z"
+    }
+  ],
+  "scrapers": [
+    {
+      "id": "scr_1786708199109",
+      "monitorId": "mon_1786708199109",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 1,
+      "lastRun": "2026-08-14T11:50:28.038Z",
+      "lastSuccessfulRun": "2026-08-14T11:50:28.038Z"
+    }
+  ],
+  "runs": [
+    {
+      "id": "run_1786708228038",
+      "monitorId": "mon_1786708199109",
+      "timestamp": "2026-08-14T11:50:28.038Z",
+      "status": "SUCCESS",
+      "recordsCount": 1,
+      "collectionId": "j_mssvxnri1x6dx7vlw"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_1786708231201_aomdp",
+      "monitorId": "mon_1786708199109",
+      "runId": "run_1786708228038",
+      "timestamp": "2026-08-14T11:50:28.038Z",
+      "data": {
+        "name": "Wheat Straw Dinner Set (16 Pieces) | Eco-Friendly Plates, Bowls & Glasses Set | Lightweight, Unbreakable, BPA-Free Tableware | Reusable Dining Set for Home, Kids & Travel",
+        "availability": "In stock"
+      }
+    }
+  ],
   "repairEvents": [],
   "activityEvents": [
+    {
+      "id": "act_1786708199115_fcfgr",
+      "timestamp": "2026-08-14T11:49:59.115Z",
+      "message": "Created monitor: \"AMAZON PROD\" for URL: https://amzn.in/d/06f2Fxtb",
+      "type": "success"
+    },
     {
       "id": "act_1786707667093_cx1ez",
       "timestamp": "2026-08-14T11:41:07.093Z",

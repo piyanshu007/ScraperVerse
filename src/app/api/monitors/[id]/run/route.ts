@@ -67,52 +67,12 @@ export async function POST(
 
       if (rawHtml) {
         const fallbackRecords = extractData(rawHtml, config);
-        
-        // If native fallback succeeds, bypass the Bright Data failure entirely!
+        // If native fallback succeeds, merge it into scrapeResult to undergo validation and healing!
         if (fallbackRecords.length > 0) {
-          logActivity(`Bright Data failed, but WebPulse Native Fallback successfully extracted ${fallbackRecords.length} records.`, 'success');
-          
-          const successRun: ExtractionRun = {
-            id: runId,
-            monitorId,
-            timestamp,
-            status: 'SUCCESS',
-            recordsCount: fallbackRecords.length,
-            collectionId: scrapeResult.collectionId,
-          };
-          db.runs.unshift(successRun);
-
-          // ✅ Fix: update scraper status to HEALTHY
-          scraper.lastRun = timestamp;
-          scraper.lastSuccessfulRun = timestamp;
-          scraper.status = 'HEALTHY';
-          scraper.totalRecordsCollected += fallbackRecords.length;
-
-          const runs = db.runs.filter(r => r.monitorId === monitorId);
-          const successRuns = runs.filter(r => r.status !== 'FAILED');
-          scraper.successRate = Math.round((successRuns.length / runs.length) * 100);
-          
-          for (const rec of fallbackRecords) {
-            const newRecord: ExtractionRecord = {
-              id: `rec_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
-              monitorId,
-              runId: successRun.id,
-              timestamp,
-              data: rec,
-            };
-            db.records.unshift(newRecord);
-          }
-          
-          writeDb(db);
-          
-          return NextResponse.json({
-            run: successRun,
-            scraper,
-            records: fallbackRecords,
-            validation: { isValid: true, results: [] },
-            selfHealingAttempted: false,
-            fallbackUsed: true
-          });
+          logActivity(`Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.`, 'info');
+          scrapeResult.records = fallbackRecords;
+          scrapeResult.status = 'SUCCESS';
+          scrapeResult.rawHtml = rawHtml;
         }
       }
     }
