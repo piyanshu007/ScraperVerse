@@ -88,6 +88,10 @@ export function extractData(
       const textVal = element.text().trim();
 
       if (fieldName === 'price') {
+        // Reject unit prices containing slashes or "per" (e.g. ₹8.54/count)
+        if (/\bper\b|\//i.test(textVal)) {
+          continue;
+        }
         // Try reading attribute data-price or price first
         const attrVal = element.attr('data-price') || element.attr('price');
         if (attrVal) {

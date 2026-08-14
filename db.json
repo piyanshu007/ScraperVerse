@@ -6,6 +6,96 @@
   "repairEvents": [],
   "activityEvents": [
     {
+      "id": "act_1786711492900_ts3yx",
+      "timestamp": "2026-08-14T12:44:52.900Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"AMAZON\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1786711481162_qmuch",
+      "timestamp": "2026-08-14T12:44:41.162Z",
+      "message": "Extraction validation failed for \"AMAZON\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786711481152_aetmu",
+      "timestamp": "2026-08-14T12:44:41.152Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786711476615_dfigy",
+      "timestamp": "2026-08-14T12:44:36.615Z",
+      "message": "Starting extraction run for monitor: \"AMAZON\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1786711472007_rhr79",
+      "timestamp": "2026-08-14T12:44:32.007Z",
+      "message": "Created monitor: \"AMAZON\" for URL:  https://amzn.in/d/02mcKEtb",
+      "type": "success"
+    },
+    {
+      "id": "act_1786711216906_lsrvr",
+      "timestamp": "2026-08-14T12:40:16.906Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"AMAZON\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1786711195759_ifve9",
+      "timestamp": "2026-08-14T12:39:55.759Z",
+      "message": "Extraction validation failed for \"AMAZON\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786711195756_qxtwr",
+      "timestamp": "2026-08-14T12:39:55.756Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786711180073_dmcv1",
+      "timestamp": "2026-08-14T12:39:40.073Z",
+      "message": "Starting extraction run for monitor: \"AMAZON\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1786711176267_gpb8s",
+      "timestamp": "2026-08-14T12:39:36.267Z",
+      "message": "Created monitor: \"AMAZON\" for URL: https://amzn.in/d/06f2Fxtb",
+      "type": "success"
+    },
+    {
+      "id": "act_1786711075215_acl3e",
+      "timestamp": "2026-08-14T12:37:55.215Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"book catalog\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1786711074136_al2ot",
+      "timestamp": "2026-08-14T12:37:54.136Z",
+      "message": "Extraction validation failed for \"book catalog\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786711074125_qxlo2",
+      "timestamp": "2026-08-14T12:37:54.125Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786711059962_15sit",
+      "timestamp": "2026-08-14T12:37:39.962Z",
+      "message": "Starting extraction run for monitor: \"book catalog\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1786711057627_fmfvf",
+      "timestamp": "2026-08-14T12:37:37.627Z",
+      "message": "Created monitor: \"book catalog\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
+    {
       "id": "act_1786710888460_se85i",
       "timestamp": "2026-08-14T12:34:48.460Z",
       "message": "Self-healing succeeded. Extraction recovered for \"book catalog\".",

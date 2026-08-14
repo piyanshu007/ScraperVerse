@@ -3,7 +3,7 @@ import { extractData, ExtractionConfig } from './extractor';
 import { SchemaConfig, validateDataset } from './validation';
 import { readDb, writeDb, logActivity, RepairEvent } from './db';
 
-function isValidSemanticValue(fieldName: string, val: string): boolean {
+function isValidSemanticValue(fieldName: string, val: string, selector: string): boolean {
   const cleanVal = val.trim().toLowerCase();
   if (cleanVal.length === 0) return false;
 
@@ -27,6 +27,15 @@ function isValidSemanticValue(fieldName: string, val: string): boolean {
     // Availability should contain words like stock, available, in, out, left
     const availRegex = /stock|avail|in|out|delivery|ships|left|only/;
     return availRegex.test(cleanVal);
+  }
+
+  if (fieldName === 'rating') {
+    // Reject ambiguous single digit numbers (like quantity dropdown '1') unless selector is explicitly rating-related
+    if (/^[1-5]$/.test(cleanVal)) {
+      const selLower = selector.toLowerCase();
+      const ratingKeywords = ['rating', 'star', 'review', 'popover', 'icon', 'acr', 'average'];
+      return ratingKeywords.some(kw => selLower.includes(kw));
+    }
   }
 
   return true;
@@ -227,6 +236,11 @@ export async function healScraper(
         const val = rec[fieldName];
         if (val === undefined || val === null || val === '') continue;
 
+        // Perform semantic value checking first
+        if (!isValidSemanticValue(fieldName, String(val), candidate)) {
+          continue;
+        }
+
         if (fieldConfig.type === 'number') {
           const num = Number(val);
           if (!isNaN(num)) {
@@ -236,7 +250,7 @@ export async function healScraper(
             }
           }
         } else {
-          if (typeof val === 'string' && isValidSemanticValue(fieldName, val)) {
+          if (typeof val === 'string') {
             validCount++;
           }
         }
