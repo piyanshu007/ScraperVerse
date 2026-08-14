@@ -18,8 +18,8 @@ function isValidSemanticValue(fieldName: string, val: string): boolean {
   }
 
   if (fieldName === 'discount') {
-    // Discount strings should contain a percentage %, "off", "save", or currency/digit symbols
-    const discountRegex = /%|off|save|discount|price|₹|£|\$|\d/;
+    // Discount strings should represent savings/reductions containing %, off, save, promo, discount, or negative sign
+    const discountRegex = /%|off|save|discount|promo|reduction|-/;
     return discountRegex.test(cleanVal);
   }
 
@@ -207,6 +207,9 @@ export async function healScraper(
 
     // Test and score each candidate
     for (const candidate of candidates) {
+      if (fieldName !== 'price' && candidate === repairedConfig.fields.price) {
+        continue;
+      }
       // Test configuration where ONLY this field is changed to the candidate selector
       const testFields = { ...repairedConfig.fields, [fieldName]: candidate };
       const testConfig: ExtractionConfig = {
