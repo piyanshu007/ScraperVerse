@@ -25,7 +25,13 @@ export function extractData(html: string, config: ExtractionConfig): ExtractedRe
 
     for (const [fieldName, selector] of Object.entries(config.fields)) {
       if (!selector) continue;
-      const element = $(el).find(selector);
+      let element;
+      try {
+        element = $(el).find(selector);
+      } catch (e) {
+        // Ignore invalid CSS selector syntax errors
+        continue;
+      }
       if (element.length === 0) {
         continue;
       }

@@ -76,6 +76,42 @@
   "repairEvents": [],
   "activityEvents": [
     {
+      "id": "act_1786708541743_mwm7o",
+      "timestamp": "2026-08-14T11:55:41.743Z",
+      "message": "Generating candidate selectors for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786708541738_ty0li",
+      "timestamp": "2026-08-14T11:55:41.738Z",
+      "message": "Detected broken fields: price, rating, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786708541336_zvo3o",
+      "timestamp": "2026-08-14T11:55:41.336Z",
+      "message": "Self-healing initiated for monitor: mon_1786708199109",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786708541330_i53fv",
+      "timestamp": "2026-08-14T11:55:41.330Z",
+      "message": "Extraction validation failed for \"AMAZON PROD\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786708541327_hx8hc",
+      "timestamp": "2026-08-14T11:55:41.327Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786708516888_usd1m",
+      "timestamp": "2026-08-14T11:55:16.888Z",
+      "message": "Starting extraction run for monitor: \"AMAZON PROD\"",
+      "type": "info"
+    },
+    {
       "id": "act_1786708199115_fcfgr",
       "timestamp": "2026-08-14T11:49:59.115Z",
       "message": "Created monitor: \"AMAZON PROD\" for URL: https://amzn.in/d/06f2Fxtb",

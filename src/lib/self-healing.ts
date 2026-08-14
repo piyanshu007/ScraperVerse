@@ -50,7 +50,9 @@ function generateFieldCandidates(html: string, containerSelector: string): strin
     // 2. Class names
     const classAttr = $el.attr('class');
     if (classAttr) {
-      const classes = classAttr.split(/\s+/).filter(c => c.trim().length > 0);
+      const classes = classAttr
+        .split(/\s+/)
+        .filter(c => c.trim().length > 0 && !/[{}[\]():=.,#]/.test(c));
       for (const cls of classes) {
         candidatesSet.add(`.${cls}`);
         candidatesSet.add(`${tagName}.${cls}`);
@@ -127,7 +129,12 @@ export async function healScraper(
     let maxCount = 0;
 
     for (const candidate of containerCandidates) {
-      const count = $(candidate).length;
+      let count = 0;
+      try {
+        count = $(candidate).length;
+      } catch {
+        continue;
+      }
       if (count > maxCount) {
         maxCount = count;
         bestContainer = candidate;
@@ -204,7 +211,10 @@ export async function healScraper(
       }
 
       // Score is percentage of matching containers where valid data is extracted
-      const totalContainers = $(repairedConfig.containerSelector).length;
+      let totalContainers = 0;
+      try {
+        totalContainers = $(repairedConfig.containerSelector).length;
+      } catch {}
       let score = totalContainers > 0 ? (validCount / totalContainers) * 100 : 0;
 
       // Semantic matching bonus: reward selectors containing field name or synonyms
