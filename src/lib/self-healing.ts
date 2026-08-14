@@ -120,8 +120,8 @@ export async function healScraper(
   logActivity(`Self-healing initiated for monitor: ${monitorId}`, 'warning');
 
   // Step 1: Check if container selector works. If not, heal the container first.
-  let initialRecords = extractData(html, repairedConfig);
   const $ = cheerio.load(html);
+  let initialRecords = extractData($, repairedConfig);
   if (initialRecords.length === 0 && $(repairedConfig.containerSelector).length === 0) {
     logActivity(`Container selector "${repairedConfig.containerSelector}" returned 0 records. Healing container...`, 'info');
     const containerCandidates = generateContainerCandidates(html);
@@ -145,7 +145,7 @@ export async function healScraper(
       logActivity(`Repaired container selector: "${repairedConfig.containerSelector}" -> "${bestContainer}" (${maxCount} containers found)`, 'success');
       repairedConfig.containerSelector = bestContainer;
       // Re-extract (might still be empty if all fields are broken, but the container is now correct!)
-      initialRecords = extractData(html, repairedConfig);
+      initialRecords = extractData($, repairedConfig);
     } else {
       logActivity(`Could not find a better container selector. Sticking with "${repairedConfig.containerSelector}"`, 'error');
     }
@@ -185,7 +185,7 @@ export async function healScraper(
         fields: testFields,
       };
 
-      const testRecords = extractData(html, testConfig);
+      const testRecords = extractData($, testConfig);
       
       // Calculate how many times this field is valid according to schema rules
       let validCount = 0;
@@ -260,7 +260,7 @@ export async function healScraper(
       repairedConfig.fields[fieldName] = bestCandidate.selector;
       
       // Test run with the repaired config
-      const healedRecords = extractData(html, repairedConfig);
+      const healedRecords = extractData($, repairedConfig);
       const postValidation = validateDataset(healedRecords, schema);
 
       logActivity(
@@ -287,7 +287,7 @@ export async function healScraper(
 
   // Update DB configs and log event history if repairs were attempted
   if (events.length > 0) {
-    const finalRecords = extractData(html, repairedConfig);
+    const finalRecords = extractData($, repairedConfig);
     const finalValidation = validateDataset(finalRecords, schema);
 
     // Save repaired configuration to monitor in DB

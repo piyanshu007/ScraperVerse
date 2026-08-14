@@ -59,8 +59,11 @@ export interface ExtractionConfig {
   fields: Record<string, string>; // e.g. { price: '.price', name: '.name' }
 }
 
-export function extractData(html: string, config: ExtractionConfig): ExtractedRecord[] {
-  const $ = cheerio.load(html);
+export function extractData(
+  htmlOrCheerio: string | cheerio.CheerioAPI,
+  config: ExtractionConfig
+): ExtractedRecord[] {
+  const $ = typeof htmlOrCheerio === 'string' ? cheerio.load(htmlOrCheerio) : htmlOrCheerio;
   const records: ExtractedRecord[] = [];
 
   const containers = $(config.containerSelector);

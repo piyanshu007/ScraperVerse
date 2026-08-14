@@ -1,16 +1,16 @@
 {
   "monitors": [
     {
-      "id": "mon_1786708199109",
-      "name": "AMAZON PROD",
+      "id": "mon_1786709381655",
+      "name": "amazon",
       "url": "https://amzn.in/d/06f2Fxtb",
       "selectors": {
         "container": "div#ppd",
         "name": "span#productTitle",
-        "price": "span#priceblock_ourprice",
-        "rating": "span#acrPopover",
-        "availability": "div#availability",
-        "discount": ""
+        "price": ".a-price .a-offscreen",
+        "rating": "#acrPopover .a-icon-alt",
+        "availability": "#availability",
+        "discount": ".a-price-badge-text"
       },
       "schema": {
         "name": {
@@ -37,44 +37,76 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-14T11:49:59.109Z"
+      "createdAt": "2026-08-14T12:09:41.655Z"
     }
   ],
   "scrapers": [
     {
-      "id": "scr_1786708199109",
-      "monitorId": "mon_1786708199109",
+      "id": "scr_1786709381656",
+      "monitorId": "mon_1786709381655",
       "status": "HEALTHY",
       "successRate": 100,
-      "totalRecordsCollected": 1,
-      "lastRun": "2026-08-14T11:50:28.038Z",
-      "lastSuccessfulRun": "2026-08-14T11:50:28.038Z"
+      "totalRecordsCollected": 0
     }
   ],
-  "runs": [
-    {
-      "id": "run_1786708228038",
-      "monitorId": "mon_1786708199109",
-      "timestamp": "2026-08-14T11:50:28.038Z",
-      "status": "SUCCESS",
-      "recordsCount": 1,
-      "collectionId": "j_mssvxnri1x6dx7vlw"
-    }
-  ],
-  "records": [
-    {
-      "id": "rec_1786708231201_aomdp",
-      "monitorId": "mon_1786708199109",
-      "runId": "run_1786708228038",
-      "timestamp": "2026-08-14T11:50:28.038Z",
-      "data": {
-        "name": "Wheat Straw Dinner Set (16 Pieces) | Eco-Friendly Plates, Bowls & Glasses Set | Lightweight, Unbreakable, BPA-Free Tableware | Reusable Dining Set for Home, Kids & Travel",
-        "availability": "In stock"
-      }
-    }
-  ],
+  "runs": [],
+  "records": [],
   "repairEvents": [],
   "activityEvents": [
+    {
+      "id": "act_1786710160145_7nthc",
+      "timestamp": "2026-08-14T12:22:40.145Z",
+      "message": "Generating candidate selectors for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786710160143_s246i",
+      "timestamp": "2026-08-14T12:22:40.143Z",
+      "message": "Field \"rating\" successfully repaired: \"#acrPopover .a-icon-alt\" -> \".item\" (Score: 100%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1786709896011_2k7bl",
+      "timestamp": "2026-08-14T12:18:16.011Z",
+      "message": "Generating candidate selectors for field \"rating\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786709896007_5gkfs",
+      "timestamp": "2026-08-14T12:18:16.007Z",
+      "message": "Detected broken fields: rating, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786709895632_8fee2",
+      "timestamp": "2026-08-14T12:18:15.632Z",
+      "message": "Self-healing initiated for monitor: mon_1786709381655",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786709895628_947g2",
+      "timestamp": "2026-08-14T12:18:15.628Z",
+      "message": "Extraction validation failed for \"amazon\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786709895625_kn60c",
+      "timestamp": "2026-08-14T12:18:15.625Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786709870284_9lrc1",
+      "timestamp": "2026-08-14T12:17:50.284Z",
+      "message": "Starting extraction run for monitor: \"amazon\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1786709381662_a9359",
+      "timestamp": "2026-08-14T12:09:41.662Z",
+      "message": "Created monitor: \"amazon\" for URL: https://amzn.in/d/06f2Fxtb",
+      "type": "success"
+    },
     {
       "id": "act_1786708854923_a2ht8",
       "timestamp": "2026-08-14T12:00:54.923Z",
