@@ -17,7 +17,9 @@ export async function POST(request: NextRequest) {
 
     const res = await fetch(absoluteUrl, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
       }
     });
 
@@ -49,11 +51,14 @@ export async function POST(request: NextRequest) {
     }
     const openRouterModel = 'openrouter/auto';
 
-    const systemPrompt = `You are a CSS selector assistant. Analyze the given HTML structure and identify the correct CSS selectors for capturing a list of products/items.
+    const systemPrompt = `You are a CSS selector assistant. Analyze the given HTML structure and identify the correct CSS selectors for capturing product/item data.
+
+*IMPORTANT*: If the HTML represents a single product detail page (rather than a search result listing page), you MUST return a container selector that isolates the main product details block (such as 'div#centerCol', 'div#ppd', or '.product-detail') to scrape exactly one product record instead of matching generic layout elements or footer links.
+
 Return a valid JSON object matching this schema:
 {
-  "container": "string (CSS selector for the wrapping card/row of each product, e.g. '.product-card' or 'article.product_pod')",
-  "name": "string (CSS selector for the product name relative to the container, e.g. 'h3 a' or '.title')",
+  "container": "string (CSS selector for the wrapping card of each product, e.g. '.product-card', 'article.product_pod', or 'div#centerCol' / 'div#ppd' for a single product page)",
+  "name": "string (CSS selector for the product name relative to the container, e.g. 'h3 a', 'span#productTitle', or '.title')",
   "price": "string (CSS selector for the price, e.g. '.price_color' or 'span.price')",
   "rating": "string (CSS selector for rating, e.g. '.star-rating' or '.rating')",
   "availability": "string (CSS selector for stock/availability, e.g. '.instock' or '.stock')",
