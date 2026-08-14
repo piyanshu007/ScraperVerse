@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
 
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   props: { params: Promise<{ id: string }> }
 ) {
   try {
