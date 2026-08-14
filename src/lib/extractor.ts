@@ -148,6 +148,18 @@ export function extractData(
         if (parsedRating !== null) {
           record[fieldName] = parsedRating;
         }
+      } else if (fieldName === 'availability') {
+        let cleanVal = textVal.split('\n').map(s => s.trim()).filter(Boolean)[0] || '';
+        if (cleanVal.length > 80) {
+          cleanVal = cleanVal.substring(0, 80).trim() + '...';
+        }
+        record[fieldName] = cleanVal;
+      } else if (fieldName === 'discount') {
+        let cleanVal = textVal.split('\n').map(s => s.trim()).filter(Boolean)[0] || '';
+        if (cleanVal.length > 50) {
+          cleanVal = cleanVal.substring(0, 50).trim() + '...';
+        }
+        record[fieldName] = cleanVal;
       } else {
         record[fieldName] = textVal;
       }

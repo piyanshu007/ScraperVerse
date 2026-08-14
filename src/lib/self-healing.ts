@@ -18,12 +18,14 @@ function isValidSemanticValue(fieldName: string, val: string, selector: string):
   }
 
   if (fieldName === 'discount') {
+    if (cleanVal.length > 40) return false;
     // Discount strings should represent savings/reductions containing %, off, save, promo, discount, or negative sign
     const discountRegex = /%|off|save|discount|promo|reduction|-/;
     return discountRegex.test(cleanVal);
   }
 
   if (fieldName === 'availability') {
+    if (cleanVal.length > 60) return false;
     // Availability should contain words like stock, available, in, out, left
     const availRegex = /stock|avail|in|out|delivery|ships|left|only/;
     return availRegex.test(cleanVal);
