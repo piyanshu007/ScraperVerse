@@ -95,10 +95,18 @@
       "status": "FAILED",
       "successRate": 0,
       "totalRecordsCollected": 0,
-      "lastRun": "2026-08-13T18:43:03.720Z"
+      "lastRun": "2026-08-14T11:32:37.088Z"
     }
   ],
   "runs": [
+    {
+      "id": "run_1786707157088",
+      "monitorId": "mon_1786646228694",
+      "timestamp": "2026-08-14T11:32:37.088Z",
+      "status": "FAILED",
+      "recordsCount": 0,
+      "collectionId": "j_mssvarhzjx5k0fsft"
+    },
     {
       "id": "run_1786646583720",
       "monitorId": "mon_1786646228694",
@@ -338,6 +346,108 @@
   ],
   "repairEvents": [],
   "activityEvents": [
+    {
+      "id": "act_1786707157617_bkfhv",
+      "timestamp": "2026-08-14T11:32:37.617Z",
+      "message": "Self-healing failed to recover extraction for \"Amazon Product\".",
+      "type": "error"
+    },
+    {
+      "id": "act_1786707157610_2vo2c",
+      "timestamp": "2026-08-14T11:32:37.610Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707157605_kaydc",
+      "timestamp": "2026-08-14T11:32:37.605Z",
+      "message": "Generating candidate selectors for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786707157603_k92to",
+      "timestamp": "2026-08-14T11:32:37.603Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707157597_g0ur9",
+      "timestamp": "2026-08-14T11:32:37.597Z",
+      "message": "Generating candidate selectors for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786707157592_4wbph",
+      "timestamp": "2026-08-14T11:32:37.592Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"rating\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707157586_3ows1",
+      "timestamp": "2026-08-14T11:32:37.586Z",
+      "message": "Generating candidate selectors for field \"rating\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786707157584_zrcix",
+      "timestamp": "2026-08-14T11:32:37.584Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"price\" (Required: true)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707157577_4plet",
+      "timestamp": "2026-08-14T11:32:37.577Z",
+      "message": "Generating candidate selectors for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786707157570_7d689",
+      "timestamp": "2026-08-14T11:32:37.570Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"name\" (Required: true)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707157560_lee6n",
+      "timestamp": "2026-08-14T11:32:37.560Z",
+      "message": "Generating candidate selectors for field \"name\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786707157556_w0jel",
+      "timestamp": "2026-08-14T11:32:37.556Z",
+      "message": "Detected broken fields: name, price, rating, availability, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707157552_r0iqw",
+      "timestamp": "2026-08-14T11:32:37.552Z",
+      "message": "Could not find a better container selector. Sticking with \"div#a-page\"",
+      "type": "error"
+    },
+    {
+      "id": "act_1786707157530_cfkal",
+      "timestamp": "2026-08-14T11:32:37.531Z",
+      "message": "Container selector \"div#a-page\" returned 0 records. Healing container...",
+      "type": "info"
+    },
+    {
+      "id": "act_1786707157508_5qxmd",
+      "timestamp": "2026-08-14T11:32:37.508Z",
+      "message": "Self-healing initiated for monitor: mon_1786646228694",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707157502_if0a4",
+      "timestamp": "2026-08-14T11:32:37.502Z",
+      "message": "Extraction validation failed for \"Amazon Product\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786707136907_6pgti",
+      "timestamp": "2026-08-14T11:32:16.908Z",
+      "message": "Starting extraction run for monitor: \"Amazon Product\"",
+      "type": "info"
+    },
     {
       "id": "act_1786646586347_kpscn",
       "timestamp": "2026-08-13T18:43:06.347Z",
