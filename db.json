@@ -37,7 +37,7 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-14T16:11:02.577Z"
+      "createdAt": "2026-08-14T16:17:41.364Z"
     }
   ],
   "scrapers": [
@@ -53,9 +53,9 @@
   "records": [],
   "repairEvents": [
     {
-      "id": "rep_1786723862710_1aj47",
+      "id": "rep_1786724261504_avi4r",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T16:11:02.710Z",
+      "timestamp": "2026-08-14T16:17:41.504Z",
       "fieldName": "discount",
       "previousSelector": ".discount",
       "repairedSelector": ".promo-text",
@@ -117,9 +117,9 @@
       ]
     },
     {
-      "id": "rep_1786723862710_e9ib8",
+      "id": "rep_1786724261504_14wa7",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T16:11:02.710Z",
+      "timestamp": "2026-08-14T16:17:41.504Z",
       "fieldName": "availability",
       "previousSelector": ".availability",
       "repairedSelector": ".stock-status",
@@ -137,11 +137,6 @@
           "selector": "span.stock-status",
           "validCount": 3,
           "score": 115
-        },
-        {
-          "selector": "span",
-          "validCount": 3,
-          "score": 100
         },
         {
           "selector": ".promo-text",
@@ -177,13 +172,18 @@
           "selector": "span.price-value",
           "validCount": 0,
           "score": 0
+        },
+        {
+          "selector": "span[data-price]",
+          "validCount": 0,
+          "score": 0
         }
       ]
     },
     {
-      "id": "rep_1786723862710_jd1gp",
+      "id": "rep_1786724261504_rbusr",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T16:11:02.710Z",
+      "timestamp": "2026-08-14T16:17:41.504Z",
       "fieldName": "rating",
       "previousSelector": ".rating",
       "repairedSelector": ".rating-badge",
@@ -245,9 +245,9 @@
       ]
     },
     {
-      "id": "rep_1786723862710_zzv4b",
+      "id": "rep_1786724261504_z3mfk",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T16:11:02.710Z",
+      "timestamp": "2026-08-14T16:17:41.504Z",
       "fieldName": "price",
       "previousSelector": ".price",
       "repairedSelector": ".price-value",
@@ -309,9 +309,9 @@
       ]
     },
     {
-      "id": "rep_1786723862710_eevu3",
+      "id": "rep_1786724261504_4gtuv",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T16:11:02.710Z",
+      "timestamp": "2026-08-14T16:17:41.504Z",
       "fieldName": "name",
       "previousSelector": ".name",
       "repairedSelector": ".product-title",

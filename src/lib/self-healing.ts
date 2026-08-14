@@ -26,8 +26,8 @@ function isValidSemanticValue(fieldName: string, val: string, selector: string):
 
   if (fieldName === 'availability') {
     if (cleanVal.length > 60) return false;
-    // Availability should contain words like stock, available, in, out, left
-    const availRegex = /stock|avail|in|out|delivery|ships|left|only/;
+    // Availability should match precise stock status or delivery keywords using word boundaries
+    const availRegex = /\b(?:in[- ]*stock|out[- ]*of[- ]*stock|available|unavailable|left|delivery|ships|only)\b/i;
     return availRegex.test(cleanVal);
   }
 
