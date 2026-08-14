@@ -3,6 +3,35 @@ import { extractData, ExtractionConfig } from './extractor';
 import { SchemaConfig, validateDataset } from './validation';
 import { readDb, writeDb, logActivity, RepairEvent } from './db';
 
+function isValidSemanticValue(fieldName: string, val: string): boolean {
+  const cleanVal = val.trim().toLowerCase();
+  if (cleanVal.length === 0) return false;
+
+  // Blacklist common UI buttons and action labels
+  const uiBlacklist = [
+    'add to basket', 'add to cart', 'buy now', 'sign in', 'search', 'menu', 
+    'navigation', 'footer', 'checkout', 'add to wish list', 'view details', 
+    'details', 'next', 'previous', 'click here'
+  ];
+  if (uiBlacklist.includes(cleanVal)) {
+    return false;
+  }
+
+  if (fieldName === 'discount') {
+    // Discount strings should contain a percentage %, "off", "save", or currency/digit symbols
+    const discountRegex = /%|off|save|discount|price|₹|£|\$|\d/;
+    return discountRegex.test(cleanVal);
+  }
+
+  if (fieldName === 'availability') {
+    // Availability should contain words like stock, available, in, out, left
+    const availRegex = /stock|avail|in|out|delivery|ships|left|only/;
+    return availRegex.test(cleanVal);
+  }
+
+  return true;
+}
+
 interface CandidateScoring {
   selector: string;
   validCount: number;
@@ -204,7 +233,7 @@ export async function healScraper(
             }
           }
         } else {
-          if (typeof val === 'string') {
+          if (typeof val === 'string' && isValidSemanticValue(fieldName, val)) {
             validCount++;
           }
         }
