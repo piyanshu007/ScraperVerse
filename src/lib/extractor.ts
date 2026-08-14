@@ -1,5 +1,50 @@
 import * as cheerio from 'cheerio';
 
+export async function fetchWithRedirect(url: string, maxRedirects = 3): Promise<Response> {
+  let currentUrl = url;
+  let response: Response | null = null;
+
+  for (let i = 0; i < maxRedirects; i++) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 seconds timeout
+    
+    try {
+      response = await fetch(currentUrl, {
+        redirect: 'manual',
+        signal: controller.signal,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.5',
+        }
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
+
+    if (response.status >= 300 && response.status < 400) {
+      const location = response.headers.get('location');
+      if (location) {
+        // Handle relative redirects
+        if (location.startsWith('/')) {
+          const parsed = new URL(currentUrl);
+          currentUrl = `${parsed.protocol}//${parsed.host}${location}`;
+        } else {
+          currentUrl = location;
+        }
+        continue;
+      }
+    }
+    
+    break;
+  }
+
+  if (!response) {
+    throw new Error('No response received');
+  }
+  return response;
+}
+
 export interface ExtractedRecord {
   name?: string;
   price?: number;

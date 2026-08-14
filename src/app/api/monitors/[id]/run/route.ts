@@ -3,7 +3,7 @@ import { readDb, writeDb, logActivity, ExtractionRun, ExtractionRecord } from '@
 import { scrapeWithBrightData } from '@/lib/brightdata';
 import { validateDataset } from '@/lib/validation';
 import { healScraper } from '@/lib/self-healing';
-import { extractData } from '@/lib/extractor';
+import { extractData, fetchWithRedirect } from '@/lib/extractor';
 
 export async function POST(
   request: NextRequest,
@@ -50,13 +50,7 @@ export async function POST(
             const origin = request.nextUrl.origin || 'http://localhost:3000';
             absoluteUrl = `${origin}${monitor.url}`;
           }
-          const htmlRes = await fetch(absoluteUrl, {
-            headers: {
-              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-              'Accept-Language': 'en-US,en;q=0.5',
-            }
-          });
+          const htmlRes = await fetchWithRedirect(absoluteUrl);
           if (htmlRes.ok) {
             rawHtml = await htmlRes.text();
           }
@@ -167,13 +161,7 @@ export async function POST(
           const origin = request.nextUrl.origin || 'http://localhost:3000';
           absoluteUrl = `${origin}${monitor.url}`;
         }
-        const htmlRes = await fetch(absoluteUrl, {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-          }
-        });
+        const htmlRes = await fetchWithRedirect(absoluteUrl);
         if (htmlRes.ok) {
           rawHtml = await htmlRes.text();
         }
