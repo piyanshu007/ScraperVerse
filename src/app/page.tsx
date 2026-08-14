@@ -741,15 +741,15 @@ export default function Home() {
                         </div>
                         <div className="grid-2" style={{ gap: '10px' }}>
                           {[
-                            { label: 'Name',         val: nameSel,     set: setNameSel },
-                            { label: 'Price',        val: priceSel,    set: setPriceSel },
-                            { label: 'Rating',       val: ratingSel,   set: setRatingSel },
-                            { label: 'Availability', val: availSel,    set: setAvailSel },
-                            { label: 'Discount',     val: discountSel, set: setDiscountSel },
+                            { label: 'Name',         val: nameSel,     set: setNameSel,     req: true },
+                            { label: 'Price',        val: priceSel,    set: setPriceSel,    req: true },
+                            { label: 'Rating',       val: ratingSel,   set: setRatingSel,   req: false },
+                            { label: 'Availability', val: availSel,    set: setAvailSel,    req: false },
+                            { label: 'Discount',     val: discountSel, set: setDiscountSel, req: false },
                           ].map(f => (
                             <div key={f.label} className="form-group">
                               <label className="form-label">{f.label}</label>
-                              <input className="form-input" type="text" value={f.val} onChange={e => f.set(e.target.value)} required />
+                              <input className="form-input" type="text" value={f.val} onChange={e => f.set(e.target.value)} required={f.req} />
                             </div>
                           ))}
                         </div>
