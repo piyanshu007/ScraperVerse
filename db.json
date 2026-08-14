@@ -37,7 +37,7 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-14T17:56:35.327Z"
+      "createdAt": "2026-08-14T18:02:38.267Z"
     }
   ],
   "scrapers": [
@@ -53,9 +53,9 @@
   "records": [],
   "repairEvents": [
     {
-      "id": "rep_1786730195453_8asr2",
+      "id": "rep_1786730558435_rdapw",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T17:56:35.453Z",
+      "timestamp": "2026-08-14T18:02:38.435Z",
       "fieldName": "discount",
       "previousSelector": ".discount",
       "repairedSelector": ".promo-text",
@@ -117,9 +117,9 @@
       ]
     },
     {
-      "id": "rep_1786730195453_2henp",
+      "id": "rep_1786730558435_17vw3",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T17:56:35.453Z",
+      "timestamp": "2026-08-14T18:02:38.435Z",
       "fieldName": "availability",
       "previousSelector": ".availability",
       "repairedSelector": ".stock-status",
@@ -181,9 +181,9 @@
       ]
     },
     {
-      "id": "rep_1786730195453_bb8qg",
+      "id": "rep_1786730558435_imzrd",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T17:56:35.453Z",
+      "timestamp": "2026-08-14T18:02:38.435Z",
       "fieldName": "rating",
       "previousSelector": ".rating",
       "repairedSelector": ".rating-badge",
@@ -245,9 +245,9 @@
       ]
     },
     {
-      "id": "rep_1786730195453_dvg9o",
+      "id": "rep_1786730558435_9sc3h",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T17:56:35.453Z",
+      "timestamp": "2026-08-14T18:02:38.435Z",
       "fieldName": "price",
       "previousSelector": ".price",
       "repairedSelector": ".price-value",
@@ -309,9 +309,9 @@
       ]
     },
     {
-      "id": "rep_1786730195453_x9bu2",
+      "id": "rep_1786730558435_0sd6l",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T17:56:35.453Z",
+      "timestamp": "2026-08-14T18:02:38.435Z",
       "fieldName": "name",
       "previousSelector": ".name",
       "repairedSelector": ".product-title",

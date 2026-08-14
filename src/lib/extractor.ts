@@ -92,29 +92,48 @@ export function extractData(
       const textVal = cleanElement.text().trim();
 
       if (fieldName === 'price') {
-        // Reject unit prices containing slashes or "per" (e.g. ₹8.54/count)
-        if (/\bper\b|\//i.test(textVal)) {
-          continue;
-        }
-        // Try reading attribute data-price or price first
-        const attrVal = element.attr('data-price') || element.attr('price');
-        if (attrVal) {
-          const matches = attrVal.match(/[\d,]+(?:\.\d+)?/);
+        let foundPrice = false;
+        
+        // Loop through all matched elements to bypass unit prices or strike-through list prices
+        for (let i = 0; i < element.length; i++) {
+          const elSingle = $(element[i]);
+          const textValSingle = elSingle.text().trim();
+          
+          // Get surrounding text of parent/grandparent container to look for /count or /per
+          const parentText = elSingle.parent().text().trim() + ' ' + (elSingle.parent().parent().text().trim());
+          
+          if (/\bper\b|\/|m\.r\.p|mrp/i.test(parentText) || elSingle.closest('.a-text-price').length > 0) {
+            continue;
+          }
+          
+          // Try reading attribute data-price or price first
+          const attrVal = elSingle.attr('data-price') || elSingle.attr('price');
+          if (attrVal) {
+            const matches = attrVal.match(/[\d,]+(?:\.\d+)?/);
+            if (matches) {
+              const num = parseFloat(matches[0].replace(/,/g, ''));
+              if (!isNaN(num)) {
+                record[fieldName] = num;
+                foundPrice = true;
+                break;
+              }
+            }
+          }
+          
+          // Fallback to text parsing of first match
+          const matches = textValSingle.match(/[\d,]+(?:\.\d+)?/);
           if (matches) {
             const num = parseFloat(matches[0].replace(/,/g, ''));
             if (!isNaN(num)) {
               record[fieldName] = num;
-              continue;
+              foundPrice = true;
+              break;
             }
           }
         }
-        // Fallback to text parsing of first match
-        const matches = textVal.match(/[\d,]+(?:\.\d+)?/);
-        if (matches) {
-          const num = parseFloat(matches[0].replace(/,/g, ''));
-          if (!isNaN(num)) {
-            record[fieldName] = num;
-          }
+        
+        if (foundPrice) {
+          continue;
         }
       } else if (fieldName === 'rating') {
         // Star ratings can be stored as words in classes (e.g. books.toscrape.com "<p class='star-rating Three'>")
