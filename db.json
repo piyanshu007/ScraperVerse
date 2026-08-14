@@ -8,9 +8,9 @@
         "container": "div#ppd",
         "name": "span#productTitle",
         "price": ".a-price .a-offscreen",
-        "rating": "#acrPopover .a-icon-alt",
+        "rating": ".item",
         "availability": "#availability",
-        "discount": ".a-price-badge-text"
+        "discount": ".a-offscreen"
       },
       "schema": {
         "name": {
@@ -38,6 +38,45 @@
         }
       },
       "createdAt": "2026-08-14T12:09:41.655Z"
+    },
+    {
+      "id": "mon_1786710469065",
+      "name": "books catalog",
+      "url": "https://books.toscrape.com/",
+      "selectors": {
+        "container": "article.product_pod",
+        "name": "h3 a",
+        "price": ".price_color",
+        "rating": ".star-rating",
+        "availability": ".availability",
+        "discount": ".btn"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-14T12:27:49.065Z"
     }
   ],
   "scrapers": [
@@ -46,13 +85,606 @@
       "monitorId": "mon_1786709381655",
       "status": "HEALTHY",
       "successRate": 100,
-      "totalRecordsCollected": 0
+      "totalRecordsCollected": 1,
+      "lastRun": "2026-08-14T12:24:30.575Z",
+      "lastSuccessfulRun": "2026-08-14T12:24:30.575Z"
+    },
+    {
+      "id": "scr_1786710469065",
+      "monitorId": "mon_1786710469065",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 20,
+      "lastRun": "2026-08-14T12:28:10.964Z",
+      "lastSuccessfulRun": "2026-08-14T12:28:10.964Z"
     }
   ],
-  "runs": [],
-  "records": [],
-  "repairEvents": [],
+  "runs": [
+    {
+      "id": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "timestamp": "2026-08-14T12:28:10.964Z",
+      "status": "RECOVERED",
+      "recordsCount": 20,
+      "collectionId": "j_mssxa8jf2kqc6ac2e2"
+    },
+    {
+      "id": "run_1786710270575",
+      "monitorId": "mon_1786709381655",
+      "timestamp": "2026-08-14T12:24:30.575Z",
+      "status": "RECOVERED",
+      "recordsCount": 1,
+      "collectionId": "j_mssx5h9e1gi8riyjqz"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_1786710493539_6xir7",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "It's Only the Himalayas",
+        "price": 45.17,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_cyiez",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Libertarianism for Beginners",
+        "price": 51.33,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_0tt9u",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Mesaerion: The Best Science ...",
+        "price": 37.59,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_8urtb",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Olio",
+        "price": 23.88,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_fdfyx",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Our Band Could Be ...",
+        "price": 57.25,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_ioa7u",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Rip it Up and ...",
+        "price": 35.02,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_9tues",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Scott Pilgrim's Precious Little ...",
+        "price": 52.29,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_hh1kc",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Set Me Free",
+        "price": 17.46,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_x4r43",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Shakespeare's Sonnets",
+        "price": 20.66,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_nn0iy",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Starving Hearts (Triangular Trade ...",
+        "price": 13.99,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493539_bcvig",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "The Black Maria",
+        "price": 52.15,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_xvmd6",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "The Boys in the ...",
+        "price": 22.6,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_mnh5j",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "The Coming Woman: A ...",
+        "price": 17.93,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_a8byj",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "The Dirty Little Secrets ...",
+        "price": 33.34,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_osw57",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "The Requiem Red",
+        "price": 22.65,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_brugb",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Sapiens: A Brief History ...",
+        "price": 54.23,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_nd1x5",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Sharp Objects",
+        "price": 47.82,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_3zitz",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Soumission",
+        "price": 50.1,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_0mpw1",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "Tipping the Velvet",
+        "price": 53.74,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710493538_3m5pl",
+      "runId": "run_1786710490964",
+      "monitorId": "mon_1786710469065",
+      "data": {
+        "name": "A Light in the ...",
+        "price": 51.77,
+        "availability": "In stock",
+        "discount": "Add to basket"
+      },
+      "timestamp": "2026-08-14T12:28:10.964Z"
+    },
+    {
+      "id": "rec_1786710311590_m5mu1",
+      "runId": "run_1786710270575",
+      "monitorId": "mon_1786709381655",
+      "data": {
+        "name": "Wheat Straw Dinner Set (16 Pieces) | Eco-Friendly Plates, Bowls & Glasses Set | Lightweight, Unbreakable, BPA-Free Tableware | Reusable Dining Set for Home, Kids & Travel",
+        "price": 1849.00115,
+        "rating": 2,
+        "availability": "In stock",
+        "discount": "₹1,849.00₹115.56₹1,849.00₹1,849.00 ₹115.56₹5,999"
+      },
+      "timestamp": "2026-08-14T12:24:30.575Z"
+    }
+  ],
+  "repairEvents": [
+    {
+      "id": "rep_1786710493474_7s4j6",
+      "monitorId": "mon_1786710469065",
+      "timestamp": "2026-08-14T12:28:13.474Z",
+      "fieldName": "discount",
+      "previousSelector": "",
+      "repairedSelector": ".btn",
+      "recordsBefore": 20,
+      "recordsAfter": 20,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".btn",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": ".instock",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": "p.instock",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": "button.btn",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": ".btn-block",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": ".price_color",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": ".btn-primary",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": "p.price_color",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": ".availability",
+          "validCount": 20,
+          "score": 100
+        },
+        {
+          "selector": ".product_price",
+          "validCount": 20,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1786710493474_jp2sn",
+      "monitorId": "mon_1786710469065",
+      "timestamp": "2026-08-14T12:28:13.474Z",
+      "fieldName": "rating",
+      "previousSelector": ".star-rating",
+      "repairedSelector": ".star-rating",
+      "recordsBefore": 20,
+      "recordsAfter": 0,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".star-rating",
+          "validCount": 0,
+          "score": 15
+        },
+        {
+          "selector": "p.star-rating",
+          "validCount": 0,
+          "score": 15
+        },
+        {
+          "selector": ".btn",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".Three",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "p.Three",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".instock",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".icon-ok",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "p.instock",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "i.icon-ok",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".thumbnail",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1786710311443_5g8dg",
+      "monitorId": "mon_1786709381655",
+      "timestamp": "2026-08-14T12:25:11.443Z",
+      "fieldName": "discount",
+      "previousSelector": ".a-price-badge-text",
+      "repairedSelector": ".a-offscreen",
+      "recordsBefore": 1,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".a-offscreen",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".vsx__offers",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".offers-items",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".aok-offscreen",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "div.vsx__offers",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "span.a-offscreen",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "div.offers-items",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".vsx-offers-count",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "span.aok-offscreen",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "a.vsx-offers-count",
+          "validCount": 1,
+          "score": 115
+        }
+      ]
+    },
+    {
+      "id": "rep_1786710311443_45eke",
+      "monitorId": "mon_1786709381655",
+      "timestamp": "2026-08-14T12:25:11.443Z",
+      "fieldName": "rating",
+      "previousSelector": "#acrPopover .a-icon-alt",
+      "repairedSelector": ".item",
+      "recordsBefore": 1,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".item",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-box",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "li.item",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".itemNo6",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".rightCol",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.a-box",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".celwidget",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-section",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "li.itemNo6",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-vertical",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    }
+  ],
   "activityEvents": [
+    {
+      "id": "act_1786710493546_mj5n1",
+      "timestamp": "2026-08-14T12:28:13.546Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"books catalog\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1786710492370_q1fbb",
+      "timestamp": "2026-08-14T12:28:12.370Z",
+      "message": "Extraction validation failed for \"books catalog\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786710492359_mf0uk",
+      "timestamp": "2026-08-14T12:28:12.359Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786710472701_4gwnp",
+      "timestamp": "2026-08-14T12:27:52.701Z",
+      "message": "Starting extraction run for monitor: \"books catalog\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1786710469071_4fsdz",
+      "timestamp": "2026-08-14T12:27:49.071Z",
+      "message": "Created monitor: \"books catalog\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
+    {
+      "id": "act_1786710311592_izhkb",
+      "timestamp": "2026-08-14T12:25:11.592Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"amazon\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1786710274918_ar2up",
+      "timestamp": "2026-08-14T12:24:34.918Z",
+      "message": "Extraction validation failed for \"amazon\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786710274879_kip0r",
+      "timestamp": "2026-08-14T12:24:34.879Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786710250606_bv6du",
+      "timestamp": "2026-08-14T12:24:10.606Z",
+      "message": "Starting extraction run for monitor: \"amazon\"",
+      "type": "info"
+    },
     {
       "id": "act_1786710160145_7nthc",
       "timestamp": "2026-08-14T12:22:40.145Z",

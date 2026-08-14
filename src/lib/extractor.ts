@@ -91,22 +91,31 @@ export function extractData(
         // Try reading attribute data-price or price first
         const attrVal = element.attr('data-price') || element.attr('price');
         if (attrVal) {
-          const num = parseFloat(attrVal.replace(/[^\d.]/g, ''));
-          if (!isNaN(num)) {
-            record[fieldName] = num;
-            continue;
+          const matches = attrVal.match(/[\d,]+(?:\.\d+)?/);
+          if (matches) {
+            const num = parseFloat(matches[0].replace(/,/g, ''));
+            if (!isNaN(num)) {
+              record[fieldName] = num;
+              continue;
+            }
           }
         }
-        // Fallback to text parsing
-        const num = parseFloat(textVal.replace(/[^\d.]/g, ''));
-        if (!isNaN(num)) {
-          record[fieldName] = num;
+        // Fallback to text parsing of first match
+        const matches = textVal.match(/[\d,]+(?:\.\d+)?/);
+        if (matches) {
+          const num = parseFloat(matches[0].replace(/,/g, ''));
+          if (!isNaN(num)) {
+            record[fieldName] = num;
+          }
         }
       } else if (fieldName === 'rating') {
-        // Parse rating, e.g. "4.2 Stars" -> 4.2
-        const num = parseFloat(textVal.replace(/[^\d.]/g, ''));
-        if (!isNaN(num)) {
-          record[fieldName] = num;
+        // Parse rating, e.g. "4.2 Stars" or "4.2 out of 5 stars" -> 4.2
+        const matches = textVal.match(/[\d,]+(?:\.\d+)?/);
+        if (matches) {
+          const num = parseFloat(matches[0].replace(/,/g, ''));
+          if (!isNaN(num)) {
+            record[fieldName] = num;
+          }
         }
       } else {
         record[fieldName] = textVal;
