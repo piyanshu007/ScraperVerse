@@ -1,556 +1,378 @@
 {
-  "monitors": [],
-  "scrapers": [],
-  "runs": [],
-  "records": [],
-  "repairEvents": [],
-  "activityEvents": [
-    {
-      "id": "act_1786711492900_ts3yx",
-      "timestamp": "2026-08-14T12:44:52.900Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"AMAZON\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786711481162_qmuch",
-      "timestamp": "2026-08-14T12:44:41.162Z",
-      "message": "Extraction validation failed for \"AMAZON\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786711481152_aetmu",
-      "timestamp": "2026-08-14T12:44:41.152Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786711476615_dfigy",
-      "timestamp": "2026-08-14T12:44:36.615Z",
-      "message": "Starting extraction run for monitor: \"AMAZON\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786711472007_rhr79",
-      "timestamp": "2026-08-14T12:44:32.007Z",
-      "message": "Created monitor: \"AMAZON\" for URL:  https://amzn.in/d/02mcKEtb",
-      "type": "success"
-    },
-    {
-      "id": "act_1786711216906_lsrvr",
-      "timestamp": "2026-08-14T12:40:16.906Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"AMAZON\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786711195759_ifve9",
-      "timestamp": "2026-08-14T12:39:55.759Z",
-      "message": "Extraction validation failed for \"AMAZON\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786711195756_qxtwr",
-      "timestamp": "2026-08-14T12:39:55.756Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786711180073_dmcv1",
-      "timestamp": "2026-08-14T12:39:40.073Z",
-      "message": "Starting extraction run for monitor: \"AMAZON\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786711176267_gpb8s",
-      "timestamp": "2026-08-14T12:39:36.267Z",
-      "message": "Created monitor: \"AMAZON\" for URL: https://amzn.in/d/06f2Fxtb",
-      "type": "success"
-    },
-    {
-      "id": "act_1786711075215_acl3e",
-      "timestamp": "2026-08-14T12:37:55.215Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"book catalog\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786711074136_al2ot",
-      "timestamp": "2026-08-14T12:37:54.136Z",
-      "message": "Extraction validation failed for \"book catalog\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786711074125_qxlo2",
-      "timestamp": "2026-08-14T12:37:54.125Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786711059962_15sit",
-      "timestamp": "2026-08-14T12:37:39.962Z",
-      "message": "Starting extraction run for monitor: \"book catalog\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786711057627_fmfvf",
-      "timestamp": "2026-08-14T12:37:37.627Z",
-      "message": "Created monitor: \"book catalog\" for URL: https://books.toscrape.com/",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710888460_se85i",
-      "timestamp": "2026-08-14T12:34:48.460Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"book catalog\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710887509_qjh9c",
-      "timestamp": "2026-08-14T12:34:47.509Z",
-      "message": "Extraction validation failed for \"book catalog\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786710887504_zoydt",
-      "timestamp": "2026-08-14T12:34:47.504Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710867559_8jl2u",
-      "timestamp": "2026-08-14T12:34:27.559Z",
-      "message": "Starting extraction run for monitor: \"book catalog\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710864324_42xng",
-      "timestamp": "2026-08-14T12:34:24.324Z",
-      "message": "Created monitor: \"book catalog\" for URL: https://books.toscrape.com/",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710795839_9hevx",
-      "timestamp": "2026-08-14T12:33:15.839Z",
-      "message": "Extraction successful for \"amazon\". Collected 1 records.",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710733625_2v865",
-      "timestamp": "2026-08-14T12:32:13.625Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"books catalog\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710732981_1t6y1",
-      "timestamp": "2026-08-14T12:32:12.981Z",
-      "message": "Extraction validation failed for \"books catalog\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786710732971_ewzh3",
-      "timestamp": "2026-08-14T12:32:12.971Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710718878_uzn5z",
-      "timestamp": "2026-08-14T12:31:58.878Z",
-      "message": "Starting extraction run for monitor: \"books catalog\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710671345_c5xqy",
-      "timestamp": "2026-08-14T12:31:11.345Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"books catalog\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710671115_ubto1",
-      "timestamp": "2026-08-14T12:31:11.115Z",
-      "message": "Extraction validation failed for \"books catalog\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786710671109_vr09s",
-      "timestamp": "2026-08-14T12:31:11.109Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710656601_besrf",
-      "timestamp": "2026-08-14T12:30:56.601Z",
-      "message": "Starting extraction run for monitor: \"books catalog\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710493546_mj5n1",
-      "timestamp": "2026-08-14T12:28:13.546Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"books catalog\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710492370_q1fbb",
-      "timestamp": "2026-08-14T12:28:12.370Z",
-      "message": "Extraction validation failed for \"books catalog\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786710492359_mf0uk",
-      "timestamp": "2026-08-14T12:28:12.359Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710472701_4gwnp",
-      "timestamp": "2026-08-14T12:27:52.701Z",
-      "message": "Starting extraction run for monitor: \"books catalog\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710469071_4fsdz",
-      "timestamp": "2026-08-14T12:27:49.071Z",
-      "message": "Created monitor: \"books catalog\" for URL: https://books.toscrape.com/",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710311592_izhkb",
-      "timestamp": "2026-08-14T12:25:11.592Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"amazon\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786710274918_ar2up",
-      "timestamp": "2026-08-14T12:24:34.918Z",
-      "message": "Extraction validation failed for \"amazon\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786710274879_kip0r",
-      "timestamp": "2026-08-14T12:24:34.879Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710250606_bv6du",
-      "timestamp": "2026-08-14T12:24:10.606Z",
-      "message": "Starting extraction run for monitor: \"amazon\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710160145_7nthc",
-      "timestamp": "2026-08-14T12:22:40.145Z",
-      "message": "Generating candidate selectors for field \"discount\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786710160143_s246i",
-      "timestamp": "2026-08-14T12:22:40.143Z",
-      "message": "Field \"rating\" successfully repaired: \"#acrPopover .a-icon-alt\" -> \".item\" (Score: 100%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1786709896011_2k7bl",
-      "timestamp": "2026-08-14T12:18:16.011Z",
-      "message": "Generating candidate selectors for field \"rating\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786709896007_5gkfs",
-      "timestamp": "2026-08-14T12:18:16.007Z",
-      "message": "Detected broken fields: rating, discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786709895632_8fee2",
-      "timestamp": "2026-08-14T12:18:15.632Z",
-      "message": "Self-healing initiated for monitor: mon_1786709381655",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786709895628_947g2",
-      "timestamp": "2026-08-14T12:18:15.628Z",
-      "message": "Extraction validation failed for \"amazon\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786709895625_kn60c",
-      "timestamp": "2026-08-14T12:18:15.625Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786709870284_9lrc1",
-      "timestamp": "2026-08-14T12:17:50.284Z",
-      "message": "Starting extraction run for monitor: \"amazon\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786709381662_a9359",
-      "timestamp": "2026-08-14T12:09:41.662Z",
-      "message": "Created monitor: \"amazon\" for URL: https://amzn.in/d/06f2Fxtb",
-      "type": "success"
-    },
-    {
-      "id": "act_1786708854923_a2ht8",
-      "timestamp": "2026-08-14T12:00:54.923Z",
-      "message": "Generating candidate selectors for field \"price\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786708854917_dt479",
-      "timestamp": "2026-08-14T12:00:54.917Z",
-      "message": "Detected broken fields: price, rating, discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786708853638_wtipd",
-      "timestamp": "2026-08-14T12:00:53.638Z",
-      "message": "Self-healing initiated for monitor: mon_1786708199109",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786708853626_le65d",
-      "timestamp": "2026-08-14T12:00:53.626Z",
-      "message": "Extraction validation failed for \"AMAZON PROD\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786708853619_xai3p",
-      "timestamp": "2026-08-14T12:00:53.619Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786708827729_iln5t",
-      "timestamp": "2026-08-14T12:00:27.729Z",
-      "message": "Starting extraction run for monitor: \"AMAZON PROD\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786708541743_mwm7o",
-      "timestamp": "2026-08-14T11:55:41.743Z",
-      "message": "Generating candidate selectors for field \"price\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786708541738_ty0li",
-      "timestamp": "2026-08-14T11:55:41.738Z",
-      "message": "Detected broken fields: price, rating, discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786708541336_zvo3o",
-      "timestamp": "2026-08-14T11:55:41.336Z",
-      "message": "Self-healing initiated for monitor: mon_1786708199109",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786708541330_i53fv",
-      "timestamp": "2026-08-14T11:55:41.330Z",
-      "message": "Extraction validation failed for \"AMAZON PROD\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786708541327_hx8hc",
-      "timestamp": "2026-08-14T11:55:41.327Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786708516888_usd1m",
-      "timestamp": "2026-08-14T11:55:16.888Z",
-      "message": "Starting extraction run for monitor: \"AMAZON PROD\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786708199115_fcfgr",
-      "timestamp": "2026-08-14T11:49:59.115Z",
-      "message": "Created monitor: \"AMAZON PROD\" for URL: https://amzn.in/d/06f2Fxtb",
-      "type": "success"
-    },
-    {
-      "id": "act_1786707667093_cx1ez",
-      "timestamp": "2026-08-14T11:41:07.093Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"AMAZON\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786707635508_g1i5j",
-      "timestamp": "2026-08-14T11:40:35.508Z",
-      "message": "Extraction validation failed for \"AMAZON\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707593405_786o5",
-      "timestamp": "2026-08-14T11:39:53.405Z",
-      "message": "Starting extraction run for monitor: \"AMAZON\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786707589105_pq27p",
-      "timestamp": "2026-08-14T11:39:49.106Z",
-      "message": "Created monitor: \"AMAZON\" for URL: https://amzn.in/d/06f2Fxtb",
-      "type": "success"
-    },
-    {
-      "id": "act_1786707157617_bkfhv",
-      "timestamp": "2026-08-14T11:32:37.617Z",
-      "message": "Self-healing failed to recover extraction for \"Amazon Product\".",
-      "type": "error"
-    },
-    {
-      "id": "act_1786707157610_2vo2c",
-      "timestamp": "2026-08-14T11:32:37.610Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707157605_kaydc",
-      "timestamp": "2026-08-14T11:32:37.605Z",
-      "message": "Generating candidate selectors for field \"discount\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786707157603_k92to",
-      "timestamp": "2026-08-14T11:32:37.603Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707157597_g0ur9",
-      "timestamp": "2026-08-14T11:32:37.597Z",
-      "message": "Generating candidate selectors for field \"availability\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786707157592_4wbph",
-      "timestamp": "2026-08-14T11:32:37.592Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"rating\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707157586_3ows1",
-      "timestamp": "2026-08-14T11:32:37.586Z",
-      "message": "Generating candidate selectors for field \"rating\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786707157584_zrcix",
-      "timestamp": "2026-08-14T11:32:37.584Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"price\" (Required: true)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707157577_4plet",
-      "timestamp": "2026-08-14T11:32:37.577Z",
-      "message": "Generating candidate selectors for field \"price\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786707157570_7d689",
-      "timestamp": "2026-08-14T11:32:37.570Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"name\" (Required: true)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707157560_lee6n",
-      "timestamp": "2026-08-14T11:32:37.560Z",
-      "message": "Generating candidate selectors for field \"name\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786707157556_w0jel",
-      "timestamp": "2026-08-14T11:32:37.556Z",
-      "message": "Detected broken fields: name, price, rating, availability, discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707157552_r0iqw",
-      "timestamp": "2026-08-14T11:32:37.552Z",
-      "message": "Could not find a better container selector. Sticking with \"div#a-page\"",
-      "type": "error"
-    },
-    {
-      "id": "act_1786707157530_cfkal",
-      "timestamp": "2026-08-14T11:32:37.531Z",
-      "message": "Container selector \"div#a-page\" returned 0 records. Healing container...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786707157508_5qxmd",
-      "timestamp": "2026-08-14T11:32:37.508Z",
-      "message": "Self-healing initiated for monitor: mon_1786646228694",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707157502_if0a4",
-      "timestamp": "2026-08-14T11:32:37.502Z",
-      "message": "Extraction validation failed for \"Amazon Product\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786707136907_6pgti",
-      "timestamp": "2026-08-14T11:32:16.908Z",
-      "message": "Starting extraction run for monitor: \"Amazon Product\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786646586347_kpscn",
-      "timestamp": "2026-08-13T18:43:06.347Z",
-      "message": "Extraction run failed: Timed out waiting for Bright Data results (90 s).",
-      "type": "error"
-    },
-    {
-      "id": "act_1786646228698_rhkpw",
-      "timestamp": "2026-08-13T18:37:08.698Z",
-      "message": "Created monitor: \"Amazon Product\" for URL: https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
-      "type": "success"
-    },
-    {
-      "id": "act_1786646062438_qfgta",
-      "timestamp": "2026-08-13T18:34:22.438Z",
-      "message": "Starting extraction run for monitor: \"Amazon Product\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786645806124_0zgzp",
-      "timestamp": "2026-08-13T18:30:06.124Z",
-      "message": "Extraction run failed: Timed out waiting for Bright Data results (90 s).",
-      "type": "error"
-    },
-    {
-      "id": "act_1786645452359_iunom",
-      "timestamp": "2026-08-13T18:24:12.359Z",
-      "message": "Created monitor: \"Amazon Product\" for URL: https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
-      "type": "success"
-    },
-    {
-      "id": "act_1786639800925_60u5h",
-      "timestamp": "2026-08-13T16:50:00.925Z",
-      "message": "Created monitor: \"BOOKS CATALOG\" for URL: https://books.toscrape.com/",
-      "type": "success"
-    },
-    {
-      "id": "act_1786637331095_0nfk7",
-      "timestamp": "2026-08-13T16:08:51.095Z",
-      "message": "Extraction run failed: Timed out waiting for Bright Data results (90 s).",
-      "type": "error"
-    },
-    {
-      "id": "act_1786636929964_dd97y",
-      "timestamp": "2026-08-13T16:02:09.964Z",
-      "message": "Created monitor: \"BOOKS CATALOG\" for URL: https://books.toscrape.com/",
-      "type": "success"
-    },
-    {
-      "id": "act_1786635906548_n8co6",
-      "timestamp": "2026-08-13T15:45:06.548Z",
-      "message": "Created monitor: \"Books Catalog\" for URL: https://books.toscrape.com/",
-      "type": "success"
-    },
-    {
-      "id": "act_1786634108302_c5jgi",
-      "timestamp": "2026-08-13T15:15:08.302Z",
-      "message": "Created monitor: \"Books Catalog\" for URL: https://books.toscrape.com/",
-      "type": "success"
+  "monitors": [
+    {
+      "id": "mon_test_123",
+      "name": "Test Monitor",
+      "url": "/api/demo-target",
+      "selectors": {
+        "container": ".product-item",
+        "name": ".product-title",
+        "price": ".price-value",
+        "rating": ".rating-badge",
+        "availability": ".stock-status",
+        "discount": ".promo-text"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-14T16:04:05.949Z"
     }
   ],
+  "scrapers": [
+    {
+      "id": "scr_test_123",
+      "monitorId": "mon_test_123",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 0
+    }
+  ],
+  "runs": [],
+  "records": [],
+  "repairEvents": [
+    {
+      "id": "rep_1786723446070_xq1ca",
+      "monitorId": "mon_test_123",
+      "timestamp": "2026-08-14T16:04:06.070Z",
+      "fieldName": "discount",
+      "previousSelector": ".discount",
+      "repairedSelector": ".promo-text",
+      "recordsBefore": 0,
+      "recordsAfter": 3,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".promo-text",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "span.promo-text",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "span",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "[data-price]",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".rating-badge",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".stock-status",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".product-title",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "h3.product-title",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "span.price-value",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "span[data-price]",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1786723446070_0ddue",
+      "monitorId": "mon_test_123",
+      "timestamp": "2026-08-14T16:04:06.070Z",
+      "fieldName": "availability",
+      "previousSelector": ".availability",
+      "repairedSelector": ".stock-status",
+      "recordsBefore": 0,
+      "recordsAfter": 3,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".stock-status",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "span.stock-status",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "span",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": ".promo-text",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "[data-price]",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".rating-badge",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".product-title",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "span.promo-text",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "h3.product-title",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "span.price-value",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1786723446070_euet0",
+      "monitorId": "mon_test_123",
+      "timestamp": "2026-08-14T16:04:06.070Z",
+      "fieldName": "rating",
+      "previousSelector": ".rating",
+      "repairedSelector": ".rating-badge",
+      "recordsBefore": 0,
+      "recordsAfter": 3,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".rating-badge",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "span.rating-badge",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": ".promo-text",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "[data-price]",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".stock-status",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".product-title",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "span.promo-text",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "h3.product-title",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "span.price-value",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": "span[data-price]",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1786723446070_5xj7s",
+      "monitorId": "mon_test_123",
+      "timestamp": "2026-08-14T16:04:06.070Z",
+      "fieldName": "price",
+      "previousSelector": ".price",
+      "repairedSelector": ".price-value",
+      "recordsBefore": 0,
+      "recordsAfter": 3,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".price-value",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "[data-price]",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "span.price-value",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "span[data-price]",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": ".promo-text",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": ".rating-badge",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "span.promo-text",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "span.rating-badge",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "span",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": ".product-title",
+          "validCount": 1,
+          "score": 33.3
+        }
+      ]
+    },
+    {
+      "id": "rep_1786723446070_hhrcv",
+      "monitorId": "mon_test_123",
+      "timestamp": "2026-08-14T16:04:06.070Z",
+      "fieldName": "name",
+      "previousSelector": ".name",
+      "repairedSelector": ".product-title",
+      "recordsBefore": 0,
+      "recordsAfter": 3,
+      "confidence": 30,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".product-title",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": "h3.product-title",
+          "validCount": 3,
+          "score": 115
+        },
+        {
+          "selector": ".promo-text",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": ".price-value",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "[data-price]",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": ".rating-badge",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": ".stock-status",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "span.promo-text",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "span.price-value",
+          "validCount": 3,
+          "score": 100
+        },
+        {
+          "selector": "span[data-price]",
+          "validCount": 3,
+          "score": 100
+        }
+      ]
+    }
+  ],
+  "activityEvents": [],
   "activeDemoVersion": 1
 }

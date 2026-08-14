@@ -85,7 +85,11 @@ export function extractData(
       }
 
       hasAnyData = true;
-      const textVal = element.text().trim();
+      
+      // Clone element and strip script/style tags to avoid extracting inline script JSON data (like Amazon availability)
+      const cleanElement = element.clone();
+      cleanElement.find('script, style').remove();
+      const textVal = cleanElement.text().trim();
 
       if (fieldName === 'price') {
         // Reject unit prices containing slashes or "per" (e.g. ₹8.54/count)
@@ -113,13 +117,36 @@ export function extractData(
           }
         }
       } else if (fieldName === 'rating') {
-        // Parse rating, e.g. "4.2 Stars" or "4.2 out of 5 stars" -> 4.2
-        const matches = textVal.match(/[\d,]+(?:\.\d+)?/);
-        if (matches) {
-          const num = parseFloat(matches[0].replace(/,/g, ''));
-          if (!isNaN(num)) {
-            record[fieldName] = num;
+        // Star ratings can be stored as words in classes (e.g. books.toscrape.com "<p class='star-rating Three'>")
+        const classVal = element.attr('class') || '';
+        const textAndClass = `${textVal} ${classVal}`.toLowerCase();
+        
+        const wordMap: Record<string, number> = {
+          one: 1, two: 2, three: 3, four: 4, five: 5,
+          single: 1, double: 2, triple: 3
+        };
+        
+        let parsedRating: number | null = null;
+        for (const [word, val] of Object.entries(wordMap)) {
+          const regex = new RegExp(`\\b${word}\\b`, 'i');
+          if (regex.test(textAndClass)) {
+            parsedRating = val;
+            break;
           }
+        }
+        
+        if (parsedRating === null) {
+          const matches = textVal.match(/[\d,]+(?:\.\d+)?/);
+          if (matches) {
+            const num = parseFloat(matches[0].replace(/,/g, ''));
+            if (!isNaN(num)) {
+              parsedRating = num;
+            }
+          }
+        }
+        
+        if (parsedRating !== null) {
+          record[fieldName] = parsedRating;
         }
       } else {
         record[fieldName] = textVal;

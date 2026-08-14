@@ -353,23 +353,25 @@ export default function Home() {
         addLog('[SUCCESS] Schema validation PASSED. All required fields present.');
         addLog('[SUCCESS] Scraper status: ● HEALTHY');
       } else if (data.run?.status === 'RECOVERED') {
+        const evts = data.selfHealingLog?.events || [];
+        const healedFields = evts.map((ev: any) => `"${ev.fieldName}"`).join(', ');
         addLog('[WARNING] ⚠ EXTRACTION ANOMALY DETECTED');
-        addLog('  Extraction integrity: 100% → 0%');
-        addLog('  Required fields missing or degraded: "price", "rating"');
+        addLog('  Extraction integrity: Degraded');
+        addLog(`  Fields requiring repair: ${healedFields || 'None'}`);
         addLog('  Initiating WebPulse Hot-Heal engine...');
         await new Promise(r => setTimeout(r, 700));
         addLog('🕷 HOT-HEAL ACTIVATED');
         addLog('  Analyzing target DOM tree for structural alterations...');
         await new Promise(r => setTimeout(r, 800));
-        const evts = data.selfHealingLog?.events || [];
         for (const ev of evts) {
           addLog(`  ◉ Field: "${ev.fieldName}"`);
           const candidates = ev.candidatesTested.slice(0, 4);
           addLog(`  ◉ Testing ${ev.candidatesTested.length} candidate elements...`);
           for (const c of candidates) {
-            addLog(`    | ${c.selector.padEnd(28)} score: ${c.score}%`);
+            addLog(`    | ${c.selector.padEnd(28)} score: ${c.score}`);
           }
-          addLog(`  ✓ Candidate accepted: "${ev.repairedSelector}" (integrity: ${candidates[0]?.score ?? '?'}%)`);
+          const confidenceVal = candidates[0] ? Math.min(candidates[0].score, 100) : '?';
+          addLog(`  ✓ Candidate accepted: "${ev.repairedSelector}" (validation confidence: ${confidenceVal}%)`);
           addLog(`  ✓ Config repaired: "${ev.previousSelector}"  =>  "${ev.repairedSelector}"`);
         }
         await new Promise(r => setTimeout(r, 600));

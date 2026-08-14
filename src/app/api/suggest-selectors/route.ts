@@ -92,7 +92,15 @@ Do NOT wrap the JSON in markdown code blocks. Return ONLY the raw JSON string. E
       return NextResponse.json({ error: 'Empty response from selector generator AI' }, { status: 500 });
     }
 
-    const selectors = JSON.parse(content.trim());
+    let jsonText = content.trim();
+    const startIdx = jsonText.indexOf('{');
+    const endIdx = jsonText.lastIndexOf('}');
+    if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+      jsonText = jsonText.substring(startIdx, endIdx + 1);
+    } else if (jsonText.startsWith('```')) {
+      jsonText = jsonText.replace(/^```(?:json)?\n?/i, '').replace(/\n?```$/i, '');
+    }
+    const selectors = JSON.parse(jsonText.trim());
     return NextResponse.json(selectors);
   } catch (error: any) {
     return NextResponse.json({ error: error.message || 'Server error' }, { status: 500 });
