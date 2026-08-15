@@ -37,85 +37,7 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-14T18:02:38.267Z"
-    },
-    {
-      "id": "mon_1786730676749",
-      "name": "BOOKS",
-      "url": "https://books.toscrape.com/",
-      "selectors": {
-        "container": "article.product_pod",
-        "name": "h3 a",
-        "price": ".price_color",
-        "rating": ".star-rating",
-        "availability": ".availability",
-        "discount": ""
-      },
-      "schema": {
-        "name": {
-          "type": "string",
-          "required": true
-        },
-        "price": {
-          "type": "number",
-          "required": true,
-          "min": 0
-        },
-        "rating": {
-          "type": "number",
-          "required": false,
-          "min": 0,
-          "max": 5
-        },
-        "availability": {
-          "type": "string",
-          "required": false
-        },
-        "discount": {
-          "type": "string",
-          "required": false
-        }
-      },
-      "createdAt": "2026-08-14T18:04:36.749Z"
-    },
-    {
-      "id": "mon_1786730760539",
-      "name": "AMAZON PRODUCTS",
-      "url": " https://amzn.in/d/02mcKEtb",
-      "selectors": {
-        "container": "div#ppd",
-        "name": "span#productTitle",
-        "price": "span.a-price span.a-offscreen",
-        "rating": "#acrPopover",
-        "availability": "#availability span",
-        "discount": ".save-extra"
-      },
-      "schema": {
-        "name": {
-          "type": "string",
-          "required": true
-        },
-        "price": {
-          "type": "number",
-          "required": true,
-          "min": 0
-        },
-        "rating": {
-          "type": "number",
-          "required": false,
-          "min": 0,
-          "max": 5
-        },
-        "availability": {
-          "type": "string",
-          "required": false
-        },
-        "discount": {
-          "type": "string",
-          "required": false
-        }
-      },
-      "createdAt": "2026-08-14T18:06:00.539Z"
+      "createdAt": "2026-08-15T09:12:27.225Z"
     }
   ],
   "scrapers": [
@@ -125,367 +47,15 @@
       "status": "HEALTHY",
       "successRate": 100,
       "totalRecordsCollected": 0
-    },
-    {
-      "id": "scr_1786730676750",
-      "monitorId": "mon_1786730676749",
-      "status": "HEALTHY",
-      "successRate": 100,
-      "totalRecordsCollected": 20,
-      "lastRun": "2026-08-14T18:04:53.057Z",
-      "lastSuccessfulRun": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "scr_1786730760539",
-      "monitorId": "mon_1786730760539",
-      "status": "HEALTHY",
-      "successRate": 100,
-      "totalRecordsCollected": 1,
-      "lastRun": "2026-08-14T18:06:06.862Z",
-      "lastSuccessfulRun": "2026-08-14T18:06:06.862Z"
     }
   ],
-  "runs": [
-    {
-      "id": "run_1786730766862",
-      "monitorId": "mon_1786730760539",
-      "timestamp": "2026-08-14T18:06:06.862Z",
-      "status": "RECOVERED",
-      "recordsCount": 1
-    },
-    {
-      "id": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "timestamp": "2026-08-14T18:04:53.057Z",
-      "status": "SUCCESS",
-      "recordsCount": 20,
-      "collectionId": "j_mst9bbqyrmnyytprt"
-    }
-  ],
-  "records": [
-    {
-      "id": "rec_1786730788398_yw8z2",
-      "runId": "run_1786730766862",
-      "monitorId": "mon_1786730760539",
-      "data": {
-        "name": "Nicofree | Black | 35 Cigarette Filters, 5 Packs | Made with Toxin-free, Recycle-friendly Materials | Reduce Tar, Prevent Stains & Odour on Fingers | For Cigarettes, Dokha, Medwakh Pipe",
-        "price": 299,
-        "rating": 3.8,
-        "availability": "In stock",
-        "discount": "Save Extra"
-      },
-      "timestamp": "2026-08-14T18:06:06.862Z"
-    },
-    {
-      "id": "rec_1786730695199_u8reh",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "It's Only the Himalayas",
-        "price": 45.17,
-        "rating": 2,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_g94v8",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Libertarianism for Beginners",
-        "price": 51.33,
-        "rating": 2,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_n5gcw",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Mesaerion: The Best Science ...",
-        "price": 37.59,
-        "rating": 1,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_hxpt7",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Olio",
-        "price": 23.88,
-        "rating": 1,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_znq4w",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Our Band Could Be ...",
-        "price": 57.25,
-        "rating": 3,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_6euni",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Rip it Up and ...",
-        "price": 35.02,
-        "rating": 5,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_zjrjt",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Scott Pilgrim's Precious Little ...",
-        "price": 52.29,
-        "rating": 5,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_qow9x",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Set Me Free",
-        "price": 17.46,
-        "rating": 5,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_k1npj",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Shakespeare's Sonnets",
-        "price": 20.66,
-        "rating": 4,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_ykhr1",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Starving Hearts (Triangular Trade ...",
-        "price": 13.99,
-        "rating": 2,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_3eqat",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "The Black Maria",
-        "price": 52.15,
-        "rating": 1,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_cuhfe",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "The Boys in the ...",
-        "price": 22.6,
-        "rating": 4,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_e2m3l",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "The Coming Woman: A ...",
-        "price": 17.93,
-        "rating": 3,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_vurf3",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "The Dirty Little Secrets ...",
-        "price": 33.34,
-        "rating": 4,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_vbisg",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "The Requiem Red",
-        "price": 22.65,
-        "rating": 1,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_h8oq7",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Sapiens: A Brief History ...",
-        "price": 54.23,
-        "rating": 5,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_1mw16",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Sharp Objects",
-        "price": 47.82,
-        "rating": 4,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_v6oz6",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Soumission",
-        "price": 50.1,
-        "rating": 1,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_nmf5h",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "Tipping the Velvet",
-        "price": 53.74,
-        "rating": 1,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    },
-    {
-      "id": "rec_1786730695199_x3yja",
-      "runId": "run_1786730693057",
-      "monitorId": "mon_1786730676749",
-      "data": {
-        "name": "A Light in the ...",
-        "price": 51.77,
-        "rating": 3,
-        "availability": "In stock"
-      },
-      "timestamp": "2026-08-14T18:04:53.057Z"
-    }
-  ],
+  "runs": [],
+  "records": [],
   "repairEvents": [
     {
-      "id": "rep_1786730788155_uxylj",
-      "monitorId": "mon_1786730760539",
-      "timestamp": "2026-08-14T18:06:28.155Z",
-      "fieldName": "discount",
-      "previousSelector": "span.a-color-price.savePercent",
-      "repairedSelector": ".save-extra",
-      "recordsBefore": 1,
-      "recordsAfter": 1,
-      "confidence": 100,
-      "status": "SUCCESS",
-      "candidatesTested": [
-        {
-          "selector": ".save-extra",
-          "validCount": 1,
-          "score": 115
-        },
-        {
-          "selector": "span.save-extra",
-          "validCount": 1,
-          "score": 115
-        },
-        {
-          "selector": ".sellerPromotion_tr",
-          "validCount": 1,
-          "score": 115
-        },
-        {
-          "selector": ".sopp-offer-enumerator",
-          "validCount": 1,
-          "score": 115
-        },
-        {
-          "selector": "div.sellerPromotion_tr",
-          "validCount": 1,
-          "score": 115
-        },
-        {
-          "selector": "h2.sopp-offer-enumerator",
-          "validCount": 1,
-          "score": 115
-        },
-        {
-          "selector": ".ibd_tr",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": "div.ibd_tr",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": ".a-container",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": ".saving-prompt",
-          "validCount": 1,
-          "score": 100
-        }
-      ]
-    },
-    {
-      "id": "rep_1786730558435_rdapw",
+      "id": "rep_1786785147365_jvi1i",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T18:02:38.435Z",
+      "timestamp": "2026-08-15T09:12:27.365Z",
       "fieldName": "discount",
       "previousSelector": ".discount",
       "repairedSelector": ".promo-text",
@@ -547,9 +117,9 @@
       ]
     },
     {
-      "id": "rep_1786730558435_17vw3",
+      "id": "rep_1786785147365_r9nv9",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T18:02:38.435Z",
+      "timestamp": "2026-08-15T09:12:27.365Z",
       "fieldName": "availability",
       "previousSelector": ".availability",
       "repairedSelector": ".stock-status",
@@ -611,9 +181,9 @@
       ]
     },
     {
-      "id": "rep_1786730558435_imzrd",
+      "id": "rep_1786785147365_g88zw",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T18:02:38.435Z",
+      "timestamp": "2026-08-15T09:12:27.365Z",
       "fieldName": "rating",
       "previousSelector": ".rating",
       "repairedSelector": ".rating-badge",
@@ -675,9 +245,9 @@
       ]
     },
     {
-      "id": "rep_1786730558435_9sc3h",
+      "id": "rep_1786785147365_2y4mf",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T18:02:38.435Z",
+      "timestamp": "2026-08-15T09:12:27.365Z",
       "fieldName": "price",
       "previousSelector": ".price",
       "repairedSelector": ".price-value",
@@ -739,9 +309,9 @@
       ]
     },
     {
-      "id": "rep_1786730558435_0sd6l",
+      "id": "rep_1786785147365_wmejs",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-14T18:02:38.435Z",
+      "timestamp": "2026-08-15T09:12:27.365Z",
       "fieldName": "name",
       "previousSelector": ".name",
       "repairedSelector": ".product-title",
@@ -803,91 +373,6 @@
       ]
     }
   ],
-  "activityEvents": [
-    {
-      "id": "act_1786730788401_m7w76",
-      "timestamp": "2026-08-14T18:06:28.401Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"AMAZON PRODUCTS\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786730772815_wspse",
-      "timestamp": "2026-08-14T18:06:12.815Z",
-      "message": "Extraction validation failed for \"AMAZON PRODUCTS\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786730772812_yq4uy",
-      "timestamp": "2026-08-14T18:06:12.812Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786730765556_i4n6p",
-      "timestamp": "2026-08-14T18:06:05.556Z",
-      "message": "Starting extraction run for monitor: \"AMAZON PRODUCTS\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786730760544_jaqzb",
-      "timestamp": "2026-08-14T18:06:00.544Z",
-      "message": "Created monitor: \"AMAZON PRODUCTS\" for URL:  https://amzn.in/d/02mcKEtb",
-      "type": "success"
-    },
-    {
-      "id": "act_1786730695202_o299u",
-      "timestamp": "2026-08-14T18:04:55.202Z",
-      "message": "Extraction validated successfully (unresolved optional fields ignored).",
-      "type": "success"
-    },
-    {
-      "id": "act_1786730695197_pnvyu",
-      "timestamp": "2026-08-14T18:04:55.197Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786730694771_i8bpr",
-      "timestamp": "2026-08-14T18:04:54.771Z",
-      "message": "Generating candidate selectors for field \"discount\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1786730694767_x12l8",
-      "timestamp": "2026-08-14T18:04:54.767Z",
-      "message": "Detected broken fields: discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786730694723_f1gj1",
-      "timestamp": "2026-08-14T18:04:54.723Z",
-      "message": "Self-healing initiated for monitor: mon_1786730676749",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786730694718_4pw36",
-      "timestamp": "2026-08-14T18:04:54.718Z",
-      "message": "Extraction validation failed for \"BOOKS\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1786730694714_n7v3t",
-      "timestamp": "2026-08-14T18:04:54.715Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1786730679468_o5f9p",
-      "timestamp": "2026-08-14T18:04:39.468Z",
-      "message": "Starting extraction run for monitor: \"BOOKS\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1786730676754_3gvb8",
-      "timestamp": "2026-08-14T18:04:36.754Z",
-      "message": "Created monitor: \"BOOKS\" for URL: https://books.toscrape.com/",
-      "type": "success"
-    }
-  ],
+  "activityEvents": [],
   "activeDemoVersion": 1
 }

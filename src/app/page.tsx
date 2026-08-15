@@ -434,7 +434,7 @@ export default function Home() {
             </button>
           </header>
 
-          <main style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '80px 40px', gap: '56px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <main className="landing-main">
 
             {/* Spider web corner decorations — proper cobwebs */}
             {([
@@ -492,7 +492,7 @@ export default function Home() {
 
             {/* Hero */}
             <div style={{ maxWidth: '820px' }}>
-              <h1 className="glitch" style={{ fontFamily: 'var(--font-comic)', fontSize: 'clamp(3.5rem, 8vw, 6.5rem)', fontWeight: 400, lineHeight: 1.0, textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '24px' }}>
+              <h1 className="glitch" style={{ fontFamily: 'var(--font-comic)', fontSize: 'clamp(2rem, 8vw, 6.5rem)', fontWeight: 400, lineHeight: 1.0, textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '24px' }}>
                 The internet changes.<br />
                 <span style={{ color: 'var(--yellow)', WebkitTextStroke: '2px #000' }}>Your data</span>{" "}
                 <span style={{ color: 'var(--magenta)', WebkitTextStroke: '2px #000' }}>shouldn't.</span>
@@ -514,7 +514,7 @@ export default function Home() {
             {/* Pipeline */}
             <div className="card card-green" style={{ maxWidth: '780px', width: '100%' }}>
               <div className="section-title"><Icon.Cpu /> Autonomous Self-Healing Pipeline</div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-mono)', fontSize: '12px', fontWeight: 700 }}>
+              <div className="pipeline-flow">
                 {['Website', 'Bright Data', 'Extraction', 'Validation', 'FAIL DETECTED', 'Self-Healing', 'Candidate Test', 'RECOVERY'].map((step, i, arr) => (
                   <span key={step} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{
@@ -564,20 +564,15 @@ export default function Home() {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px',
-              fontFamily: 'var(--font-comic)', fontSize: '13px', letterSpacing: '2px',
-              color: '#000', background: 'var(--yellow)', border: '2px solid #000',
-              padding: '4px 12px', boxShadow: '3px 3px 0 #000, 4px 4px 0 var(--magenta)'
-            }}>
-              <Icon.BrightData /> BRIGHT DATA LIVE — {collectorId || 'c_msrjcn9m1olzit7wp7'}
+            <span className="header-status">
+              <Icon.BrightData /> <span className="status-collector-id">BRIGHT DATA LIVE — </span>{collectorId || 'c_msrjcn9m1olzit7wp7'}
             </span>
           </div>
         </header>
 
 
         {/* ── Tabs ── */}
-        <div style={{ borderBottom: '3px solid var(--magenta)', background: 'var(--bg-main)', display: 'flex', paddingLeft: '40px', gap: '2px' }}>
+        <div className="tabs-bar">
           {TABS.map(tab => {
             const active = activeTab === tab.id;
             return (
@@ -620,7 +615,7 @@ export default function Home() {
                     <Stat label="Records Collected"   value={totalRecords}          accent />
                   </div>
 
-                  <div className="grid-2" style={{ gridTemplateColumns: '2fr 1fr', gap: '20px' }}>
+                  <div className="grid-2split">
                     {/* Pipelines table */}
                     <div className="card">
                       <div className="section-title"><Icon.Monitor /> Active Scraper Watchers</div>
@@ -723,7 +718,7 @@ export default function Home() {
                         <input className="form-input" type="text" value={monitorName} onChange={e => setMonitorName(e.target.value)} required />
                       </div>
                       <div className="form-group">
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                           <label className="form-label">Target URL</label>
                           <button type="button" className="btn btn-outline" style={{ padding: '4px 10px', fontSize: '9px', textTransform: 'uppercase', height: 'auto', border: '1px solid var(--magenta)' }}
                             disabled={aiLoading}
