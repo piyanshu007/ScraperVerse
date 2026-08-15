@@ -434,7 +434,7 @@ export default function Home() {
             </button>
           </header>
 
-          <main className="landing-main">
+          <main style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '80px 40px', gap: '56px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
 
             {/* Spider web corner decorations — proper cobwebs */}
             {([
@@ -492,7 +492,7 @@ export default function Home() {
 
             {/* Hero */}
             <div style={{ maxWidth: '820px' }}>
-              <h1 className="glitch" style={{ fontFamily: 'var(--font-comic)', fontSize: 'clamp(2rem, 8vw, 6.5rem)', fontWeight: 400, lineHeight: 1.0, textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '24px' }}>
+              <h1 className="glitch" style={{ fontFamily: 'var(--font-comic)', fontSize: 'clamp(3.5rem, 8vw, 6.5rem)', fontWeight: 400, lineHeight: 1.0, textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '24px' }}>
                 The internet changes.<br />
                 <span style={{ color: 'var(--yellow)', WebkitTextStroke: '2px #000' }}>Your data</span>{" "}
                 <span style={{ color: 'var(--magenta)', WebkitTextStroke: '2px #000' }}>shouldn't.</span>
@@ -514,7 +514,7 @@ export default function Home() {
             {/* Pipeline */}
             <div className="card card-green" style={{ maxWidth: '780px', width: '100%' }}>
               <div className="section-title"><Icon.Cpu /> Autonomous Self-Healing Pipeline</div>
-              <div className="pipeline-flow">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-mono)', fontSize: '12px', fontWeight: 700 }}>
                 {['Website', 'Bright Data', 'Extraction', 'Validation', 'FAIL DETECTED', 'Self-Healing', 'Candidate Test', 'RECOVERY'].map((step, i, arr) => (
                   <span key={step} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{
@@ -564,16 +564,20 @@ export default function Home() {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span className="header-status">
-              <Icon.BrightData /> <span className="status-collector-id">BRIGHT DATA LIVE — </span>
-              <span className="header-collector-id">{(collectorId || 'c_msrjcn9m1olzit7wp7').substring(0, 8)}••••</span>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              fontFamily: 'var(--font-comic)', fontSize: '13px', letterSpacing: '2px',
+              color: '#000', background: 'var(--yellow)', border: '2px solid #000',
+              padding: '4px 12px', boxShadow: '3px 3px 0 #000, 4px 4px 0 var(--magenta)'
+            }}>
+              <Icon.BrightData /> BRIGHT DATA LIVE — {collectorId || 'c_msrjcn9m1olzit7wp7'}
             </span>
           </div>
         </header>
 
 
         {/* ── Tabs ── */}
-        <div className="tabs-bar">
+        <div style={{ borderBottom: '3px solid var(--magenta)', background: 'var(--bg-main)', display: 'flex', paddingLeft: '40px', gap: '2px' }}>
           {TABS.map(tab => {
             const active = activeTab === tab.id;
             return (
@@ -616,7 +620,7 @@ export default function Home() {
                     <Stat label="Records Collected"   value={totalRecords}          accent />
                   </div>
 
-                  <div className="grid-2split">
+                  <div className="grid-2" style={{ gridTemplateColumns: '2fr 1fr', gap: '20px' }}>
                     {/* Pipelines table */}
                     <div className="card">
                       <div className="section-title"><Icon.Monitor /> Active Scraper Watchers</div>
@@ -627,7 +631,7 @@ export default function Home() {
                       ) : (
                         <div className="table-wrap">
                           <table className="data-table">
-                            <thead><tr><th>Name</th><th>Status</th><th className="hide-mobile">Integrity</th><th className="hide-mobile">Records</th><th className="hide-mobile">Action</th></tr></thead>
+                            <thead><tr><th>Name</th><th>Status</th><th>Integrity</th><th>Records</th><th>Action</th></tr></thead>
                             <tbody>
                               {monitors.map(mon => {
                                 const scr = scrapers.find(s => s.monitorId === mon.id);
@@ -635,9 +639,9 @@ export default function Home() {
                                   <tr key={mon.id}>
                                     <td style={{ fontWeight: 700 }}>{mon.name}</td>
                                     <td><StatusBadge status={runningId === mon.id ? 'RUNNING' : (scr?.status || 'HEALTHY')} /></td>
-                                    <td style={{ color: 'var(--green)', fontWeight: 800 }} className="hide-mobile">{scr?.successRate ?? 100}%</td>
-                                    <td className="hide-mobile">{scr?.totalRecordsCollected ?? 0}</td>
-                                    <td className="hide-mobile">
+                                    <td style={{ color: 'var(--green)', fontWeight: 800 }}>{scr?.successRate ?? 100}%</td>
+                                    <td>{scr?.totalRecordsCollected ?? 0}</td>
+                                    <td>
                                       <button className="btn btn-green" style={{ padding: '6px 12px', fontSize: '10px' }}
                                         disabled={runningId !== null}
                                         onClick={() => handleRun(mon.id)}>
@@ -670,7 +674,7 @@ export default function Home() {
                                 }}>{ev.type}</span>
                                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--white-faint)' }}>{new Date(ev.timestamp).toLocaleTimeString()}</span>
                               </div>
-                              <div style={{ fontSize: '12px', color: 'var(--white-muted)', wordBreak: 'break-all' }}>{ev.message}</div>
+                              <div style={{ fontSize: '12px', color: 'var(--white-muted)' }}>{ev.message}</div>
                             </div>
                           ))}
                         </div>
@@ -719,7 +723,7 @@ export default function Home() {
                         <input className="form-input" type="text" value={monitorName} onChange={e => setMonitorName(e.target.value)} required />
                       </div>
                       <div className="form-group">
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <label className="form-label">Target URL</label>
                           <button type="button" className="btn btn-outline" style={{ padding: '4px 10px', fontSize: '9px', textTransform: 'uppercase', height: 'auto', border: '1px solid var(--magenta)' }}
                             disabled={aiLoading}
@@ -789,7 +793,7 @@ export default function Home() {
                             {Object.entries(mon.selectors).map(([k, v]) => (
                               <div key={k} style={{ display: 'flex', gap: '16px' }}>
                                 <span style={{ color: 'var(--white-muted)', textTransform: 'uppercase', fontSize: '10px', fontWeight: 800, minWidth: '90px' }}>{k}</span>
-                                <span style={{ color: 'var(--green)', fontWeight: 600, wordBreak: 'break-all' }}>{v}</span>
+                                <span style={{ color: 'var(--green)', fontWeight: 600 }}>{v}</span>
                               </div>
                             ))}
                           </div>
@@ -816,19 +820,19 @@ export default function Home() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   <div className="terminal">
                     <div className="terminal-bar">
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, overflow: 'hidden', flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <div className="terminal-dots">
                           {['#ff5f57','#febc2e','#28c840'].map(c => <span key={c} style={{ background: c }} />)}
                         </div>
                         <span className="terminal-bar-title">webpulse-intelligence-terminal — self-healing engine</span>
                       </div>
-                      <span className="terminal-utf8" style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 800, color: '#000' }}>UTF-8</span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 800, color: '#000' }}>UTF-8</span>
                     </div>
                     <div className="terminal-body">
                       {logs.map((line, i) => {
                         const prefix = Object.keys(LOG_COLOR).find(p => line.includes(p));
                         return (
-                          <div key={i} style={{ color: prefix ? LOG_COLOR[prefix] : '#555', wordBreak: 'break-all', overflowWrap: 'break-word', lineHeight: 1.6 }}>
+                          <div key={i} style={{ color: prefix ? LOG_COLOR[prefix] : '#555', whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>
                             {line}
                           </div>
                         );
@@ -846,16 +850,16 @@ export default function Home() {
                     ) : (
                       <div className="table-wrap">
                         <table className="data-table">
-                          <thead><tr><th>Field</th><th className="hide-mobile">Previous Selector</th><th>Repaired Selector</th><th>Confidence</th><th className="hide-mobile">Time</th><th className="hide-mobile">Status</th></tr></thead>
+                          <thead><tr><th>Field</th><th>Previous Selector</th><th>Repaired Selector</th><th>Confidence</th><th>Time</th><th>Status</th></tr></thead>
                           <tbody>
                             {repairEvents.map(ev => (
                               <tr key={ev.id}>
                                 <td style={{ color: 'var(--white)', fontWeight: 800 }}>{ev.fieldName}</td>
-                                <td style={{ color: 'var(--red)' }} className="hide-mobile">{ev.previousSelector}</td>
+                                <td style={{ color: 'var(--red)' }}>{ev.previousSelector}</td>
                                 <td style={{ color: 'var(--green)', fontWeight: 800 }}>{ev.repairedSelector}</td>
                                 <td style={{ color: 'var(--green)', fontWeight: 800 }}>{ev.confidence}%</td>
-                                <td style={{ color: 'var(--white-muted)' }} className="hide-mobile">{new Date(ev.timestamp).toLocaleTimeString()}</td>
-                                <td className="hide-mobile"><StatusBadge status={ev.status} /></td>
+                                <td style={{ color: 'var(--white-muted)' }}>{new Date(ev.timestamp).toLocaleTimeString()}</td>
+                                <td><StatusBadge status={ev.status} /></td>
                               </tr>
                             ))}
                           </tbody>
