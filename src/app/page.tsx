@@ -669,7 +669,7 @@ export default function Home() {
                                 }}>{ev.type}</span>
                                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--white-faint)' }}>{new Date(ev.timestamp).toLocaleTimeString()}</span>
                               </div>
-                              <div style={{ fontSize: '12px', color: 'var(--white-muted)' }}>{ev.message}</div>
+                              <div style={{ fontSize: '12px', color: 'var(--white-muted)', wordBreak: 'break-all' }}>{ev.message}</div>
                             </div>
                           ))}
                         </div>
@@ -788,7 +788,7 @@ export default function Home() {
                             {Object.entries(mon.selectors).map(([k, v]) => (
                               <div key={k} style={{ display: 'flex', gap: '16px' }}>
                                 <span style={{ color: 'var(--white-muted)', textTransform: 'uppercase', fontSize: '10px', fontWeight: 800, minWidth: '90px' }}>{k}</span>
-                                <span style={{ color: 'var(--green)', fontWeight: 600 }}>{v}</span>
+                                <span style={{ color: 'var(--green)', fontWeight: 600, wordBreak: 'break-all' }}>{v}</span>
                               </div>
                             ))}
                           </div>
