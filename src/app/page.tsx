@@ -565,7 +565,8 @@ export default function Home() {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span className="header-status">
-              <Icon.BrightData /> <span className="status-collector-id">BRIGHT DATA LIVE — </span>{collectorId || 'c_msrjcn9m1olzit7wp7'}
+              <Icon.BrightData /> <span className="status-collector-id">BRIGHT DATA LIVE — </span>
+              <span className="header-collector-id">{(collectorId || 'c_msrjcn9m1olzit7wp7').substring(0, 8)}••••</span>
             </span>
           </div>
         </header>
