@@ -19,8 +19,8 @@ function isValidSemanticValue(fieldName: string, val: string, selector: string):
 
   if (fieldName === 'discount') {
     if (cleanVal.length > 40) return false;
-    // Discount strings should represent savings/reductions containing %, off, save, promo, discount, or negative sign
-    const discountRegex = /%|off|save|discount|promo|reduction|-/;
+    // Discount strings should represent savings/reductions with explicit word boundaries or symbols
+    const discountRegex = /%|\boff\b|\bsave\b|\bdiscount\b|\bpromo\b|\breduction\b|-/i;
     return discountRegex.test(cleanVal);
   }
 
