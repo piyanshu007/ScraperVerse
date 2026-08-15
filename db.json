@@ -40,16 +40,16 @@
       "createdAt": "2026-08-15T09:12:27.225Z"
     },
     {
-      "id": "mon_1786820162637",
+      "id": "mon_1786820378399",
       "name": "Amazon",
       "url": "https://amzn.in/d/06dcjxdK",
       "selectors": {
-        "container": "div#ppd",
+        "container": "div#centerCol",
         "name": "span#productTitle",
-        "price": "span.a-price > span.a-offscreen",
-        "rating": "#acrPopover .a-icon-alt",
-        "availability": "#availability span",
-        "discount": ".po-color"
+        "price": ".a-price-whole",
+        "rating": "#acrPopover",
+        "availability": "a.a-size-small",
+        "discount": ".a-color-price"
       },
       "schema": {
         "name": {
@@ -76,7 +76,7 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-15T18:56:02.637Z"
+      "createdAt": "2026-08-15T18:59:38.399Z"
     }
   ],
   "scrapers": [
@@ -88,65 +88,60 @@
       "totalRecordsCollected": 0
     },
     {
-      "id": "scr_1786820162637",
-      "monitorId": "mon_1786820162637",
+      "id": "scr_1786820378399",
+      "monitorId": "mon_1786820378399",
       "status": "HEALTHY",
       "successRate": 100,
       "totalRecordsCollected": 1,
-      "lastRun": "2026-08-15T18:56:19.317Z",
-      "lastSuccessfulRun": "2026-08-15T18:56:19.317Z"
+      "lastRun": "2026-08-15T19:00:00.105Z",
+      "lastSuccessfulRun": "2026-08-15T19:00:00.105Z"
     }
   ],
   "runs": [
     {
-      "id": "run_1786820179317",
-      "monitorId": "mon_1786820162637",
-      "timestamp": "2026-08-15T18:56:19.317Z",
+      "id": "run_1786820400105",
+      "monitorId": "mon_1786820378399",
+      "timestamp": "2026-08-15T19:00:00.105Z",
       "status": "RECOVERED",
       "recordsCount": 1,
-      "collectionId": "j_msuqlc5yfqatty6lz"
+      "collectionId": "j_msuqpy7m2228rs8ftz"
     }
   ],
   "records": [
     {
-      "id": "rec_1786820200320_ps9ok",
-      "runId": "run_1786820179317",
-      "monitorId": "mon_1786820162637",
+      "id": "rec_1786820427461_muhl4",
+      "runId": "run_1786820400105",
+      "monitorId": "mon_1786820378399",
       "data": {
         "name": "Kookee Ceramic Condiment Jars and Containers Set of 3 with Tray and Spoon for Kitchen Food Storage, Used for Spices, Sauce Servers, Pickle, Vinegar, Sugar (280ml each), White (10681)",
         "price": 1435,
         "rating": 4.1,
-        "availability": "In stock",
-        "discount": "Colour        ART10681 - White"
+        "availability": "10 days Returnable  Amazon Delivered  Free Delivery",
+        "discount": "-10%"
       },
-      "timestamp": "2026-08-15T18:56:19.317Z"
+      "timestamp": "2026-08-15T19:00:00.105Z"
     }
   ],
   "repairEvents": [
     {
-      "id": "rep_1786820200058_yquok",
-      "monitorId": "mon_1786820162637",
-      "timestamp": "2026-08-15T18:56:40.058Z",
+      "id": "rep_1786820427346_cgs02",
+      "monitorId": "mon_1786820378399",
+      "timestamp": "2026-08-15T19:00:27.346Z",
       "fieldName": "discount",
       "previousSelector": "",
-      "repairedSelector": ".po-color",
-      "recordsBefore": 1,
+      "repairedSelector": ".a-color-price",
+      "recordsBefore": 0,
       "recordsAfter": 1,
       "confidence": 100,
       "status": "SUCCESS",
       "candidatesTested": [
         {
-          "selector": ".po-color",
+          "selector": ".a-color-price",
           "validCount": 1,
           "score": 100
         },
         {
-          "selector": "tr.po-color",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": ".dimension-text",
+          "selector": "span.a-color-price",
           "validCount": 1,
           "score": 100
         },
@@ -156,34 +151,167 @@
           "score": 100
         },
         {
-          "selector": ".dimension-heading",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": "div.dimension-text",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": "h3.a-spacing-small",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": ".inline-twister-row",
-          "validCount": 1,
-          "score": 100
-        },
-        {
-          "selector": "div.a-spacing-large",
-          "validCount": 1,
-          "score": 100
-        },
-        {
           "selector": ".savingPriceOverride",
           "validCount": 1,
           "score": 100
+        },
+        {
+          "selector": "span.aok-align-center",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.savingsPercentage",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".apex-savings-container",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.savingPriceOverride",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".apex-savings-percentage",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.apex-savings-container",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1786820427346_nbwju",
+      "monitorId": "mon_1786820378399",
+      "timestamp": "2026-08-15T19:00:27.346Z",
+      "fieldName": "availability",
+      "previousSelector": "#availability",
+      "repairedSelector": "a.a-size-small",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": "a.a-size-small",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a.a-text-normal",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".icon-farm-bottom-sheet-header",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.icon-farm-bottom-sheet-header",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".c-f",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".larr",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".a-row",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".a-end",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".a-box",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".expand",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1786820427346_milay",
+      "monitorId": "mon_1786820378399",
+      "timestamp": "2026-08-15T19:00:27.346Z",
+      "fieldName": "price",
+      "previousSelector": ".a-price .a-offscreen",
+      "repairedSelector": ".a-price-whole",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".a-price-whole",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "span.a-price-whole",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".dimension-values-list",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "ul.dimension-values-list",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".dimension-values-carousel",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "ul.dimension-values-carousel",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".inline-twister-dim-title-value",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "span.inline-twister-dim-title-value",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".inline-twister-dim-title-value-truncate-expanded",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "div.inline-twister-dim-title-value-truncate-expanded",
+          "validCount": 1,
+          "score": 115
         }
       ]
     },
@@ -509,6 +637,42 @@
     }
   ],
   "activityEvents": [
+    {
+      "id": "act_1786820427464_byru7",
+      "timestamp": "2026-08-15T19:00:27.464Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"Amazon\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1786820403170_xkkzh",
+      "timestamp": "2026-08-15T19:00:03.170Z",
+      "message": "Extraction validation failed for \"Amazon\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786820403166_qwodd",
+      "timestamp": "2026-08-15T19:00:03.166Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786820381126_6sehg",
+      "timestamp": "2026-08-15T18:59:41.126Z",
+      "message": "Starting extraction run for monitor: \"Amazon\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1786820378403_o00wi",
+      "timestamp": "2026-08-15T18:59:38.403Z",
+      "message": "Created monitor: \"Amazon\" for URL: https://amzn.in/d/06dcjxdK",
+      "type": "success"
+    },
+    {
+      "id": "act_1786820339058_jnlpb",
+      "timestamp": "2026-08-15T18:58:59.058Z",
+      "message": "Extraction successful for \"Amazon\". Collected 1 records.",
+      "type": "success"
+    },
     {
       "id": "act_1786820200324_ad1qw",
       "timestamp": "2026-08-15T18:56:40.324Z",
