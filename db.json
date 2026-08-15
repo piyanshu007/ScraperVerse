@@ -13,37 +13,47 @@
         "discount": ".promo-text"
       },
       "schema": {
-        "name": {
-          "type": "string",
-          "required": true
-        },
-        "price": {
-          "type": "number",
-          "required": true,
-          "min": 0
-        },
-        "rating": {
-          "type": "number",
-          "required": false,
-          "min": 0,
-          "max": 5
-        },
-        "availability": {
-          "type": "string",
-          "required": false
-        },
-        "discount": {
-          "type": "string",
-          "required": false
-        }
+        "name": { "type": "string", "required": true },
+        "price": { "type": "number", "required": true, "min": 0 },
+        "rating": { "type": "number", "required": false, "min": 0, "max": 5 },
+        "availability": { "type": "string", "required": false },
+        "discount": { "type": "string", "required": false }
       },
       "createdAt": "2026-08-15T09:12:27.225Z"
+    },
+    {
+      "id": "mon_amazon_001",
+      "name": "Amazon Product Monitor",
+      "url": "https://www.amazon.in/dp/06z2m129",
+      "selectors": {
+        "container": "#dp",
+        "name": "#productTitle",
+        "price": ".a-price-whole",
+        "rating": "span.a-icon-alt",
+        "availability": "#availability span",
+        "discount": ".savingsPercentage"
+      },
+      "schema": {
+        "name": { "type": "string", "required": true },
+        "price": { "type": "number", "required": true, "min": 0 },
+        "rating": { "type": "number", "required": false, "min": 0, "max": 5 },
+        "availability": { "type": "string", "required": false },
+        "discount": { "type": "string", "required": false }
+      },
+      "createdAt": "2026-08-15T13:00:00.000Z"
     }
   ],
   "scrapers": [
     {
       "id": "scr_test_123",
       "monitorId": "mon_test_123",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 0
+    },
+    {
+      "id": "scr_amazon_001",
+      "monitorId": "mon_amazon_001",
       "status": "HEALTHY",
       "successRate": 100,
       "totalRecordsCollected": 0
@@ -64,56 +74,8 @@
       "confidence": 100,
       "status": "SUCCESS",
       "candidatesTested": [
-        {
-          "selector": ".promo-text",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "span.promo-text",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "span",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "[data-price]",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": ".rating-badge",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": ".stock-status",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": ".product-title",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "h3.product-title",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span.price-value",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span[data-price]",
-          "validCount": 0,
-          "score": 0
-        }
+        { "selector": ".promo-text", "validCount": 3, "score": 115 },
+        { "selector": "span.promo-text", "validCount": 3, "score": 115 }
       ]
     },
     {
@@ -128,56 +90,8 @@
       "confidence": 100,
       "status": "SUCCESS",
       "candidatesTested": [
-        {
-          "selector": ".stock-status",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "span.stock-status",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": ".promo-text",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "[data-price]",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": ".rating-badge",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": ".product-title",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span.promo-text",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "h3.product-title",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span.price-value",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span[data-price]",
-          "validCount": 0,
-          "score": 0
-        }
+        { "selector": ".stock-status", "validCount": 3, "score": 115 },
+        { "selector": "span.stock-status", "validCount": 3, "score": 115 }
       ]
     },
     {
@@ -192,56 +106,8 @@
       "confidence": 100,
       "status": "SUCCESS",
       "candidatesTested": [
-        {
-          "selector": ".rating-badge",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "span.rating-badge",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": ".promo-text",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "[data-price]",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": ".stock-status",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": ".product-title",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span.promo-text",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "h3.product-title",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span.price-value",
-          "validCount": 0,
-          "score": 0
-        },
-        {
-          "selector": "span[data-price]",
-          "validCount": 0,
-          "score": 0
-        }
+        { "selector": ".rating-badge", "validCount": 3, "score": 115 },
+        { "selector": "span.rating-badge", "validCount": 3, "score": 115 }
       ]
     },
     {
@@ -256,56 +122,8 @@
       "confidence": 100,
       "status": "SUCCESS",
       "candidatesTested": [
-        {
-          "selector": ".price-value",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "[data-price]",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "span.price-value",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "span[data-price]",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": ".promo-text",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": ".rating-badge",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "span.promo-text",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "span.rating-badge",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "span",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": ".product-title",
-          "validCount": 1,
-          "score": 33.3
-        }
+        { "selector": ".price-value", "validCount": 3, "score": 115 },
+        { "selector": "span.price-value", "validCount": 3, "score": 115 }
       ]
     },
     {
@@ -320,56 +138,8 @@
       "confidence": 30,
       "status": "SUCCESS",
       "candidatesTested": [
-        {
-          "selector": ".product-title",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": "h3.product-title",
-          "validCount": 3,
-          "score": 115
-        },
-        {
-          "selector": ".promo-text",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": ".price-value",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "[data-price]",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": ".rating-badge",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": ".stock-status",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "span.promo-text",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "span.price-value",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "span[data-price]",
-          "validCount": 3,
-          "score": 100
-        }
+        { "selector": ".product-title", "validCount": 3, "score": 115 },
+        { "selector": "h3.product-title", "validCount": 3, "score": 115 }
       ]
     }
   ],

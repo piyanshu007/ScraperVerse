@@ -32,7 +32,41 @@ export async function scrapeWithBrightData(
     };
   }
 
-  console.log(`[BrightData] Triggering collector ${collectorId} for ${url}`);
+/** Resolve short/redirect URLs (amzn.in, amzn.to, bit.ly, etc.) to their final destination */
+async function resolveUrl(url: string): Promise<string> {
+  try {
+    const res = await fetch(url, {
+      method: 'HEAD',
+      redirect: 'follow',
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WebPulseBot/1.0)' },
+      signal: AbortSignal.timeout(8000),
+    });
+    const resolved = res.url;
+    if (resolved && resolved !== url) {
+      console.log(`[BrightData] Resolved short URL: ${url} → ${resolved}`);
+      return resolved;
+    }
+  } catch {
+    // If HEAD fails, try GET (some servers don't support HEAD)
+    try {
+      const res = await fetch(url, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WebPulseBot/1.0)' },
+        signal: AbortSignal.timeout(8000),
+      });
+      if (res.url && res.url !== url) {
+        console.log(`[BrightData] Resolved short URL via GET: ${url} → ${res.url}`);
+        return res.url;
+      }
+    } catch { /* ignore, use original URL */ }
+  }
+  return url;
+}
+
+  // Resolve any short/redirect URLs (amzn.in, amzn.to, etc.) to their full URL
+  const resolvedUrl = await resolveUrl(url);
+  console.log(`[BrightData] Triggering collector ${collectorId} for ${resolvedUrl}`);
 
   // ── Step 1: Trigger ────────────────────────────────────────────────────────
   const triggerRes = await fetch(
@@ -43,7 +77,7 @@ export async function scrapeWithBrightData(
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify([{ url }]),
+      body: JSON.stringify([{ url: resolvedUrl }]),
     }
   );
 
