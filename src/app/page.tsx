@@ -821,7 +821,7 @@ export default function Home() {
                         </div>
                         <span className="terminal-bar-title">webpulse-intelligence-terminal — self-healing engine</span>
                       </div>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 800, color: '#000' }}>UTF-8</span>
+                      <span className="terminal-utf8" style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 800, color: '#000' }}>UTF-8</span>
                     </div>
                     <div className="terminal-body">
                       {logs.map((line, i) => {
