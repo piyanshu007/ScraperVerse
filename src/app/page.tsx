@@ -627,7 +627,7 @@ export default function Home() {
                       ) : (
                         <div className="table-wrap">
                           <table className="data-table">
-                            <thead><tr><th>Name</th><th>Status</th><th>Integrity</th><th>Records</th><th>Action</th></tr></thead>
+                            <thead><tr><th>Name</th><th>Status</th><th className="hide-mobile">Integrity</th><th className="hide-mobile">Records</th><th className="hide-mobile">Action</th></tr></thead>
                             <tbody>
                               {monitors.map(mon => {
                                 const scr = scrapers.find(s => s.monitorId === mon.id);
@@ -635,9 +635,9 @@ export default function Home() {
                                   <tr key={mon.id}>
                                     <td style={{ fontWeight: 700 }}>{mon.name}</td>
                                     <td><StatusBadge status={runningId === mon.id ? 'RUNNING' : (scr?.status || 'HEALTHY')} /></td>
-                                    <td style={{ color: 'var(--green)', fontWeight: 800 }}>{scr?.successRate ?? 100}%</td>
-                                    <td>{scr?.totalRecordsCollected ?? 0}</td>
-                                    <td>
+                                    <td style={{ color: 'var(--green)', fontWeight: 800 }} className="hide-mobile">{scr?.successRate ?? 100}%</td>
+                                    <td className="hide-mobile">{scr?.totalRecordsCollected ?? 0}</td>
+                                    <td className="hide-mobile">
                                       <button className="btn btn-green" style={{ padding: '6px 12px', fontSize: '10px' }}
                                         disabled={runningId !== null}
                                         onClick={() => handleRun(mon.id)}>
@@ -816,7 +816,7 @@ export default function Home() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   <div className="terminal">
                     <div className="terminal-bar">
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, overflow: 'hidden', flex: 1 }}>
                         <div className="terminal-dots">
                           {['#ff5f57','#febc2e','#28c840'].map(c => <span key={c} style={{ background: c }} />)}
                         </div>
@@ -846,12 +846,12 @@ export default function Home() {
                     ) : (
                       <div className="table-wrap">
                         <table className="data-table">
-                          <thead><tr><th>Field</th><th>Previous Selector</th><th>Repaired Selector</th><th>Confidence</th><th className="hide-mobile">Time</th><th className="hide-mobile">Status</th></tr></thead>
+                          <thead><tr><th>Field</th><th className="hide-mobile">Previous Selector</th><th>Repaired Selector</th><th>Confidence</th><th className="hide-mobile">Time</th><th className="hide-mobile">Status</th></tr></thead>
                           <tbody>
                             {repairEvents.map(ev => (
                               <tr key={ev.id}>
                                 <td style={{ color: 'var(--white)', fontWeight: 800 }}>{ev.fieldName}</td>
-                                <td style={{ color: 'var(--red)' }}>{ev.previousSelector}</td>
+                                <td style={{ color: 'var(--red)' }} className="hide-mobile">{ev.previousSelector}</td>
                                 <td style={{ color: 'var(--green)', fontWeight: 800 }}>{ev.repairedSelector}</td>
                                 <td style={{ color: 'var(--green)', fontWeight: 800 }}>{ev.confidence}%</td>
                                 <td style={{ color: 'var(--white-muted)' }} className="hide-mobile">{new Date(ev.timestamp).toLocaleTimeString()}</td>
