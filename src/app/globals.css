@@ -570,3 +570,18 @@ body::after {
   min-width: 680px;
 }
 
+/* Hide non-essential columns on mobile */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none;
+  }
+  /* With Time/Status hidden, 4-column repair table fits without horizontal scroll */
+  .data-table {
+    min-width: 360px;
+    font-size: 11px;
+  }
+  .data-table th,
+  .data-table td {
+    padding: 8px 10px;
+  }
+}

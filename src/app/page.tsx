@@ -828,7 +828,7 @@ export default function Home() {
                       {logs.map((line, i) => {
                         const prefix = Object.keys(LOG_COLOR).find(p => line.includes(p));
                         return (
-                          <div key={i} style={{ color: prefix ? LOG_COLOR[prefix] : '#555', whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>
+                          <div key={i} style={{ color: prefix ? LOG_COLOR[prefix] : '#555', wordBreak: 'break-all', overflowWrap: 'break-word', lineHeight: 1.6 }}>
                             {line}
                           </div>
                         );
@@ -846,7 +846,7 @@ export default function Home() {
                     ) : (
                       <div className="table-wrap">
                         <table className="data-table">
-                          <thead><tr><th>Field</th><th>Previous Selector</th><th>Repaired Selector</th><th>Confidence</th><th>Time</th><th>Status</th></tr></thead>
+                          <thead><tr><th>Field</th><th>Previous Selector</th><th>Repaired Selector</th><th>Confidence</th><th className="hide-mobile">Time</th><th className="hide-mobile">Status</th></tr></thead>
                           <tbody>
                             {repairEvents.map(ev => (
                               <tr key={ev.id}>
@@ -854,8 +854,8 @@ export default function Home() {
                                 <td style={{ color: 'var(--red)' }}>{ev.previousSelector}</td>
                                 <td style={{ color: 'var(--green)', fontWeight: 800 }}>{ev.repairedSelector}</td>
                                 <td style={{ color: 'var(--green)', fontWeight: 800 }}>{ev.confidence}%</td>
-                                <td style={{ color: 'var(--white-muted)' }}>{new Date(ev.timestamp).toLocaleTimeString()}</td>
-                                <td><StatusBadge status={ev.status} /></td>
+                                <td style={{ color: 'var(--white-muted)' }} className="hide-mobile">{new Date(ev.timestamp).toLocaleTimeString()}</td>
+                                <td className="hide-mobile"><StatusBadge status={ev.status} /></td>
                               </tr>
                             ))}
                           </tbody>
