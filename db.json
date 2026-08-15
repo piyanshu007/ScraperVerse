@@ -38,6 +38,45 @@
         }
       },
       "createdAt": "2026-08-15T09:12:27.225Z"
+    },
+    {
+      "id": "mon_1786819631168",
+      "name": "Amazon",
+      "url": "https://amzn.in/d/06dcjxdK",
+      "selectors": {
+        "container": "div#centerCol",
+        "name": "span#productTitle",
+        "price": ".a-color-price",
+        "rating": "span#acrPopover span.a-icon-alt",
+        "availability": "a.a-size-small",
+        "discount": ".vsx__offers-holder"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-15T18:47:11.169Z"
     }
   ],
   "scrapers": [
@@ -47,11 +86,235 @@
       "status": "HEALTHY",
       "successRate": 100,
       "totalRecordsCollected": 0
+    },
+    {
+      "id": "scr_1786819631169",
+      "monitorId": "mon_1786819631168",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 1,
+      "lastRun": "2026-08-15T18:47:47.321Z",
+      "lastSuccessfulRun": "2026-08-15T18:47:47.321Z"
     }
   ],
-  "runs": [],
-  "records": [],
+  "runs": [
+    {
+      "id": "run_1786819667321",
+      "monitorId": "mon_1786819631168",
+      "timestamp": "2026-08-15T18:47:47.321Z",
+      "status": "RECOVERED",
+      "recordsCount": 1,
+      "collectionId": "j_msuqa8ja141dzvmkjq"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_1786819694844_2izfs",
+      "runId": "run_1786819667321",
+      "monitorId": "mon_1786819631168",
+      "data": {
+        "name": "Kookee Ceramic Condiment Jars and Containers Set of 3 with Tray and Spoon for Kitchen Food Storage, Used for Spices, Sauce Servers, Pickle, Vinegar, Sugar (280ml each), White (10681)",
+        "price": 10,
+        "rating": 4.1,
+        "availability": "10 days Returnable  Amazon Delivered  Free Delivery",
+        "discount": "Offers       Previous page..."
+      },
+      "timestamp": "2026-08-15T18:47:47.321Z"
+    }
+  ],
   "repairEvents": [
+    {
+      "id": "rep_1786819694733_wlqpd",
+      "monitorId": "mon_1786819631168",
+      "timestamp": "2026-08-15T18:48:14.733Z",
+      "fieldName": "discount",
+      "previousSelector": "",
+      "repairedSelector": ".vsx__offers-holder",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".vsx__offers-holder",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "div.vsx__offers-holder",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-cardui",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".po-color",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-nostyle",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "tr.po-color",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.a-cardui",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "ul.a-nostyle",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-horizontal",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1786819694733_3qacw",
+      "monitorId": "mon_1786819631168",
+      "timestamp": "2026-08-15T18:48:14.733Z",
+      "fieldName": "availability",
+      "previousSelector": "#availability span",
+      "repairedSelector": "a.a-size-small",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": "a.a-size-small",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a.a-text-normal",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".icon-farm-bottom-sheet-header",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.icon-farm-bottom-sheet-header",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".c-f",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".larr",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".a-row",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".a-end",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".a-box",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".expand",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1786819694733_mdg50",
+      "monitorId": "mon_1786819631168",
+      "timestamp": "2026-08-15T18:48:14.733Z",
+      "fieldName": "price",
+      "previousSelector": "span.a-price .a-offscreen",
+      "repairedSelector": ".a-color-price",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".a-color-price",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-price-whole",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "span.a-color-price",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "span.a-price-whole",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".savingPriceOverride",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".dimension-values-list",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "span.savingPriceOverride",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "ul.dimension-values-list",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".dimension-values-carousel",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "ul.dimension-values-carousel",
+          "validCount": 1,
+          "score": 115
+        }
+      ]
+    },
     {
       "id": "rep_1786785147365_jvi1i",
       "monitorId": "mon_test_123",
@@ -373,6 +636,37 @@
       ]
     }
   ],
-  "activityEvents": [],
+  "activityEvents": [
+    {
+      "id": "act_1786819694846_dn69o",
+      "timestamp": "2026-08-15T18:48:14.846Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"Amazon\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1786819670920_bu01j",
+      "timestamp": "2026-08-15T18:47:50.920Z",
+      "message": "Extraction validation failed for \"Amazon\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1786819670916_p6zk1",
+      "timestamp": "2026-08-15T18:47:50.916Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1786819648219_n1ydm",
+      "timestamp": "2026-08-15T18:47:28.219Z",
+      "message": "Starting extraction run for monitor: \"Amazon\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1786819631173_phdb8",
+      "timestamp": "2026-08-15T18:47:11.173Z",
+      "message": "Created monitor: \"Amazon\" for URL: https://amzn.in/d/06dcjxdK",
+      "type": "success"
+    }
+  ],
   "activeDemoVersion": 1
 }

@@ -102,7 +102,7 @@ export function extractData(
           // Get surrounding text of parent/grandparent container to look for /count or /per
           const parentText = elSingle.parent().text().trim() + ' ' + (elSingle.parent().parent().text().trim());
           
-          if (/\bper\b|\/|m\.r\.p|mrp/i.test(parentText) || elSingle.closest('.a-text-price').length > 0) {
+          if (/\bper\b|\/|m\.r\.p|mrp/i.test(parentText) || elSingle.closest('.a-text-price').length > 0 || textValSingle.includes('%')) {
             continue;
           }
           
