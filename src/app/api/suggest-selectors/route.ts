@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     if (!openRouterApiKey) {
       return NextResponse.json({ error: 'OPENROUTER_API_KEY is not configured in .env' }, { status: 500 });
     }
-    const openRouterModel = 'openrouter/auto';
+    const openRouterModel = 'meta-llama/llama-3.3-70b-instruct';
 
     const systemPrompt = `You are a CSS selector assistant. Analyze the given HTML structure and identify the correct CSS selectors for capturing product/item data.
 
@@ -100,7 +100,21 @@ Do NOT wrap the JSON in markdown code blocks. Return ONLY the raw JSON string. E
     } else if (jsonText.startsWith('```')) {
       jsonText = jsonText.replace(/^```(?:json)?\n?/i, '').replace(/\n?```$/i, '');
     }
-    const selectors = JSON.parse(jsonText.trim());
+
+    let selectors;
+    try {
+      selectors = JSON.parse(jsonText.trim());
+    } catch (e) {
+      console.warn("Failed to parse JSON response from LLM, attempting regex recovery:", e);
+      selectors = {
+        container: jsonText.match(/"container"\s*:\s*"([^"]+)"/)?.[1] || '.product-card',
+        name: jsonText.match(/"name"\s*:\s*"([^"]+)"/)?.[1] || '.product-title',
+        price: jsonText.match(/"price"\s*:\s*"([^"]+)"/)?.[1] || '.price-value',
+        rating: jsonText.match(/"rating"\s*:\s*"([^"]+)"/)?.[1] || '.rating-badge',
+        availability: jsonText.match(/"availability"\s*:\s*"([^"]+)"/)?.[1] || '.stock-status',
+        discount: jsonText.match(/"discount"\s*:\s*"([^"]+)"/)?.[1] || '.promo-text'
+      };
+    }
     return NextResponse.json(selectors);
   } catch (error: any) {
     return NextResponse.json({ error: error.message || 'Server error' }, { status: 500 });
