@@ -8,28 +8,34 @@ WebPulse AI is a **scraper observability and resilience platform** built around 
 
 ## 🏆 Hackathon Submission Overview
 
+WebPulse AI is aligned with **Project Idea #4: Self-Healing Scraper (The Hero Project)** from the official WeMakeDevs & Bright Data Hackathon Guide. It takes self-healing a step further by automating the entire observe-verify-heal loop.
+
 ### 1. Potential Impact
 *   **The Problem**: Web scrapers break constantly due to minor HTML structural changes, leading to broken data pipelines and hours of manual debugging.
 *   **The Solution**: WebPulse AI automates scraper health monitoring and selector healing. It immediately flags structural anomalies, scores data confidence, and repairs broken selectors dynamically in real-time, restoring pipeline health without developer intervention.
 
-### 2. Creativity
+### 2. Alignment with Hackathon Project Tracks
+*   **Project Idea #4 (Self-Healing Scraper)**: Fully automates the observe, analyze, repair, and verify lifecycle. Instead of manually running `bdata scraper heal` and `bdata scraper approve` from a terminal when a site layout shifts, WebPulse AI detects the change in real-time, extracts candidates, ranks them using semantic validators, saves the patched selectors, and triggers a re-run instantly.
+*   **Compatible with Bright Data CLI**: Developers can use the official `bdata` CLI (`bdata scraper create`, `bdata scraper run`) to generate and deploy scrapers in Scraper Studio, then paste the **Collector ID** into WebPulse AI to instantly wrap the collector in a self-healing observability pipeline.
+
+### 3. Creativity
 *   **Observe & Heal Loop**: Combines strict schema validation rules with local DOM parsing, candidate scoring, and optional LLM auto-suggestions.
 *   **Developer-First UX**: Features a comic brutalist, Spider-Verse themed console dashboard displaying live selector mappings, validation matrices, and historical healing logs.
 
-### 3. Technical Excellence
+### 4. Technical Excellence
 *   **Next.js & TypeScript**: Clean, modular API routes and React dashboard.
 *   **Fast DOM Traversal**: Lightweight and fast Cheerio element parsing.
 *   **OpenRouter Integration**: Fully hardened LLM parser with substring bracket-extraction that remains completely immune to raw text or markdown fence wrapper bugs.
 *   **Lightweight Telemetry DB**: Zero-dependency JSON storage engine tracking monitors, runs, records, and repairs.
 
-### 4. Use of Scraper Studio
+### 5. Use of Scraper Studio
 *   **Central Infrastructure**: Bright Data Scraper Studio serves as the primary remote collection engine.
 *   **Execution**: WebPulse triggers the Scraper Studio collector via the DCA API, streams and parses the NDJSON dataset, scores fields, and monitors execution telemetry.
 
-### 5. Reliability & Self-Healing
+### 6. Reliability & Self-Healing
 *   **Local Hot-Healing**: When a required schema field degrades, WebPulse isolates the element, extracts the DOM, scores alternative candidate paths, writes the corrected selector to the configuration database, and re-runs the collection pipeline automatically.
 
-### 6. 30-Second Demo Flow
+### 7. 30-Second Demo Flow
 1.  **Healthy Baseline**: Select the **V1 Layout** and click **Run Scraper** (Status: `● HEALTHY` / Confidence: `100%`).
 2.  **Layout Shift**: Select the **V2 Layout** and click **Run Scraper**. Watch the validator detect missing fields and trigger self-healing (Status: `🕷 HEALING`).
 3.  **Automated Recovery**: Watch the terminal console analyze the DOM, score candidates, apply the best selector patch, and recover data (Status: `✓ RECOVERED` / Confidence: `100%`).
