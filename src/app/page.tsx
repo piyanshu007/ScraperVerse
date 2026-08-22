@@ -245,6 +245,25 @@ export default function Home() {
     }
   };
 
+  const getDeletedIds = (): string[] => {
+    if (typeof window === 'undefined') return [];
+    try {
+      const stored = localStorage.getItem('scraperverse_deleted_ids');
+      return stored ? JSON.parse(stored) : [];
+    } catch { return []; }
+  };
+
+  const addDeletedId = (id: string) => {
+    if (typeof window === 'undefined') return;
+    try {
+      const ids = getDeletedIds();
+      if (!ids.includes(id)) {
+        ids.push(id);
+        localStorage.setItem('scraperverse_deleted_ids', JSON.stringify(ids));
+      }
+    } catch { /* silent */ }
+  };
+
   const fetchDb = async (silent = false) => {
     if (!silent) setLoading(true);
     try {
@@ -258,6 +277,8 @@ export default function Home() {
       const mergedRecords = [...(data.records || [])];
       const mergedRepairEvents = [...(data.repairEvents || [])];
       const mergedActivityEvents = [...(data.activityEvents || [])];
+
+      const deletedIds = getDeletedIds();
 
       if (localData) {
         for (const lm of localData.monitors || []) {
@@ -280,26 +301,34 @@ export default function Home() {
         }
       }
 
-      mergedRuns.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      mergedRecords.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      mergedRepairEvents.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      mergedActivityEvents.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      // Filter out deleted monitors and their associated data
+      const filteredMonitors = mergedMonitors.filter((m: any) => !deletedIds.includes(m.id));
+      const filteredScrapers = mergedScrapers.filter((s: any) => !deletedIds.includes(s.monitorId));
+      const filteredRuns = mergedRuns.filter((r: any) => !deletedIds.includes(r.monitorId));
+      const filteredRecords = mergedRecords.filter((r: any) => !deletedIds.includes(r.monitorId));
+      const filteredRepairEvents = mergedRepairEvents.filter((r: any) => !deletedIds.includes(r.monitorId));
+      const filteredActivityEvents = mergedActivityEvents;
 
-      setMonitors(mergedMonitors);
-      setScrapers(mergedScrapers);
-      setRuns(mergedRuns);
-      setRecords(mergedRecords);
-      setRepairEvents(mergedRepairEvents);
-      setActivityEvents(mergedActivityEvents);
+      filteredRuns.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      filteredRecords.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      filteredRepairEvents.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      filteredActivityEvents.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+      setMonitors(filteredMonitors);
+      setScrapers(filteredScrapers);
+      setRuns(filteredRuns);
+      setRecords(filteredRecords);
+      setRepairEvents(filteredRepairEvents);
+      setActivityEvents(filteredActivityEvents);
       setDemoVersion(data.activeDemoVersion || 1);
 
       saveLocalDb({
-        monitors: mergedMonitors,
-        scrapers: mergedScrapers,
-        runs: mergedRuns,
-        records: mergedRecords,
-        repairEvents: mergedRepairEvents,
-        activityEvents: mergedActivityEvents
+        monitors: filteredMonitors,
+        scrapers: filteredScrapers,
+        runs: filteredRuns,
+        records: filteredRecords,
+        repairEvents: filteredRepairEvents,
+        activityEvents: filteredActivityEvents
       });
     } catch { /* silent */ }
     finally { if (!silent) setLoading(false); }
@@ -526,6 +555,8 @@ export default function Home() {
     setConfirmDeleteId(null);
     try {
       await fetch(`/api/monitors/${id}`, { method: 'DELETE' });
+      // Track this ID as deleted so it stays gone on refresh
+      addDeletedId(id);
       // Also remove from localStorage
       const local = loadLocalDb() || { monitors: [], scrapers: [], runs: [], records: [], repairEvents: [], activityEvents: [] };
       local.monitors = local.monitors.filter((m: any) => m.id !== id);

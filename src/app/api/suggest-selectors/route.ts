@@ -17,9 +17,6 @@ export async function POST(request: NextRequest) {
     }
 
     const openRouterApiKey = process.env.OPENROUTER_API_KEY;
-    if (!openRouterApiKey) {
-      return NextResponse.json({ error: 'OPENROUTER_API_KEY is not configured in .env' }, { status: 500 });
-    }
 
     // 2. Attempt to fetch HTML — gracefully handle bot-block or network errors
     let cleanHtml = '';
@@ -70,53 +67,98 @@ Based on the URL and your knowledge of common e-commerce platforms and site stru
 If the domain is unknown, suggest generic selectors that work for most Shopify/WooCommerce/standard product pages.`;
     }
 
-    // 4. Call OpenRouter
-    const openRouterRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${openRouterApiKey}`,
-        'HTTP-Referer': 'https://scraperverse.hackathon',
-        'X-Title': 'ScraperVerse AI Selector Suggestion',
-      },
-      body: JSON.stringify({
-        model: 'google/gemini-2.5-flash',
-        max_tokens: 250,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userContent },
-        ],
-        temperature: 0.1,
-        response_format: { type: 'json_object' },
-      }),
-    });
+    // 4. Call OpenRouter with absolute fallback safety
+    let selectors;
+    try {
+      if (!openRouterApiKey) {
+        throw new Error('OPENROUTER_API_KEY is not configured');
+      }
 
-    if (!openRouterRes.ok) {
-      const errorText = await openRouterRes.text();
-      return NextResponse.json({ error: `OpenRouter error: ${errorText}` }, { status: 500 });
+      const openRouterRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${openRouterApiKey}`,
+          'HTTP-Referer': 'https://scraperverse.hackathon',
+          'X-Title': 'ScraperVerse AI Selector Suggestion',
+        },
+        body: JSON.stringify({
+          model: 'google/gemini-2.5-flash',
+          max_tokens: 250,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userContent },
+          ],
+          temperature: 0.1,
+          response_format: { type: 'json_object' },
+        }),
+      });
+
+      if (!openRouterRes.ok) {
+        throw new Error(`OpenRouter HTTP ${openRouterRes.status}`);
+      }
+
+      const openRouterData = await openRouterRes.json();
+      const content = openRouterData.choices?.[0]?.message?.content;
+      if (!content) {
+        throw new Error('Empty response from AI');
+      }
+
+      let jsonText = content.trim();
+      const startIdx = jsonText.indexOf('{');
+      const endIdx = jsonText.lastIndexOf('}');
+      if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+        jsonText = jsonText.substring(startIdx, endIdx + 1);
+      }
+      selectors = JSON.parse(jsonText.trim());
+    } catch (llmError: any) {
+      console.warn('AI Suggestion failed, falling back to smart local selectors:', llmError);
+      
+      const lowerUrl = absoluteUrl.toLowerCase();
+      if (lowerUrl.includes('amazon')) {
+        selectors = {
+          container: '#centerCol',
+          name: '#productTitle',
+          price: '.a-price-whole',
+          rating: '.mvt-cm-cr-review-stars-mini',
+          availability: '#availability span.a-color-success',
+          discount: '.a-color-price'
+        };
+      } else if (lowerUrl.includes('flipkart')) {
+        selectors = {
+          container: 'body',
+          name: 'h1.v1zwn26',
+          price: '.v1zwn20',
+          rating: 'a._1psv1zek9',
+          availability: '._1psv1zeel',
+          discount: '.v1zwn2a'
+        };
+      } else if (lowerUrl.includes('books.toscrape')) {
+        selectors = {
+          container: 'article.product_pod',
+          name: 'h3 > a',
+          price: 'p.price_color',
+          rating: 'p.star-rating',
+          availability: 'p.instock.availability',
+          discount: ''
+        };
+      } else {
+        // Smart generic fallback for any online store / WooCommerce / Shopify
+        selectors = {
+          container: '.product-container, .product-item, .product, .item',
+          name: 'h1, .product-title, .title, .name',
+          price: '.price, .price-value, .amount, span.price',
+          rating: '.rating, .stars, .star-rating',
+          availability: '.stock, .availability, .in-stock',
+          discount: '.discount, .offer, .sale'
+        } as Record<string, string>;
+      }
+      (selectors as Record<string, string>)._note = `AI Suggestion fell back to smart presets. (${llmError.message})`;
     }
-
-    const openRouterData = await openRouterRes.json();
-    const content = openRouterData.choices?.[0]?.message?.content;
-    if (!content) {
-      return NextResponse.json({ error: 'Empty response from AI selector generator' }, { status: 500 });
-    }
-
-    // 5. Parse JSON from LLM response (handle markdown fences gracefully)
-    let jsonText = content.trim();
-    const startIdx = jsonText.indexOf('{');
-    const endIdx = jsonText.lastIndexOf('}');
-    if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
-      jsonText = jsonText.substring(startIdx, endIdx + 1);
-    } else if (jsonText.startsWith('```')) {
-      jsonText = jsonText.replace(/^```(?:json)?\n?/i, '').replace(/\n?```$/i, '');
-    }
-
-    const selectors = JSON.parse(jsonText.trim());
 
     // 6. Attach a note if HTML was unavailable so the UI can inform the user
     if (!cleanHtml) {
-      selectors._note = `Page HTML could not be fetched (${fetchError}). Selectors are AI-inferred from the URL — verify them manually or run the monitor to trigger self-healing.`;
+      (selectors as Record<string, string>)._note = `Page HTML could not be fetched (${fetchError}). Selectors are AI-inferred from the URL — verify them manually or run the monitor to trigger self-healing.`;
     }
 
     return NextResponse.json(selectors);
