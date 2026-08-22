@@ -217,6 +217,7 @@ export default function Home() {
   const [discountSel, setDiscountSel] = useState('.discount');
   const [monitorCollectorId, setMonitorCollectorId] = useState('');
   const [runningId, setRunningId] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [logs, setLogs] = useState<string[]>([
     '[INFO] WebPulse AI — Self-Healing Intelligence Terminal',
     '[INFO] Awaiting scraper commands...',
@@ -515,11 +516,26 @@ export default function Home() {
     }
   };
 
-  const handleDeleteMonitor = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this monitor?')) return;
+  const handleDeleteMonitor = (id: string) => {
+    setConfirmDeleteId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!confirmDeleteId) return;
+    const id = confirmDeleteId;
+    setConfirmDeleteId(null);
     try {
       await fetch(`/api/monitors/${id}`, { method: 'DELETE' });
+      // Also remove from localStorage
+      const local = loadLocalDb() || { monitors: [], scrapers: [], runs: [], records: [], repairEvents: [], activityEvents: [] };
+      local.monitors = local.monitors.filter((m: any) => m.id !== id);
+      local.scrapers = local.scrapers.filter((s: any) => s.monitorId !== id);
+      local.runs = local.runs.filter((r: any) => r.monitorId !== id);
+      local.records = local.records.filter((r: any) => r.monitorId !== id);
+      local.repairEvents = local.repairEvents.filter((r: any) => r.monitorId !== id);
+      saveLocalDb(local);
       await fetchDb(true);
+      addLog(`[SUCCESS] Monitor deleted successfully.`);
     } catch (e: any) {
       addLog(`[ERROR] Failed to delete monitor: ${e.message}`);
     }
@@ -1096,6 +1112,62 @@ export default function Home() {
             </>
           )}
         </div>
+
+        {/* ══════════════════════ DELETE CONFIRM MODAL ══════════════════════ */}
+        {confirmDeleteId && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(14,0,31,0.85)', backdropFilter: 'blur(6px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '20px',
+          }}>
+            <div style={{
+              background: 'var(--bg-card)',
+              border: '3px solid var(--magenta)',
+              boxShadow: '8px 8px 0 #000, 10px 10px 0 var(--magenta)',
+              padding: '32px',
+              maxWidth: '400px',
+              width: '100%',
+              fontFamily: 'var(--font-comic)',
+            }}>
+              <div style={{
+                fontSize: '18px', fontWeight: 400, color: 'var(--yellow)',
+                textTransform: 'uppercase', letterSpacing: '2px',
+                textShadow: '2px 2px 0 var(--magenta)',
+                marginBottom: '12px', display: 'flex', gap: '10px', alignItems: 'center',
+              }}>
+                <span style={{ fontSize: '22px' }}>⚠</span> Confirm Delete
+              </div>
+              <div style={{
+                fontFamily: 'var(--font-mono)', fontSize: '13px',
+                color: 'var(--white-muted)', marginBottom: '24px', lineHeight: '1.6',
+              }}>
+                Are you sure you want to delete this monitor?<br />
+                <span style={{ color: 'var(--magenta)', fontWeight: 700 }}>This action cannot be undone.</span><br />
+                All associated runs, records, and repair history will be permanently removed.
+              </div>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button
+                  onClick={confirmDelete}
+                  className="btn"
+                  style={{
+                    flex: 1, background: 'var(--magenta)', color: '#fff',
+                    border: '3px solid #000',
+                    boxShadow: '4px 4px 0 #000, 5px 5px 0 var(--yellow)',
+                    fontSize: '13px', letterSpacing: '1.5px',
+                  }}>
+                  🗑 Delete
+                </button>
+                <button
+                  onClick={() => setConfirmDeleteId(null)}
+                  className="btn btn-outline"
+                  style={{ flex: 1, fontSize: '13px', letterSpacing: '1.5px' }}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
