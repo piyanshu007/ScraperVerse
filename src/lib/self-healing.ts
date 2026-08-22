@@ -35,7 +35,7 @@ function isValidSemanticValue(fieldName: string, val: string, selector: string):
   if (fieldName === 'availability') {
     if (cleanVal.length > 60) return false;
     // Availability should match precise stock status or delivery keywords using word boundaries
-    const availRegex = /^(?!.*(?:location|address|pincode|postal|enter|select|seller|enhancement|choose|chosen|list|cardName|image|emi|option|pay|free|checkout|from)).*\b(?:in[- ]*stock|out[- ]*of[- ]*stock|available|unavailable|left|ships|only|delivery)\b/i;
+    const availRegex = /\b(?:in[- ]*stock|out[- ]*of[- ]*stock|available|unavailable|left|delivery|ships|only)\b/i;
     return availRegex.test(cleanVal);
   }
 
@@ -75,59 +75,27 @@ export interface SelfHealingResult {
 /**
  * Generates potential CSS selectors for elements inside a container.
  */
-function generateFieldCandidates(html: string, containerSelector: string, fieldName: string): string[] {
+function generateFieldCandidates(html: string, containerSelector: string): string[] {
   const $ = cheerio.load(html);
   const container = $(containerSelector).first();
   if (container.length === 0) return [];
 
   const candidatesSet = new Set<string>();
 
-  // Add fallback selectors based on field type
-  if (fieldName === 'name') {
-    candidatesSet.add('h1');
-    candidatesSet.add('h2');
-    candidatesSet.add('h3');
-  } else if (fieldName === 'price') {
-    candidatesSet.add('span');
-    candidatesSet.add('div');
-  }
-
-  // Define semantic validation filters for each field type
-  const isMatchForField = (text: string): boolean => {
-    const clean = text.trim().toLowerCase();
-    if (clean.length === 0) return false;
-    
-    if (fieldName === 'price') {
-      return /[0-9]/.test(clean) && clean.length <= 30;
-    }
-    if (fieldName === 'rating') {
-      return (/[0-9]/.test(clean) || clean.includes('star') || clean.includes('review') || clean.includes('rating')) && clean.length <= 40;
-    }
-    if (fieldName === 'discount') {
-      return (clean.includes('%') || /\boff\b|\bsave\b|\bdiscount\b/i.test(clean)) && clean.length <= 50;
-    }
-    if (fieldName === 'availability') {
-      return /^(?!.*(?:location|address|pincode|postal|enter|select|seller|enhancement|choose|chosen|list|cardName|image|emi|option|pay|free|checkout|from)).*\b(?:in[- ]*stock|out[- ]*of[- ]*stock|available|unavailable|left|ships|only|delivery)\b/i.test(clean) && clean.length <= 60;
-    }
-    if (fieldName === 'name') {
-      const uiBlacklist = ['add to cart', 'buy now', 'sign in', 'search', 'menu', 'navigation', 'footer', 'checkout', 'my account'];
-      return clean.length > 5 && clean.length <= 150 && !uiBlacklist.includes(clean);
-    }
-    return true;
-  };
+  // Add some fallback selectors
+  candidatesSet.add('span');
+  candidatesSet.add('div');
+  candidatesSet.add('h3');
 
   // Traverse all descendants of the first container element
   container.find('*').each((_, el) => {
     const $el = $(el);
-    const textVal = $el.text().trim();
-    
-    if (!isMatchForField(textVal)) {
-      return;
-    }
-
     const tagName = el.tagName.toLowerCase();
+
+    // 1. Tag name
     candidatesSet.add(tagName);
 
+    // 2. Class names
     const classAttr = $el.attr('class');
     if (classAttr) {
       const classes = classAttr
@@ -138,7 +106,8 @@ function generateFieldCandidates(html: string, containerSelector: string, fieldN
         candidatesSet.add(`${tagName}.${cls}`);
       }
     }
-    
+
+    // 3. Data attributes
     const attribs = el.attribs;
     if (attribs) {
       for (const attr of Object.keys(attribs)) {
@@ -150,7 +119,8 @@ function generateFieldCandidates(html: string, containerSelector: string, fieldN
     }
   });
 
-  return Array.from(candidatesSet).slice(0, 250);
+  // Hard cap: prevent OOM/timeout crash with large DOM trees (many colour/size variants)
+  return Array.from(candidatesSet).slice(0, 40);
 }
 
 /**
@@ -193,7 +163,7 @@ function generateContainerCandidates(html: string): string[] {
   if ($('li').length > 1) candidatesSet.add('li');
 
   // Hard cap: prevent OOM/timeout crash with large DOM trees (many colour/size variants)
-  return Array.from(candidatesSet).slice(0, 250);
+  return Array.from(candidatesSet).slice(0, 40);
 }
 
 export async function healScraper(
@@ -229,141 +199,21 @@ export async function healScraper(
   // Step 1: Check if container selector works. If not, heal the container first.
   const $ = cheerio.load(activeHtml);
   let initialRecords = extractData($, repairedConfig);
-  const initialValidation = validateDataset(initialRecords, schema);
-  const initialHasRequiredFailures = initialValidation.failedFields.some(field => schema[field].required);
-
-  if (initialHasRequiredFailures || initialRecords.length === 0) {
+  if (initialRecords.length === 0 && $(repairedConfig.containerSelector).length === 0) {
     logActivity(`Container selector "${repairedConfig.containerSelector}" returned 0 records. Healing container...`, 'info');
     const containerCandidates = generateContainerCandidates(activeHtml);
     let bestContainer = repairedConfig.containerSelector;
     let maxCount = 0;
 
-    const originalContainerCount = $(currentConfig.containerSelector).length;
-    let bestScore = -9999;
-    
-    const getFieldCoverageCount = (containerSel: string): number => {
-      const el = $(containerSel).first();
-      if (el.length === 0) return 0;
-      
-      let coverage = 0;
-      for (const [field, config] of Object.entries(schema)) {
-        let found = false;
-        el.find('*').each((_, desc) => {
-          const txt = $(desc).text().trim();
-          const clean = txt.toLowerCase();
-          
-          if (field === 'price') {
-            if (/[0-9]/.test(clean) && clean.length <= 30) {
-              found = true;
-              return false;
-            }
-          } else if (field === 'name') {
-            const uiBlacklist = ['add to cart', 'buy now', 'sign in', 'search', 'menu', 'navigation', 'footer', 'checkout', 'my account'];
-            if (clean.length > 5 && clean.length <= 150 && !uiBlacklist.includes(clean)) {
-              found = true;
-              return false;
-            }
-          } else if (field === 'rating') {
-            const num = parseFloat(clean);
-            const isNumRating = !isNaN(num) && num >= 1 && num <= 5;
-            if (isNumRating || clean.includes('star') || clean.includes('rating') || clean.includes('review')) {
-              found = true;
-              return false;
-            }
-          } else if (field === 'availability') {
-            const availRegex = /^(?!.*(?:location|address|pincode|postal|enter|select|seller|enhancement|choose|chosen|list|cardName|image|emi|option|pay|free|checkout|from)).*\b(?:in[- ]*stock|out[- ]*of[- ]*stock|available|unavailable|left|ships|only|delivery)\b/i;
-            if (availRegex.test(clean)) {
-              found = true;
-              return false;
-            }
-          } else if (field === 'discount') {
-            if ((clean.includes('%') || clean.includes('off') || clean.includes('save') || clean.includes('discount')) && clean.length <= 50) {
-              found = true;
-              return false;
-            }
-          } else {
-            if (clean.length > 0) {
-              found = true;
-              return false;
-            }
-          }
-        });
-        
-        if (found) coverage++;
-      }
-      return coverage;
-    };
-
-    const hasRequiredFieldsHeuristics = (containerSel: string): boolean => {
-      const el = $(containerSel).first();
-      if (el.length === 0) return false;
-      
-      const requiredFields = Object.keys(schema).filter(f => schema[f].required);
-      
-      for (const field of requiredFields) {
-        let found = false;
-        el.find('*').each((_, desc) => {
-          const txt = $(desc).text().trim();
-          const clean = txt.toLowerCase();
-          
-          if (field === 'price') {
-            if (/[0-9]/.test(clean) && clean.length <= 30) {
-              found = true;
-              return false;
-            }
-          } else if (field === 'name') {
-            const uiBlacklist = ['add to cart', 'buy now', 'sign in', 'search', 'menu', 'navigation', 'footer', 'checkout', 'my account'];
-            if (clean.length > 5 && clean.length <= 150 && !uiBlacklist.includes(clean)) {
-              found = true;
-              return false;
-            }
-          } else {
-            if (clean.length > 0) {
-              found = true;
-              return false;
-            }
-          }
-        });
-        
-        if (!found) return false;
-      }
-      return true;
-    };
-
     for (const candidate of containerCandidates) {
-      if (!hasRequiredFieldsHeuristics(candidate)) {
-        continue;
-      }
       let count = 0;
       try {
         count = $(candidate).length;
       } catch {
         continue;
       }
-      
-      let score = 0;
-      if (originalContainerCount <= 1) {
-        if (count === 1) {
-          score = 100;
-          // Prefer ID selectors, then class selectors, then tags
-          if (candidate.includes('#')) score += 10;
-          else if (candidate.includes('.')) score += 5;
-        } else {
-          score = 10 - count;
-        }
-      } else {
-        if (count > 1) {
-          score = count;
-          if (candidate.includes('.')) score += 5;
-        } else {
-          score = 0;
-        }
-      }
-      
-      score += getFieldCoverageCount(candidate) * 20;
-      console.log(`  Container candidate: "${candidate}" | Count: ${count} | Score: ${score}`);
-      if (score > bestScore) {
-        bestScore = score;
+      if (count > maxCount) {
+        maxCount = count;
         bestContainer = candidate;
       }
     }
@@ -400,7 +250,7 @@ export async function healScraper(
     logActivity(`Generating candidate selectors for field "${fieldName}"...`, 'info');
     
     // Generate candidates
-    const candidates = generateFieldCandidates(activeHtml, repairedConfig.containerSelector, fieldName);
+    const candidates = generateFieldCandidates(activeHtml, repairedConfig.containerSelector);
     const candidateScoring: CandidateScoring[] = [];
 
     // Test and score each candidate — wrapped in try/catch so one bad selector never crashes the loop
@@ -452,7 +302,7 @@ export async function healScraper(
             }
           }
         } else {
-          if (typeof val === 'string' && isValidSemanticValue(fieldName, val, candidate)) {
+          if (typeof val === 'string') {
             validCount++;
           }
         }
@@ -469,7 +319,7 @@ export async function healScraper(
       const lowerSelector = candidate.toLowerCase();
       const lowerFieldName = fieldName.toLowerCase();
       const synonyms: Record<string, string[]> = {
-        name: ['name', 'title', 'heading', 'brand', 'h1', 'h2'],
+        name: ['name', 'title', 'heading', 'brand'],
         price: ['price', 'value', 'amount', 'cost'],
         rating: ['rating', 'stars', 'score', 'badge'],
         availability: ['availability', 'stock', 'status'],
@@ -539,8 +389,7 @@ export async function healScraper(
     const finalValidation = validateDataset(finalRecords, schema);
 
     // If healed dataset is still invalid or empty, healing is considered failed!
-    const hasRequiredFailures = finalValidation.failedFields.some(field => schema[field].required);
-    if (hasRequiredFailures || finalRecords.length === 0) {
+    if (!finalValidation.isValid || finalRecords.length === 0) {
       overallSuccess = false;
     }
 

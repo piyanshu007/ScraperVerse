@@ -7,97 +7,97 @@ import { useState, useEffect, useRef } from 'react';
 const Icon = {
   Monitor: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <rect x="2" y="3" width="20" height="14" /><path d="M8 21h8M12 17v4" />
+      <rect x="2" y="3" width="20" height="14"/><path d="M8 21h8M12 17v4"/>
     </svg>
   ),
   Play: () => (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-      <polygon points="5,3 19,12 5,21" />
+      <polygon points="5,3 19,12 5,21"/>
     </svg>
   ),
   Heal: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <path d="M12 2L12 22M2 12L22 12" /><circle cx="12" cy="12" r="4" />
+      <path d="M12 2L12 22M2 12L22 12"/><circle cx="12" cy="12" r="4"/>
     </svg>
   ),
   Data: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12" />
-      <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+      <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/>
+      <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/>
     </svg>
   ),
   Insight: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+      <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
     </svg>
   ),
   Overview: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
-      <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+      <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+      <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
     </svg>
   ),
   Plus: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square">
-      <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
     </svg>
   ),
   Arrow: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12,5 19,12 12,19" />
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/>
     </svg>
   ),
   Check: () => (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square">
-      <polyline points="20,6 9,17 4,12" />
+      <polyline points="20,6 9,17 4,12"/>
     </svg>
   ),
   Alert: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <path d="M10.29 3.86L1.82 18A2 2 0 003.54 21H20.46a2 2 0 001.72-3L13.71 3.86a2 2 0 00-3.42 0z" />
-      <line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
+      <path d="M10.29 3.86L1.82 18A2 2 0 003.54 21H20.46a2 2 0 001.72-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
     </svg>
   ),
   Zap: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+      <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
     </svg>
   ),
   Terminal: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <polyline points="4,17 10,11 4,5" /><line x1="12" y1="19" x2="20" y2="19" />
+      <polyline points="4,17 10,11 4,5"/><line x1="12" y1="19" x2="20" y2="19"/>
     </svg>
   ),
   Tag: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
-      <line x1="7" y1="7" x2="7.01" y2="7" />
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+      <line x1="7" y1="7" x2="7.01" y2="7"/>
     </svg>
   ),
   Cpu: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <rect x="4" y="4" width="16" height="16" /><rect x="9" y="9" width="6" height="6" />
-      <line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" />
-      <line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" />
-      <line x1="20" y1="9" x2="23" y2="9" /><line x1="20" y1="14" x2="23" y2="14" />
-      <line x1="1" y1="9" x2="4" y2="9" /><line x1="1" y1="14" x2="4" y2="14" />
+      <rect x="4" y="4" width="16" height="16"/><rect x="9" y="9" width="6" height="6"/>
+      <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+      <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+      <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
+      <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
     </svg>
   ),
   Box: () => (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-      <polyline points="3.27,6.96 12,12.01 20.73,6.96" /><line x1="12" y1="22.08" x2="12" y2="12" />
+      <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+      <polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
     </svg>
   ),
   Spinner: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" style={{ animation: 'spin 1s linear infinite' }}>
-      <path d="M21 12a9 9 0 11-18 0" />
+      <path d="M21 12a9 9 0 11-18 0"/>
     </svg>
   ),
   BrightData: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square">
-      <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
-      <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+      <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
     </svg>
   ),
 };
@@ -136,21 +136,21 @@ interface ActivityEvent {
 // ─── LOG COLOUR MAP ──────────────────────────────────────────────────────────
 
 const LOG_COLOR: Record<string, string> = {
-  '[ERROR]': '#ff006e',
+  '[ERROR]':   '#ff006e',
   '[WARNING]': '#ffe600',
   '[SUCCESS]': '#00f5ff',
-  '[INFO]': '#ccbbdd',
+  '[INFO]':    '#ccbbdd',
   '[BrightData]': '#b57bee',
 };
 
 // ─── TABS ────────────────────────────────────────────────────────────────────
 
 const TABS = [
-  { id: 'overview', label: 'Overview', Icon: Icon.Overview },
-  { id: 'monitors', label: 'Monitors', Icon: Icon.Monitor },
-  { id: 'healing', label: 'Self-Heal', Icon: Icon.Heal },
-  { id: 'data', label: 'Data', Icon: Icon.Data },
-  { id: 'insights', label: 'Insights', Icon: Icon.Insight },
+  { id: 'overview',  label: 'Overview',   Icon: Icon.Overview  },
+  { id: 'monitors',  label: 'Monitors',   Icon: Icon.Monitor   },
+  { id: 'healing',   label: 'Self-Heal',  Icon: Icon.Heal      },
+  { id: 'data',      label: 'Data',       Icon: Icon.Data      },
+  { id: 'insights',  label: 'Insights',   Icon: Icon.Insight   },
 ] as const;
 
 type TabId = typeof TABS[number]['id'];
@@ -217,119 +217,24 @@ export default function Home() {
   const [discountSel, setDiscountSel] = useState('.discount');
   const [monitorCollectorId, setMonitorCollectorId] = useState('');
   const [runningId, setRunningId] = useState<string | null>(null);
-  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [logs, setLogs] = useState<string[]>([
     '[INFO] WebPulse AI — Self-Healing Intelligence Terminal',
     '[INFO] Awaiting scraper commands...',
   ]);
   const termEnd = useRef<HTMLDivElement>(null);
 
-  // LocalStorage Helpers to handle Vercel serverless statelessness
-  const loadLocalDb = () => {
-    if (typeof window === 'undefined') return null;
-    try {
-      const stored = localStorage.getItem('scraperverse_db');
-      return stored ? JSON.parse(stored) : null;
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
-  };
-
-  const saveLocalDb = (data: any) => {
-    if (typeof window === 'undefined') return;
-    try {
-      localStorage.setItem('scraperverse_db', JSON.stringify(data));
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const getDeletedIds = (): string[] => {
-    if (typeof window === 'undefined') return [];
-    try {
-      const stored = localStorage.getItem('scraperverse_deleted_ids');
-      return stored ? JSON.parse(stored) : [];
-    } catch { return []; }
-  };
-
-  const addDeletedId = (id: string) => {
-    if (typeof window === 'undefined') return;
-    try {
-      const ids = getDeletedIds();
-      if (!ids.includes(id)) {
-        ids.push(id);
-        localStorage.setItem('scraperverse_deleted_ids', JSON.stringify(ids));
-      }
-    } catch { /* silent */ }
-  };
-
   const fetchDb = async (silent = false) => {
     if (!silent) setLoading(true);
     try {
       const res = await fetch('/api/monitors');
       const data = await res.json();
-
-      const localData = loadLocalDb();
-      const mergedMonitors = [...(data.monitors || [])];
-      const mergedScrapers = [...(data.scrapers || [])];
-      const mergedRuns = [...(data.runs || [])];
-      const mergedRecords = [...(data.records || [])];
-      const mergedRepairEvents = [...(data.repairEvents || [])];
-      const mergedActivityEvents = [...(data.activityEvents || [])];
-
-      const deletedIds = getDeletedIds();
-
-      if (localData) {
-        for (const lm of localData.monitors || []) {
-          if (!mergedMonitors.some(m => m.id === lm.id)) mergedMonitors.push(lm);
-        }
-        for (const ls of localData.scrapers || []) {
-          if (!mergedScrapers.some(s => s.monitorId === ls.monitorId)) mergedScrapers.push(ls);
-        }
-        for (const lr of localData.runs || []) {
-          if (!mergedRuns.some(r => r.id === lr.id)) mergedRuns.push(lr);
-        }
-        for (const rec of localData.records || []) {
-          if (!mergedRecords.some(r => r.id === rec.id)) mergedRecords.push(rec);
-        }
-        for (const rep of localData.repairEvents || []) {
-          if (!mergedRepairEvents.some(r => r.id === rep.id)) mergedRepairEvents.push(rep);
-        }
-        for (const act of localData.activityEvents || []) {
-          if (!mergedActivityEvents.some(a => a.id === act.id)) mergedActivityEvents.push(act);
-        }
-      }
-
-      // Filter out deleted monitors and their associated data
-      const filteredMonitors = mergedMonitors.filter((m: any) => !deletedIds.includes(m.id));
-      const filteredScrapers = mergedScrapers.filter((s: any) => !deletedIds.includes(s.monitorId));
-      const filteredRuns = mergedRuns.filter((r: any) => !deletedIds.includes(r.monitorId));
-      const filteredRecords = mergedRecords.filter((r: any) => !deletedIds.includes(r.monitorId));
-      const filteredRepairEvents = mergedRepairEvents.filter((r: any) => !deletedIds.includes(r.monitorId));
-      const filteredActivityEvents = mergedActivityEvents;
-
-      filteredRuns.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      filteredRecords.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      filteredRepairEvents.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      filteredActivityEvents.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-
-      setMonitors(filteredMonitors);
-      setScrapers(filteredScrapers);
-      setRuns(filteredRuns);
-      setRecords(filteredRecords);
-      setRepairEvents(filteredRepairEvents);
-      setActivityEvents(filteredActivityEvents);
+      setMonitors(data.monitors || []);
+      setScrapers(data.scrapers || []);
+      setRuns(data.runs || []);
+      setRecords(data.records || []);
+      setRepairEvents(data.repairEvents || []);
+      setActivityEvents(data.activityEvents || []);
       setDemoVersion(data.activeDemoVersion || 1);
-
-      saveLocalDb({
-        monitors: filteredMonitors,
-        scrapers: filteredScrapers,
-        runs: filteredRuns,
-        records: filteredRecords,
-        repairEvents: filteredRepairEvents,
-        activityEvents: filteredActivityEvents
-      });
     } catch { /* silent */ }
     finally { if (!silent) setLoading(false); }
   };
@@ -343,7 +248,7 @@ export default function Home() {
         setIsLive(d.brightData?.configured ?? false);
         setCollectorId(d.brightData?.collectorId ?? null);
       })
-      .catch(() => { });
+      .catch(() => {});
   }, []);
   useEffect(() => { termEnd.current?.scrollIntoView({ behavior: 'smooth' }); }, [logs]);
 
@@ -384,7 +289,7 @@ export default function Home() {
       if (data.rating) setRatingSel(data.rating);
       if (data.availability) setAvailSel(data.availability);
       if (data.discount !== undefined) setDiscountSel(data.discount);
-
+      
       addLog(`[SUCCESS] AI generated selectors successfully applied!`);
     } catch (e: any) {
       addLog(`[ERROR] AI selector suggestions failed: ${e.message}`);
@@ -396,42 +301,19 @@ export default function Home() {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    const monitorId = 'mon_' + Date.now();
-    const newMonitor = {
-      id: monitorId,
-      name: monitorName, url: monitorUrl,
-      collectorId: monitorCollectorId || undefined,
-      selectors: { container: containerSel, name: nameSel, price: priceSel, rating: ratingSel, availability: availSel, discount: discountSel },
-      schema: {
-        name: { type: 'string', required: true },
-        price: { type: 'number', required: true, min: 0 },
-        rating: { type: 'number', required: false, min: 0, max: 5 },
-        availability: { type: 'string', required: false },
-        discount: { type: 'string', required: false },
-      },
-      createdAt: new Date().toISOString()
-    };
-    const newScraper = {
-      id: 'scr_' + Date.now(),
-      monitorId,
-      status: 'HEALTHY',
-      successRate: 100,
-      totalRecordsCollected: 0
-    };
-
-    const local = loadLocalDb() || { monitors: [], scrapers: [], runs: [], records: [], repairEvents: [], activityEvents: [] };
-    local.monitors.push(newMonitor);
-    local.scrapers.push(newScraper);
-    saveLocalDb(local);
-
     await fetch('/api/monitors', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        id: monitorId,
         name: monitorName, url: monitorUrl,
         collectorId: monitorCollectorId || undefined,
-        fields: newMonitor.selectors,
-        schema: newMonitor.schema,
+        fields: { container: containerSel, name: nameSel, price: priceSel, rating: ratingSel, availability: availSel, discount: discountSel },
+        schema: {
+          name: { type: 'string', required: true },
+          price: { type: 'number', required: true, min: 0 },
+          rating: { type: 'number', required: false, min: 0, max: 5 },
+          availability: { type: 'string', required: false },
+          discount: { type: 'string', required: false },
+        },
       }),
     });
     setMonitorCollectorId('');
@@ -453,55 +335,12 @@ export default function Home() {
     ]);
     await new Promise(r => setTimeout(r, 900));
     addLog('[INFO] Collecting web dataset with active selector configuration...');
-    const targetMonitor = monitors.find(m => m.id === monitorId);
-    const targetScraper = scrapers.find(s => s.monitorId === monitorId);
-
     try {
       const res = await fetch(`/api/monitors/${monitorId}/run`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          useRealBrightData: isLive,
-          monitor: targetMonitor,
-          scraper: targetScraper
-        }),
+        body: JSON.stringify({ useRealBrightData: isLive }),
       });
       const data = await res.json();
-
-      if (data.run) {
-        const local = loadLocalDb() || { monitors: [], scrapers: [], runs: [], records: [], repairEvents: [], activityEvents: [] };
-        if (data.selfHealingAttempted && data.run.status === 'RECOVERED' && data.selfHealingLog?.repairedConfig) {
-          const mIdx = local.monitors.findIndex((m: any) => m.id === monitorId);
-          if (mIdx !== -1) {
-            local.monitors[mIdx].selectors = data.selfHealingLog.repairedConfig.fields;
-            local.monitors[mIdx].selectors.container = data.selfHealingLog.repairedConfig.containerSelector;
-          }
-        }
-        local.runs = [data.run, ...local.runs.filter((r: any) => r.id !== data.run.id)];
-        if (data.scraper) {
-          local.scrapers = [data.scraper, ...local.scrapers.filter((s: any) => s.monitorId !== monitorId)];
-        }
-        if (data.records) {
-          local.records = [...data.records, ...local.records];
-        }
-        if (data.selfHealingLog?.events) {
-          const newRep = data.selfHealingLog.events.map((e: any) => ({
-            id: 'rep_' + Date.now() + '_' + Math.random(),
-            monitorId,
-            timestamp: new Date().toISOString(),
-            fieldName: e.fieldName,
-            previousSelector: e.previousSelector,
-            repairedSelector: e.repairedSelector,
-            recordsBefore: 0,
-            recordsAfter: data.run.recordsCount,
-            confidence: e.confidence,
-            status: 'SUCCESS',
-            candidatesTested: e.candidatesTested || []
-          }));
-          local.repairEvents = [...newRep, ...local.repairEvents];
-        }
-        saveLocalDb(local);
-      }
-
       if (data.run?.status === 'SUCCESS') {
         addLog(`[SUCCESS] Extraction completed — ${data.run.recordsCount} records collected.`);
         addLog('[SUCCESS] Schema validation PASSED. All required fields present.');
@@ -545,28 +384,11 @@ export default function Home() {
     }
   };
 
-  const handleDeleteMonitor = (id: string) => {
-    setConfirmDeleteId(id);
-  };
-
-  const confirmDelete = async () => {
-    if (!confirmDeleteId) return;
-    const id = confirmDeleteId;
-    setConfirmDeleteId(null);
+  const handleDeleteMonitor = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this monitor?')) return;
     try {
       await fetch(`/api/monitors/${id}`, { method: 'DELETE' });
-      // Track this ID as deleted so it stays gone on refresh
-      addDeletedId(id);
-      // Also remove from localStorage
-      const local = loadLocalDb() || { monitors: [], scrapers: [], runs: [], records: [], repairEvents: [], activityEvents: [] };
-      local.monitors = local.monitors.filter((m: any) => m.id !== id);
-      local.scrapers = local.scrapers.filter((s: any) => s.monitorId !== id);
-      local.runs = local.runs.filter((r: any) => r.monitorId !== id);
-      local.records = local.records.filter((r: any) => r.monitorId !== id);
-      local.repairEvents = local.repairEvents.filter((r: any) => r.monitorId !== id);
-      saveLocalDb(local);
       await fetchDb(true);
-      addLog(`[SUCCESS] Monitor deleted successfully.`);
     } catch (e: any) {
       addLog(`[ERROR] Failed to delete monitor: ${e.message}`);
     }
@@ -578,36 +400,22 @@ export default function Home() {
   const recoveredRuns = runs.filter(r => r.status === 'RECOVERED').length;
   const failedRuns = runs.filter(r => r.status === 'FAILED').length;
   const totalRecords = scrapers.reduce((a, s) => a + s.totalRecordsCollected, 0);
+  const avgPrice = records.length
+    ? Math.round(records.reduce((a, r) => a + (Number(r.data.price) || 0), 0) / records.length)
+    : 0;
   const getCurrencySymbol = (recMonitorId?: string) => {
     const mon = monitors.find(m => m.id === recMonitorId);
     if (!mon) return '₹';
     const url = mon.url.toLowerCase();
     if (url.includes('books.toscrape.com') || url.includes('book')) return '£';
-    if (url.includes('.in') || url.includes('amazon.in') || url.includes('flipkart')) return '₹';
+    if (url.includes('.in') || url.includes('amazon.in')) return '₹';
     if (url.includes('.uk')) return '£';
     return '$';
   };
-  // Group records by monitor to avoid mixing currencies
-  const recordsByMonitor: Record<string, typeof records> = {};
-  for (const rec of records) {
-    if (!recordsByMonitor[rec.monitorId]) recordsByMonitor[rec.monitorId] = [];
-    recordsByMonitor[rec.monitorId].push(rec);
-  }
-  const perMonitorStats = Object.entries(recordsByMonitor).map(([monId, recs]) => {
-    const symbol = getCurrencySymbol(monId);
-    const validPrices = recs.map(r => Number(r.data?.price)).filter(p => !isNaN(p) && p > 0);
-    const avg = validPrices.length ? Math.round(validPrices.reduce((a, v) => a + v, 0) / validPrices.length) : 0;
-    const oos = recs.filter(r => (r.data?.availability ?? '').toLowerCase().includes('out')).length;
-    const disc = recs.filter(r => r.data?.discount && String(r.data?.discount).trim() !== '').length;
-    const mon = monitors.find(m => m.id === monId);
-    return { monId, symbol, avg, oos, disc, count: recs.length, name: mon?.name ?? monId };
-  });
   const latestRecord = records[0];
-  const activeStat = perMonitorStats.find(s => s.monId === latestRecord?.monitorId) ?? perMonitorStats[0];
-  const activeCurrencySymbol = activeStat?.symbol ?? '₹';
-  const avgPrice = activeStat?.avg ?? 0;
-  const outOfStock = records.filter(r => (r.data?.availability ?? '').toLowerCase().includes('out')).length;
-  const discounted = records.filter(r => r.data?.discount && String(r.data?.discount).trim() !== '').length;
+  const activeCurrencySymbol = latestRecord ? getCurrencySymbol(latestRecord.monitorId) : '₹';
+  const outOfStock = records.filter(r => r.data.availability?.toLowerCase().includes('out')).length;
+  const discounted  = records.filter(r => r.data.discount).length;
 
   // ═══════════════════════════════════════════ LANDING ═══════════════════════
   if (!showDashboard) {
@@ -725,7 +533,7 @@ export default function Home() {
             <div className="grid-3" style={{ maxWidth: '780px', width: '100%' }}>
               {[
                 { Icon: Icon.Monitor, title: 'Auto-Detect', desc: 'Detects extraction failures and DOM layout shifts in real time.' },
-                { Icon: Icon.Heal, title: 'Self-Repair', desc: 'Generates, scores, and applies selector candidates automatically.' },
+                { Icon: Icon.Heal,    title: 'Self-Repair', desc: 'Generates, scores, and applies selector candidates automatically.' },
                 { Icon: Icon.BrightData, title: 'Bright Data', desc: 'Scraper Studio DCA API with runtime dynamic selector injection.' },
               ].map((f, i) => (
                 <div key={f.title} className="card card-green" style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -745,7 +553,7 @@ export default function Home() {
   return (
     <>
       <style>{`@keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }`}</style>
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden', width: '100%', boxSizing: 'border-box' }}>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
         {/* ── Header ── */}
         <header className="app-header">
@@ -763,7 +571,7 @@ export default function Home() {
               padding: '4px 10px', boxShadow: '3px 3px 0 #000, 4px 4px 0 var(--magenta)',
               whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: '240px',
             }}>
-              <Icon.BrightData /> <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>BD — {collectorId ? collectorId.substring(0, 8) + '••••' : 'c_msrjcn••••'}</span>
+              <Icon.BrightData /> <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>BD — {collectorId || 'c_msrjcn9m1olzit7wp7'}</span>
             </span>
           </div>
         </header>
@@ -810,10 +618,10 @@ export default function Home() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   {/* Overview stats + watcher table */}
                   <div className="grid-4">
-                    <Stat label="Active Monitors" value={monitors.length} accent />
-                    <Stat label="Extraction Runs" value={totalRuns} sub={`${successRuns} ok  ${recoveredRuns} healed  ${failedRuns} failed`} />
-                    <Stat label="Self-Heal Events" value={repairEvents.length} accent={repairEvents.length > 0} sub={repairEvents.length > 0 ? 'All recovered' : 'None yet'} />
-                    <Stat label="Records Collected" value={totalRecords} accent />
+                    <Stat label="Active Monitors"     value={monitors.length}       accent />
+                    <Stat label="Extraction Runs"     value={totalRuns}             sub={`${successRuns} ok  ${recoveredRuns} healed  ${failedRuns} failed`} />
+                    <Stat label="Self-Heal Events"    value={repairEvents.length}   accent={repairEvents.length > 0} sub={repairEvents.length > 0 ? 'All recovered' : 'None yet'} />
+                    <Stat label="Records Collected"   value={totalRecords}          accent />
                   </div>
 
                   {/* Responsive 2-col on desktop, 1-col on mobile */}
@@ -864,7 +672,7 @@ export default function Home() {
                             <div style={{ padding: '30px', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--white-muted)' }}>No activity yet.</div>
                           ) : activityEvents.map(ev => (
                             <div key={ev.id} style={{ padding: '10px 14px', borderBottom: '1px solid var(--border-subtle)' }}>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden', marginBottom: '3px' }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
                                 <span style={{
                                   fontFamily: 'var(--font-mono)', fontSize: '9px', fontWeight: 800, textTransform: 'uppercase',
                                   color: ev.type === 'success' ? 'var(--green)' : ev.type === 'warning' ? '#facc15' : ev.type === 'error' ? 'var(--red)' : 'var(--white-muted)',
@@ -881,28 +689,28 @@ export default function Home() {
                       <div className="card">
                         <div className="section-title"><Icon.BrightData /> Scraper Infrastructure</div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontFamily: 'var(--font-mono)', fontSize: '12px' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
                             <span style={{ color: 'var(--white-muted)' }}>BRIGHT DATA</span>
-                            <span style={{ color: 'var(--green)', fontWeight: 800, whiteSpace: 'nowrap' }}>● CONNECTED</span>
+                            <span style={{ color: 'var(--green)', fontWeight: 800 }}>● CONNECTED</span>
                           </div>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
                             <span style={{ color: 'var(--white-muted)' }}>SCRAPER STUDIO</span>
-                            <span style={{ color: 'var(--green)', fontWeight: 800, whiteSpace: 'nowrap' }}>● ACTIVE</span>
+                            <span style={{ color: 'var(--green)', fontWeight: 800 }}>● ACTIVE</span>
                           </div>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--white-faint)', paddingBottom: '8px' }}>
                             <span style={{ color: 'var(--white-muted)' }}>COLLECTOR</span>
                             <span style={{ color: 'var(--yellow)', fontWeight: 700 }}>
                               {collectorId ? `${collectorId.substring(0, 8)}••••` : 'c_msrjcn••••'}
                             </span>
                           </div>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <span style={{ color: 'var(--white-muted)' }}>LAST RUN</span>
                             <span style={{ color: 'var(--white)' }}>
                               {runs[0] ? new Date(runs[0].timestamp).toLocaleTimeString() : '—'}
                             </span>
                           </div>
-                        </div>
                       </div>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -920,7 +728,7 @@ export default function Home() {
                         <input className="form-input" type="text" value={monitorName} onChange={e => setMonitorName(e.target.value)} required />
                       </div>
                       <div className="form-group">
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <label className="form-label">Target URL</label>
                           <button type="button" className="btn btn-outline" style={{ padding: '4px 10px', fontSize: '9px', textTransform: 'uppercase', height: 'auto', border: '1px solid var(--magenta)' }}
                             disabled={aiLoading}
@@ -932,7 +740,7 @@ export default function Home() {
                       </div>
                       <div className="form-group">
                         <label className="form-label">Bright Data Collector ID (Optional)</label>
-                        <input className="form-input" type="text" value={monitorCollectorId} onChange={e => setMonitorCollectorId(e.target.value)} placeholder="e.g. c_msrjcn9m1o******** (falls back to default .env if empty)" />
+                        <input className="form-input" type="text" value={monitorCollectorId} onChange={e => setMonitorCollectorId(e.target.value)} placeholder="e.g. c_msrjcn9m1olzit7wp7 (falls back to default .env if empty)" />
                       </div>
                       <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '14px' }}>
                         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 800, color: 'var(--white-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>
@@ -944,11 +752,11 @@ export default function Home() {
                         </div>
                         <div className="grid-2" style={{ gap: '10px' }}>
                           {[
-                            { label: 'Name', val: nameSel, set: setNameSel, req: true },
-                            { label: 'Price', val: priceSel, set: setPriceSel, req: true },
-                            { label: 'Rating', val: ratingSel, set: setRatingSel, req: false },
-                            { label: 'Availability', val: availSel, set: setAvailSel, req: false },
-                            { label: 'Discount', val: discountSel, set: setDiscountSel, req: false },
+                            { label: 'Name',         val: nameSel,     set: setNameSel,     req: true },
+                            { label: 'Price',        val: priceSel,    set: setPriceSel,    req: true },
+                            { label: 'Rating',       val: ratingSel,   set: setRatingSel,   req: false },
+                            { label: 'Availability', val: availSel,    set: setAvailSel,    req: false },
+                            { label: 'Discount',     val: discountSel, set: setDiscountSel, req: false },
                           ].map(f => (
                             <div key={f.label} className="form-group">
                               <label className="form-label">{f.label}</label>
@@ -973,7 +781,7 @@ export default function Home() {
                       const scr = scrapers.find(s => s.monitorId === mon.id);
                       return (
                         <div key={mon.id} className="card card-green">
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', overflow: 'hidden', marginBottom: '14px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
                             <div>
                               <div style={{ fontWeight: 900, fontSize: '16px', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', marginBottom: '4px' }}>{mon.name}</div>
                               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--white-muted)' }}>{new Date(mon.createdAt).toLocaleString()}</div>
@@ -981,7 +789,7 @@ export default function Home() {
                             <StatusBadge status={scr?.status || 'HEALTHY'} />
                           </div>
                           <div style={{ background: '#060606', border: '1px solid var(--border-subtle)', padding: '12px', fontFamily: 'var(--font-mono)', fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                            <div style={{ borderBottom: '1px dashed var(--white-faint)', paddingBottom: '6px', marginBottom: '4px', fontSize: '11px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+                            <div style={{ borderBottom: '1px dashed var(--white-faint)', paddingBottom: '6px', marginBottom: '4px', fontSize: '11px', display: 'flex', justifyContent: 'space-between' }}>
                               <span style={{ color: 'var(--white-muted)', fontWeight: 800, textTransform: 'uppercase', fontSize: '10px' }}>Collector ID</span>
                               <span style={{ color: 'var(--yellow)', fontWeight: 700 }}>
                                 {mon.collectorId ? `${mon.collectorId.substring(0, 8)}••••` : 'Default (.env)'}
@@ -1019,7 +827,7 @@ export default function Home() {
                     <div className="terminal-bar">
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <div className="terminal-dots">
-                          {['#ff5f57', '#febc2e', '#28c840'].map(c => <span key={c} style={{ background: c }} />)}
+                          {['#ff5f57','#febc2e','#28c840'].map(c => <span key={c} style={{ background: c }} />)}
                         </div>
                         <span className="terminal-bar-title">webpulse-intelligence-terminal — self-healing engine</span>
                       </div>
@@ -1088,13 +896,13 @@ export default function Home() {
                         <tbody>
                           {records.map(rec => (
                             <tr key={rec.id}>
-                              <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data?.name || '—'}</td>
-                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data?.price || '—'}</td>
-                              <td>{rec.data?.rating ? `${rec.data.rating} / 5` : '—'}</td>
-                              <td style={{ color: rec.data?.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
-                                {rec.data?.availability || '—'}
+                              <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data.name || '—'}</td>
+                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data.price || '—'}</td>
+                              <td>{rec.data.rating ? `${rec.data.rating} / 5` : '—'}</td>
+                              <td style={{ color: rec.data.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
+                                {rec.data.availability || '—'}
                               </td>
-                              <td style={{ color: '#facc15', fontWeight: 700 }}>{rec.data?.discount || '—'}</td>
+                              <td style={{ color: '#facc15', fontWeight: 700 }}>{rec.data.discount || '—'}</td>
                               <td style={{ color: 'var(--white-muted)' }}>{new Date(rec.timestamp).toLocaleTimeString()}</td>
                             </tr>
                           ))}
@@ -1109,9 +917,9 @@ export default function Home() {
               {activeTab === 'insights' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   <div className="grid-3">
-                    <Stat label="Avg. Tracked Price" value={activeStat ? `${activeStat.symbol}${activeStat.avg}` : '—'} sub={activeStat ? `${activeStat.name} · ${activeStat.count} records` : 'no data'} accent />
-                    <Stat label="Out of Stock" value={outOfStock} sub="across all monitors" />
-                    <Stat label="Active Discounts" value={discounted} sub="products with deals" accent />
+                    <Stat label="Avg. Tracked Price" value={`${activeCurrencySymbol}${avgPrice}`}   sub={`across ${records.length} records`} accent />
+                    <Stat label="Out of Stock"        value={outOfStock}       sub="products unavailable" />
+                    <Stat label="Active Discounts"    value={discounted}       sub="products with deals"  accent />
                   </div>
 
                   <div className="card">
@@ -1123,9 +931,9 @@ export default function Home() {
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         {[
-                          { Icon: Icon.Check, color: 'var(--green)', label: 'SUMMARY', text: `Tracking ${records.length} records across ${perMonitorStats.length} monitors. Latest: ${activeStat?.name ?? '—'} @ avg ${activeStat?.symbol ?? ''}${activeStat?.avg ?? 0}.` },
-                          { Icon: Icon.Alert, color: '#facc15', label: 'INVENTORY', text: `${outOfStock} products out of stock. ${discounted} active promotions tracked.` },
-                          { Icon: Icon.Heal, color: 'var(--green)', label: 'HEALING', text: `Self-healing engine has executed ${repairEvents.length} repair event(s). All selectors at 100% confidence.` },
+                          { Icon: Icon.Check, color: 'var(--green)',  label: 'SUMMARY',   text: `Tracking ${records.length} product records. Average price: ${activeCurrencySymbol}${avgPrice}.` },
+                          { Icon: Icon.Alert, color: '#facc15',       label: 'INVENTORY', text: `${outOfStock} products out of stock. ${discounted} active promotions tracked.` },
+                          { Icon: Icon.Heal,  color: 'var(--green)',  label: 'HEALING',   text: `Self-healing engine has executed ${repairEvents.length} repair event(s). All selectors at 100% confidence.` },
                         ].map(row => (
                           <div key={row.label} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', padding: '14px', background: 'var(--bg-card-alt)', border: '1px solid var(--border-subtle)' }}>
                             <span style={{ color: row.color, marginTop: '1px', flexShrink: 0 }}><row.Icon /></span>
@@ -1143,62 +951,6 @@ export default function Home() {
             </>
           )}
         </div>
-
-        {/* ══════════════════════ DELETE CONFIRM MODAL ══════════════════════ */}
-        {confirmDeleteId && (
-          <div style={{
-            position: 'fixed', inset: 0, zIndex: 9999,
-            background: 'rgba(14,0,31,0.85)', backdropFilter: 'blur(6px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '20px',
-          }}>
-            <div style={{
-              background: 'var(--bg-card)',
-              border: '3px solid var(--magenta)',
-              boxShadow: '8px 8px 0 #000, 10px 10px 0 var(--magenta)',
-              padding: '32px',
-              maxWidth: '400px',
-              width: '100%',
-              fontFamily: 'var(--font-comic)',
-            }}>
-              <div style={{
-                fontSize: '18px', fontWeight: 400, color: 'var(--yellow)',
-                textTransform: 'uppercase', letterSpacing: '2px',
-                textShadow: '2px 2px 0 var(--magenta)',
-                marginBottom: '12px', display: 'flex', gap: '10px', alignItems: 'center',
-              }}>
-                <span style={{ fontSize: '22px' }}>⚠</span> Confirm Delete
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: '13px',
-                color: 'var(--white-muted)', marginBottom: '24px', lineHeight: '1.6',
-              }}>
-                Are you sure you want to delete this monitor?<br />
-                <span style={{ color: 'var(--magenta)', fontWeight: 700 }}>This action cannot be undone.</span><br />
-                All associated runs, records, and repair history will be permanently removed.
-              </div>
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <button
-                  onClick={confirmDelete}
-                  className="btn"
-                  style={{
-                    flex: 1, background: 'var(--magenta)', color: '#fff',
-                    border: '3px solid #000',
-                    boxShadow: '4px 4px 0 #000, 5px 5px 0 var(--yellow)',
-                    fontSize: '13px', letterSpacing: '1.5px',
-                  }}>
-                  🗑 Delete
-                </button>
-                <button
-                  onClick={() => setConfirmDeleteId(null)}
-                  className="btn btn-outline"
-                  style={{ flex: 1, fontSize: '13px', letterSpacing: '1.5px' }}>
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );

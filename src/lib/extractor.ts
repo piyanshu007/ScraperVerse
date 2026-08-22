@@ -76,15 +76,11 @@ export function extractData(
       let element;
       try {
         element = $(el).find(selector);
-        // Fallback: If container-relative search returns nothing, but it is an ID selector, try document-level
-        if ((!element || element.length === 0) && selector.includes('#')) {
-          element = $(selector);
-        }
       } catch (e) {
         // Ignore invalid CSS selector syntax errors
         continue;
       }
-      if (!element || element.length === 0) {
+      if (element.length === 0) {
         continue;
       }
 
@@ -94,11 +90,6 @@ export function extractData(
       const cleanElement = element.clone();
       cleanElement.find('script, style').remove();
       const textVal = cleanElement.text().trim();
-      if (fieldName === 'price' && textVal.length > 20) continue;
-      if (fieldName === 'name' && textVal.length > 200) continue;
-      if (fieldName === 'rating' && textVal.length > 30) continue;
-      if (fieldName === 'discount' && textVal.length > 40) continue;
-      if (fieldName === 'availability' && textVal.length > 60) continue;
 
       if (fieldName === 'price') {
         let foundPrice = false;
@@ -283,16 +274,6 @@ export function extractData(
         }
 
         // Cap final string to avoid extremely long cells in the data table
-        // Normalize availability text to clean 'In Stock' / 'Out of Stock'
-        if (cleanVal) {
-          const lower = cleanVal.toLowerCase();
-          if (lower.includes('out of stock') || lower.includes('sold out') || lower.includes('unavailable') || lower.includes('sold-out')) {
-            cleanVal = 'Out of Stock';
-          } else {
-            cleanVal = 'In Stock';
-          }
-        }
-
         if (cleanVal.length > 200) {
           cleanVal = cleanVal.substring(0, 200).trim() + '...';
         }

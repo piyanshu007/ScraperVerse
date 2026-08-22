@@ -38,6 +38,45 @@
         }
       },
       "createdAt": "2026-08-22T10:31:12.402Z"
+    },
+    {
+      "id": "mon_1787394774908",
+      "name": "iphone",
+      "url": "https://www.amazon.in/iPhone-17-Pro-Max-Promotion/dp/B0FQF331K6/ref=sr_1_2_sspa?crid=1QV6SZ7Q1JP9G&dib=eyJ2IjoiMSJ9.rMduK01d7EdABmFW0LOUrx9o1NUDRqTR_Ek4CgN-5unIB7IavA-PNO2yLMT-2HuJN-2LXTQxe2D6n47LzlEkxVbFeXlCHM3-VT24yzjyEE93cH5iAIC4kkZMaKOWBZ7kFFSAJ51_P726yRjiQzybAptCSh4vqeF4gzYjNk07s8hKpfkmc4QZMzg695vHTC6aa6Be0FSqNCXS1PaMfebHm0eOWXl6OcHCqXVSLvUaLnA.9voCkzebmnX9zJwJ9ExW2AkHLbTk1O3OOUktN18YdQA&dib_tag=se&keywords=iphone%2B17%2Bpro&qid=1787394279&sprefix=ipj%2Caps%2C344&sr=8-2-spons&aref=f0IlNXU6pG&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1",
+      "selectors": {
+        "container": "#centerCol",
+        "name": "#productTitle",
+        "price": "#corePriceDisplay_desktop_feature_div .a-price .a-offscreen",
+        "rating": "#acrPopover .a-icon-alt",
+        "availability": "#availability",
+        "discount": "#regularprice_savings .a-color-price"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-22T10:32:54.908Z"
     }
   ],
   "scrapers": [
@@ -47,9 +86,26 @@
       "status": "HEALTHY",
       "successRate": 100,
       "totalRecordsCollected": 0
+    },
+    {
+      "id": "scr_1787394774908",
+      "monitorId": "mon_1787394774908",
+      "status": "FAILED",
+      "successRate": 0,
+      "totalRecordsCollected": 0,
+      "lastRun": "2026-08-22T10:33:19.976Z"
     }
   ],
-  "runs": [],
+  "runs": [
+    {
+      "id": "run_1787394799976",
+      "monitorId": "mon_1787394774908",
+      "timestamp": "2026-08-22T10:33:19.976Z",
+      "status": "FAILED",
+      "recordsCount": 0,
+      "collectionId": "j_mt48pbr11vg8vlxowa"
+    }
+  ],
   "records": [],
   "repairEvents": [
     {
@@ -375,604 +431,88 @@
   ],
   "activityEvents": [
     {
-      "id": "act_1787409141690_uhyy4",
-      "timestamp": "2026-08-22T14:32:21.690Z",
-      "message": "Extraction validated successfully (unresolved optional fields ignored).",
-      "type": "success"
-    },
-    {
-      "id": "act_1787409141677_e5e3i",
-      "timestamp": "2026-08-22T14:32:21.677Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787409141456_db3kq",
-      "timestamp": "2026-08-22T14:32:21.456Z",
-      "message": "Generating candidate selectors for field \"availability\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787409141453_okp0c",
-      "timestamp": "2026-08-22T14:32:21.453Z",
-      "message": "Detected broken fields: availability",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787409141284_vjdfn",
-      "timestamp": "2026-08-22T14:32:21.284Z",
-      "message": "Self-healing initiated for monitor: mon_1787404817301",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787409141280_kt4fa",
-      "timestamp": "2026-08-22T14:32:21.280Z",
-      "message": "Extraction validation failed for \"headphoness\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787409141275_7zhmu",
-      "timestamp": "2026-08-22T14:32:21.275Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787409123393_y3wsq",
-      "timestamp": "2026-08-22T14:32:03.394Z",
-      "message": "Starting extraction run for monitor: \"headphoness\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787406962315_fkjqh",
-      "timestamp": "2026-08-22T13:56:02.315Z",
-      "message": "Extraction successful for \"iphoneee\". Collected 1 records.",
-      "type": "success"
-    },
-    {
-      "id": "act_1787406917113_3fw1m",
-      "timestamp": "2026-08-22T13:55:17.113Z",
-      "message": "Extraction validated successfully (unresolved optional fields ignored).",
-      "type": "success"
-    },
-    {
-      "id": "act_1787406917108_hed1u",
-      "timestamp": "2026-08-22T13:55:17.108Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406917094_8oc7m",
-      "timestamp": "2026-08-22T13:55:17.094Z",
-      "message": "Generating candidate selectors for field \"discount\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787406917091_7tlfm",
-      "timestamp": "2026-08-22T13:55:17.091Z",
-      "message": "Detected broken fields: discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406917069_ez0vw",
-      "timestamp": "2026-08-22T13:55:17.069Z",
-      "message": "Self-healing initiated for monitor: mon_1787406799227",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406917065_bcow1",
-      "timestamp": "2026-08-22T13:55:17.065Z",
-      "message": "Extraction validation failed for \"books \". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406917062_s0c5z",
-      "timestamp": "2026-08-22T13:55:17.062Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787406802742_q09ce",
-      "timestamp": "2026-08-22T13:53:22.742Z",
-      "message": "Starting extraction run for monitor: \"books \"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787406799231_714o6",
-      "timestamp": "2026-08-22T13:53:19.231Z",
-      "message": "Created monitor: \"books \" for URL: https://books.toscrape.com/",
-      "type": "success"
-    },
-    {
-      "id": "act_1787406718726_n7j37",
-      "timestamp": "2026-08-22T13:51:58.726Z",
-      "message": "Extraction validated successfully (unresolved optional fields ignored).",
-      "type": "success"
-    },
-    {
-      "id": "act_1787406718719_q0s3u",
-      "timestamp": "2026-08-22T13:51:58.719Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406718371_aaazj",
-      "timestamp": "2026-08-22T13:51:58.371Z",
-      "message": "Generating candidate selectors for field \"availability\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787406718367_bdgtm",
-      "timestamp": "2026-08-22T13:51:58.367Z",
-      "message": "Detected broken fields: availability",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406717996_4yx9y",
-      "timestamp": "2026-08-22T13:51:57.996Z",
-      "message": "Self-healing initiated for monitor: mon_1787404817301",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406717990_1xyba",
-      "timestamp": "2026-08-22T13:51:57.990Z",
-      "message": "Extraction validation failed for \"headphoness\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787406717985_7uxla",
-      "timestamp": "2026-08-22T13:51:57.985Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787406679827_1ohox",
-      "timestamp": "2026-08-22T13:51:19.827Z",
-      "message": "Starting extraction run for monitor: \"headphoness\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404857290_lf7vo",
-      "timestamp": "2026-08-22T13:20:57.290Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"headphoness\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1787404853466_9ebgi",
-      "timestamp": "2026-08-22T13:20:53.466Z",
-      "message": "Extraction validation failed for \"headphoness\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787404853461_pahll",
-      "timestamp": "2026-08-22T13:20:53.461Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404822472_38uav",
-      "timestamp": "2026-08-22T13:20:22.472Z",
-      "message": "Starting extraction run for monitor: \"headphoness\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404817305_ukplo",
-      "timestamp": "2026-08-22T13:20:17.305Z",
-      "message": "Created monitor: \"headphoness\" for URL: https://amzn.in/d/0i2PtosU",
-      "type": "success"
-    },
-    {
-      "id": "act_1787404763085_ka2vc",
-      "timestamp": "2026-08-22T13:19:23.085Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"iphoneee\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1787404750097_2505x",
-      "timestamp": "2026-08-22T13:19:10.097Z",
-      "message": "Extraction validation failed for \"iphoneee\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787404750091_l3fzx",
-      "timestamp": "2026-08-22T13:19:10.091Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404730008_assjc",
-      "timestamp": "2026-08-22T13:18:50.008Z",
-      "message": "Starting extraction run for monitor: \"iphoneee\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404727317_zz35b",
-      "timestamp": "2026-08-22T13:18:47.317Z",
-      "message": "Created monitor: \"iphoneee\" for URL: https://dl.flipkart.com/s/k32RrtuuuN",
-      "type": "success"
-    },
-    {
-      "id": "act_1787404486216_a6zua",
-      "timestamp": "2026-08-22T13:14:46.216Z",
-      "message": "Self-healing failed to recover extraction for \"Electronics Products Live Monitor\".",
+      "id": "act_1787394812253_2tyeq",
+      "timestamp": "2026-08-22T10:33:32.253Z",
+      "message": "Self-healing failed to recover extraction for \"iphone\".",
       "type": "error"
     },
     {
-      "id": "act_1787404486208_9x3om",
-      "timestamp": "2026-08-22T13:14:46.208Z",
+      "id": "act_1787394812252_mv907",
+      "timestamp": "2026-08-22T10:33:32.252Z",
       "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
       "type": "warning"
     },
     {
-      "id": "act_1787404486189_ablpo",
-      "timestamp": "2026-08-22T13:14:46.189Z",
+      "id": "act_1787394812153_7tj4b",
+      "timestamp": "2026-08-22T10:33:32.153Z",
       "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
       "type": "warning"
     },
     {
-      "id": "act_1787404485899_57cpl",
-      "timestamp": "2026-08-22T13:14:45.899Z",
+      "id": "act_1787394808214_neb9w",
+      "timestamp": "2026-08-22T10:33:28.214Z",
       "message": "Generating candidate selectors for field \"discount\"...",
       "type": "info"
     },
     {
-      "id": "act_1787404485896_xm9vf",
-      "timestamp": "2026-08-22T13:14:45.896Z",
+      "id": "act_1787394808213_liv83",
+      "timestamp": "2026-08-22T10:33:28.213Z",
       "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
       "type": "warning"
     },
     {
-      "id": "act_1787404485603_hnmjm",
-      "timestamp": "2026-08-22T13:14:45.603Z",
+      "id": "act_1787394804337_eqi53",
+      "timestamp": "2026-08-22T10:33:24.337Z",
       "message": "Generating candidate selectors for field \"availability\"...",
       "type": "info"
     },
     {
-      "id": "act_1787404485599_6qyqb",
-      "timestamp": "2026-08-22T13:14:45.599Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"rating\" (Required: false)",
-      "type": "warning"
+      "id": "act_1787394804336_t89ni",
+      "timestamp": "2026-08-22T10:33:24.336Z",
+      "message": "Field \"price\" successfully repaired: \"#corePriceDisplay_desktop_feature_div .a-price .a-offscreen\" -> \".celwidget\" (Score: 100%)",
+      "type": "success"
     },
     {
-      "id": "act_1787404485233_tw4kd",
-      "timestamp": "2026-08-22T13:14:45.233Z",
-      "message": "Generating candidate selectors for field \"rating\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404485229_3v9m0",
-      "timestamp": "2026-08-22T13:14:45.229Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"price\" (Required: true)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787404484908_36096",
-      "timestamp": "2026-08-22T13:14:44.908Z",
+      "id": "act_1787394801957_m0c0f",
+      "timestamp": "2026-08-22T10:33:21.957Z",
       "message": "Generating candidate selectors for field \"price\"...",
       "type": "info"
     },
     {
-      "id": "act_1787404484901_83d6n",
-      "timestamp": "2026-08-22T13:14:44.901Z",
-      "message": "Field \"name\" successfully repaired: \"div.v1zwn21m\" -> \".mdepDZ\" (Score: 100%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787404484445_m16qk",
-      "timestamp": "2026-08-22T13:14:44.445Z",
-      "message": "Generating candidate selectors for field \"name\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404484440_dy7qk",
-      "timestamp": "2026-08-22T13:14:44.440Z",
-      "message": "Detected broken fields: name, price, rating, availability, discount",
+      "id": "act_1787394801956_mral6",
+      "timestamp": "2026-08-22T10:33:21.956Z",
+      "message": "Detected broken fields: price, availability, discount",
       "type": "warning"
     },
     {
-      "id": "act_1787404484430_8wcuu",
-      "timestamp": "2026-08-22T13:14:44.430Z",
-      "message": "Repaired container selector: \"div.OmE16y\" -> \"li\" (0 containers found)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787404484086_3537s",
-      "timestamp": "2026-08-22T13:14:44.086Z",
-      "message": "Container selector \"div.OmE16y\" returned 0 records. Healing container...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404483652_y9y5a",
-      "timestamp": "2026-08-22T13:14:43.652Z",
-      "message": "Self-healing initiated for monitor: mon_1787404456475",
+      "id": "act_1787394801903_fpc4m",
+      "timestamp": "2026-08-22T10:33:21.903Z",
+      "message": "Self-healing initiated for monitor: mon_1787394774908",
       "type": "warning"
     },
     {
-      "id": "act_1787404483646_j932d",
-      "timestamp": "2026-08-22T13:14:43.646Z",
-      "message": "Extraction validation failed for \"Electronics Products Live Monitor\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787404483640_h3bft",
-      "timestamp": "2026-08-22T13:14:43.641Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404464458_q8vts",
-      "timestamp": "2026-08-22T13:14:24.458Z",
-      "message": "Starting extraction run for monitor: \"Electronics Products Live Monitor\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787404456480_q7awr",
-      "timestamp": "2026-08-22T13:14:16.480Z",
-      "message": "Created monitor: \"Electronics Products Live Monitor\" for URL: https://dl.flipkart.com/s/k32RrtuuuN",
-      "type": "success"
-    },
-    {
-      "id": "act_1787403295173_7cqaq",
-      "timestamp": "2026-08-22T12:54:55.173Z",
-      "message": "Self-healing failed to recover extraction for \"iphonee\".",
-      "type": "error"
-    },
-    {
-      "id": "act_1787403295168_m8xc7",
-      "timestamp": "2026-08-22T12:54:55.168Z",
-      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787403295153_hflrr",
-      "timestamp": "2026-08-22T12:54:55.153Z",
-      "message": "Field \"discount\" successfully repaired: \".s1VP01\" -> \".v1zwn221\" (Score: 26.3%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787403290759_k5d10",
-      "timestamp": "2026-08-22T12:54:50.759Z",
-      "message": "Generating candidate selectors for field \"discount\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787403290756_5d1at",
-      "timestamp": "2026-08-22T12:54:50.756Z",
-      "message": "Field \"availability\" successfully repaired: \".s1VP01\" -> \".v1zwn21m\" (Score: 36.8%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787403289482_7t6g9",
-      "timestamp": "2026-08-22T12:54:49.482Z",
-      "message": "Generating candidate selectors for field \"availability\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787403289478_cyryp",
-      "timestamp": "2026-08-22T12:54:49.478Z",
-      "message": "Field \"rating\" successfully repaired: \".r-13awgt0\" -> \"a._1psv1zek9\" (Score: 21.1%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787403284862_6f5q1",
-      "timestamp": "2026-08-22T12:54:44.862Z",
-      "message": "Generating candidate selectors for field \"rating\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787403284858_ehuz2",
-      "timestamp": "2026-08-22T12:54:44.858Z",
-      "message": "Field \"price\" successfully repaired: \".NXPqFj\" -> \".v1zwn20\" (Score: 21.1%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787403267444_zx1gd",
-      "timestamp": "2026-08-22T12:54:27.444Z",
-      "message": "Generating candidate selectors for field \"price\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787403267438_nr35i",
-      "timestamp": "2026-08-22T12:54:27.438Z",
-      "message": "Field \"name\" successfully repaired: \".v1zwn21m\" -> \".v1zwn21m\" (Score: 57.9%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787403243498_61r3b",
-      "timestamp": "2026-08-22T12:54:03.498Z",
-      "message": "Generating candidate selectors for field \"name\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787403243493_k5nmm",
-      "timestamp": "2026-08-22T12:54:03.493Z",
-      "message": "Detected broken fields: name, price, rating, availability, discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787403242571_ibd1x",
-      "timestamp": "2026-08-22T12:54:02.571Z",
-      "message": "Self-healing initiated for monitor: mon_1787403216506",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787403242563_g1chh",
-      "timestamp": "2026-08-22T12:54:02.563Z",
-      "message": "Extraction validation failed for \"iphonee\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787403242558_duswa",
-      "timestamp": "2026-08-22T12:54:02.558Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787403219203_tcu2g",
-      "timestamp": "2026-08-22T12:53:39.203Z",
-      "message": "Starting extraction run for monitor: \"iphonee\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787403216513_vw09a",
-      "timestamp": "2026-08-22T12:53:36.513Z",
-      "message": "Created monitor: \"iphonee\" for URL: https://dl.flipkart.com/s/k32RrtuuuN",
-      "type": "success"
-    },
-    {
-      "id": "act_1787402457737_hf0dd",
-      "timestamp": "2026-08-22T12:40:57.737Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"iphonee\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1787402442131_5ar7n",
-      "timestamp": "2026-08-22T12:40:42.131Z",
-      "message": "Extraction validation failed for \"iphonee\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402418049_vkzhp",
-      "timestamp": "2026-08-22T12:40:18.049Z",
-      "message": "Starting extraction run for monitor: \"iphonee\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787402415166_tirwh",
-      "timestamp": "2026-08-22T12:40:15.166Z",
-      "message": "Created monitor: \"iphonee\" for URL: https://www.flipkart.com/apple-iphone-17-black-256-gb/p/itm6eb39da622cdd",
-      "type": "success"
-    },
-    {
-      "id": "act_1787402265838_daruy",
-      "timestamp": "2026-08-22T12:37:45.838Z",
-      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402265835_sxzzc",
-      "timestamp": "2026-08-22T12:37:45.835Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402265741_7mgvb",
-      "timestamp": "2026-08-22T12:37:45.741Z",
-      "message": "Generating candidate selectors for field \"discount\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787402265739_tj6yj",
-      "timestamp": "2026-08-22T12:37:45.739Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402265634_a5coy",
-      "timestamp": "2026-08-22T12:37:45.634Z",
-      "message": "Generating candidate selectors for field \"availability\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787402265632_ptg8f",
-      "timestamp": "2026-08-22T12:37:45.632Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"rating\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402265531_fvu1c",
-      "timestamp": "2026-08-22T12:37:45.531Z",
-      "message": "Generating candidate selectors for field \"rating\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787402265528_ym90t",
-      "timestamp": "2026-08-22T12:37:45.528Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"price\" (Required: true)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402265419_yuirh",
-      "timestamp": "2026-08-22T12:37:45.419Z",
-      "message": "Generating candidate selectors for field \"price\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787402265417_o8mlx",
-      "timestamp": "2026-08-22T12:37:45.417Z",
-      "message": "Field \"name\" successfully repaired: \"div.v1zwn21m.v1zwn27._1psv1zeb9._1psv1ze0._1psv1zek9\" -> \".mdepDZ\" (Score: 100%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787402265289_zs08q",
-      "timestamp": "2026-08-22T12:37:45.289Z",
-      "message": "Generating candidate selectors for field \"name\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787402265286_oilca",
-      "timestamp": "2026-08-22T12:37:45.286Z",
-      "message": "Detected broken fields: name, price, rating, availability, discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402265281_h4zg8",
-      "timestamp": "2026-08-22T12:37:45.281Z",
-      "message": "Repaired container selector: \"div.OmE16y[style*='width:58.33']\" -> \"li\" (15 containers found)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787402265077_8nxgc",
-      "timestamp": "2026-08-22T12:37:45.078Z",
-      "message": "Container selector \"div.OmE16y[style*='width:58.33']\" returned 0 records. Healing container...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787402264905_lvivi",
-      "timestamp": "2026-08-22T12:37:44.905Z",
-      "message": "Self-healing initiated for monitor: mon_1787401985163",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787402029891_ihh4p",
-      "timestamp": "2026-08-22T12:33:49.891Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"iphone\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1787402023425_lq8t2",
-      "timestamp": "2026-08-22T12:33:43.425Z",
+      "id": "act_1787394801903_sdl3h",
+      "timestamp": "2026-08-22T10:33:21.903Z",
       "message": "Extraction validation failed for \"iphone\". Initiating self-healing...",
       "type": "warning"
     },
     {
-      "id": "act_1787401992037_3eye6",
-      "timestamp": "2026-08-22T12:33:12.037Z",
+      "id": "act_1787394801903_yqehk",
+      "timestamp": "2026-08-22T10:33:21.903Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787394779894_87h1x",
+      "timestamp": "2026-08-22T10:32:59.894Z",
       "message": "Starting extraction run for monitor: \"iphone\"",
       "type": "info"
     },
     {
-      "id": "act_1787401985168_redsj",
-      "timestamp": "2026-08-22T12:33:05.168Z",
-      "message": "Created monitor: \"iphone\" for URL: https://www.flipkart.com/apple-iphone-17-black-256-gb/p/itm6eb39da622cdd",
+      "id": "act_1787394774909_t0r6z",
+      "timestamp": "2026-08-22T10:32:54.909Z",
+      "message": "Created monitor: \"iphone\" for URL: https://www.amazon.in/iPhone-17-Pro-Max-Promotion/dp/B0FQF331K6/ref=sr_1_2_sspa?crid=1QV6SZ7Q1JP9G&dib=eyJ2IjoiMSJ9.rMduK01d7EdABmFW0LOUrx9o1NUDRqTR_Ek4CgN-5unIB7IavA-PNO2yLMT-2HuJN-2LXTQxe2D6n47LzlEkxVbFeXlCHM3-VT24yzjyEE93cH5iAIC4kkZMaKOWBZ7kFFSAJ51_P726yRjiQzybAptCSh4vqeF4gzYjNk07s8hKpfkmc4QZMzg695vHTC6aa6Be0FSqNCXS1PaMfebHm0eOWXl6OcHCqXVSLvUaLnA.9voCkzebmnX9zJwJ9ExW2AkHLbTk1O3OOUktN18YdQA&dib_tag=se&keywords=iphone%2B17%2Bpro&qid=1787394279&sprefix=ipj%2Caps%2C344&sr=8-2-spons&aref=f0IlNXU6pG&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1",
       "type": "success"
-    },
-    {
-      "id": "act_1787401326114_keueo",
-      "timestamp": "2026-08-22T12:22:06.114Z",
-      "message": "Self-healing failed to recover extraction for \"iphonee\".",
-      "type": "error"
-    },
-    {
-      "id": "act_1787401326111_y8skn",
-      "timestamp": "2026-08-22T12:22:06.111Z",
-      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787401326106_t2ivw",
-      "timestamp": "2026-08-22T12:22:06.106Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
-      "type": "warning"
     }
   ],
   "activeDemoVersion": 1
