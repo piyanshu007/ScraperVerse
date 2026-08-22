@@ -10,6 +10,78 @@ export interface ScrapeResult {
 }
 
 /**
+ * Normalize a raw Bright Data record to our standard field names.
+ * Bright Data returns fields like `title`, `selling_price`, `stars`, etc.
+ * We map these to: name, price, rating, availability, discount.
+ */
+function normalizeRecord(raw: Record<string, unknown>): Record<string, unknown> {
+  const r: Record<string, unknown> = {};
+
+  // Name / title
+  r.name = raw.name ?? raw.title ?? raw.product_name ?? raw.product_title ?? raw.item_name ?? '';
+
+  // Price — try numeric fields first, then string fields
+  const priceRaw =
+    raw.price ?? raw.selling_price ?? raw.final_price ?? raw.current_price ??
+    raw.discounted_price ?? raw.sale_price ?? raw.offer_price ?? raw.mrp ?? '';
+  if (typeof priceRaw === 'number') {
+    r.price = priceRaw;
+  } else if (typeof priceRaw === 'string') {
+    const cleaned = priceRaw.replace(/[^\d.]/g, '');
+    r.price = cleaned ? parseFloat(cleaned) : '';
+  } else {
+    r.price = '';
+  }
+
+  // Rating
+  const ratingRaw = raw.rating ?? raw.stars ?? raw.star_rating ?? raw.review_stars ?? raw.avg_rating ?? '';
+  if (typeof ratingRaw === 'number') {
+    r.rating = ratingRaw;
+  } else if (typeof ratingRaw === 'string') {
+    const m = String(ratingRaw).match(/[\d.]+/);
+    r.rating = m ? parseFloat(m[0]) : '';
+  } else {
+    r.rating = '';
+  }
+
+  // Availability
+  const availRaw = raw.availability ?? raw.stock ?? raw.in_stock ?? raw.stock_status ?? raw.availability_status ?? '';
+  if (typeof availRaw === 'boolean') {
+    r.availability = availRaw ? 'In Stock' : 'Out of Stock';
+  } else {
+    const lower = String(availRaw).toLowerCase();
+    if (lower.includes('out') || lower.includes('unavailable') || lower.includes('sold out')) {
+      r.availability = 'Out of Stock';
+    } else if (availRaw) {
+      r.availability = 'In Stock';
+    } else {
+      r.availability = '';
+    }
+  }
+
+  // Discount
+  r.discount = raw.discount ?? raw.discount_percentage ?? raw.savings ?? raw.you_save ?? raw.badge ?? '';
+  if (r.discount && typeof r.discount === 'string' && !String(r.discount).includes('%')) {
+    r.discount = String(r.discount).trim() || '';
+  }
+
+  // Pass through any extra fields (url, image, etc.)
+  for (const [k, v] of Object.entries(raw)) {
+    if (!(k in r)) r[k] = v;
+  }
+
+  return r;
+}
+
+/** Filter + normalize raw Bright Data records — remove empty/invalid rows */
+function processRecords(raw: unknown[]): Record<string, unknown>[] {
+  return raw
+    .filter((r): r is Record<string, unknown> => !!r && typeof r === 'object' && !Array.isArray(r))
+    .map(r => normalizeRecord(r))
+    .filter(r => !!(r.name || r.price)); // must have at least a name or price to be valid
+}
+
+/**
  * Trigger a Bright Data Data Collector job and poll until results arrive.
  * Always uses real Bright Data — no local fallback.
  */
@@ -109,13 +181,14 @@ export async function scrapeWithBrightData(
       }
 
       if (Array.isArray(json)) {
-        console.log(`[BrightData] Done — ${json.length} records.`);
+        const records = processRecords(json);
+        console.log(`[BrightData] Done — ${json.length} raw → ${records.length} valid records.`);
         return {
-          records: json as ExtractedRecord[],
+          records: records as ExtractedRecord[],
           collectionId,
           isMock: false,
           rawHtml: '',
-          status: 'SUCCESS',
+          status: records.length > 0 ? 'SUCCESS' : 'FAILED',
         };
       }
     }
@@ -123,20 +196,21 @@ export async function scrapeWithBrightData(
     // ── NDJSON / text response ────────────────────────────────────────────────
     if (contentType.includes('text/plain') || contentType.includes('application/x-ndjson') || contentType.includes('text/ndjson') || contentType.includes('application/jsonl')) {
       const text = await dataRes.text();
-      const records = text
+      const rawRecords = text
         .trim()
         .split('\n')
         .filter(Boolean)
         .map(line => { try { return JSON.parse(line); } catch { return null; } })
-        .filter(Boolean) as ExtractedRecord[];
+        .filter(Boolean);
 
-      console.log(`[BrightData] Done (NDJSON) — ${records.length} records.`);
+      const records = processRecords(rawRecords);
+      console.log(`[BrightData] Done (NDJSON) — ${rawRecords.length} raw → ${records.length} valid records.`);
       return {
-        records,
+        records: records as ExtractedRecord[],
         collectionId,
         isMock: false,
         rawHtml: '',
-        status: 'SUCCESS',
+        status: records.length > 0 ? 'SUCCESS' : 'FAILED',
       };
     }
 
