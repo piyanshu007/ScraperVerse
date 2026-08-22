@@ -17,7 +17,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, url, fields, schema, collectorId } = body;
+    const { id: clientId, name, url, fields, schema, collectorId } = body;
 
     if (!name || !url || !fields || !schema) {
       return NextResponse.json(
@@ -27,7 +27,15 @@ export async function POST(request: NextRequest) {
     }
 
     const db = readDb();
-    const monitorId = `mon_${Date.now()}`;
+    // Use client-supplied ID so localStorage stays in sync with server
+    const monitorId = clientId || `mon_${Date.now()}`;
+
+    // If monitor already exists (duplicate POST), just return it
+    const existing = db.monitors.find(m => m.id === monitorId);
+    if (existing) {
+      const existingScraper = db.scrapers.find(s => s.monitorId === monitorId);
+      return NextResponse.json({ monitor: existing, scraper: existingScraper });
+    }
 
     const newMonitor: Monitor = {
       id: monitorId,
