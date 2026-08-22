@@ -564,10 +564,10 @@ export default function Home() {
   }
   const perMonitorStats = Object.entries(recordsByMonitor).map(([monId, recs]) => {
     const symbol = getCurrencySymbol(monId);
-    const validPrices = recs.map(r => Number(r.data.price)).filter(p => !isNaN(p) && p > 0);
+    const validPrices = recs.map(r => Number(r.data?.price)).filter(p => !isNaN(p) && p > 0);
     const avg = validPrices.length ? Math.round(validPrices.reduce((a, v) => a + v, 0) / validPrices.length) : 0;
-    const oos = recs.filter(r => (r.data.availability ?? '').toLowerCase().includes('out')).length;
-    const disc = recs.filter(r => r.data.discount && String(r.data.discount).trim() !== '').length;
+    const oos = recs.filter(r => (r.data?.availability ?? '').toLowerCase().includes('out')).length;
+    const disc = recs.filter(r => r.data?.discount && String(r.data?.discount).trim() !== '').length;
     const mon = monitors.find(m => m.id === monId);
     return { monId, symbol, avg, oos, disc, count: recs.length, name: mon?.name ?? monId };
   });
@@ -575,8 +575,8 @@ export default function Home() {
   const activeStat = perMonitorStats.find(s => s.monId === latestRecord?.monitorId) ?? perMonitorStats[0];
   const activeCurrencySymbol = activeStat?.symbol ?? '₹';
   const avgPrice = activeStat?.avg ?? 0;
-  const outOfStock = records.filter(r => (r.data.availability ?? '').toLowerCase().includes('out')).length;
-  const discounted  = records.filter(r => r.data.discount && String(r.data.discount).trim() !== '').length;
+  const outOfStock = records.filter(r => (r.data?.availability ?? '').toLowerCase().includes('out')).length;
+  const discounted  = records.filter(r => r.data?.discount && String(r.data?.discount).trim() !== '').length;
 
   // ═══════════════════════════════════════════ LANDING ═══════════════════════
   if (!showDashboard) {
@@ -1057,13 +1057,13 @@ export default function Home() {
                         <tbody>
                           {records.map(rec => (
                             <tr key={rec.id}>
-                              <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data.name || '—'}</td>
-                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data.price || '—'}</td>
-                              <td>{rec.data.rating ? `${rec.data.rating} / 5` : '—'}</td>
-                              <td style={{ color: rec.data.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
-                                {rec.data.availability || '—'}
+                              <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data?.name || '—'}</td>
+                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data?.price || '—'}</td>
+                              <td>{rec.data?.rating ? `${rec.data.rating} / 5` : '—'}</td>
+                              <td style={{ color: rec.data?.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
+                                {rec.data?.availability || '—'}
                               </td>
-                              <td style={{ color: '#facc15', fontWeight: 700 }}>{rec.data.discount || '—'}</td>
+                              <td style={{ color: '#facc15', fontWeight: 700 }}>{rec.data?.discount || '—'}</td>
                               <td style={{ color: 'var(--white-muted)' }}>{new Date(rec.timestamp).toLocaleTimeString()}</td>
                             </tr>
                           ))}
