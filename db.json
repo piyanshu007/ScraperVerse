@@ -37,18 +37,57 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-15T09:12:27.225Z"
+      "createdAt": "2026-08-22T10:31:12.402Z"
     },
     {
-      "id": "mon_1786820378399",
-      "name": "Amazon",
-      "url": "https://amzn.in/d/06dcjxdK",
+      "id": "mon_1787404727313",
+      "name": "iphoneee",
+      "url": "https://dl.flipkart.com/s/k32RrtuuuN",
+      "selectors": {
+        "container": "body",
+        "name": "h1.v1zwn26",
+        "price": ".v1zwn20",
+        "rating": "a._1psv1zek9",
+        "availability": "._1psv1zeel",
+        "discount": ".v1zwn2a"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-22T13:18:47.313Z"
+    },
+    {
+      "id": "mon_1787404817301",
+      "name": "headphoness",
+      "url": "https://amzn.in/d/0i2PtosU",
       "selectors": {
         "container": "div#centerCol",
-        "name": "span#productTitle",
+        "name": "#productTitle",
         "price": ".a-price-whole",
-        "rating": "#acrPopover",
-        "availability": "a.a-size-small",
+        "rating": ".mvt-cm-cr-review-stars-mini",
+        "availability": "#availability span.a-color-success",
         "discount": ".a-color-price"
       },
       "schema": {
@@ -76,7 +115,46 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-15T18:59:38.399Z"
+      "createdAt": "2026-08-22T13:20:17.301Z"
+    },
+    {
+      "id": "mon_1787406799227",
+      "name": "books ",
+      "url": "https://books.toscrape.com/",
+      "selectors": {
+        "container": "article.product_pod",
+        "name": "h3 > a",
+        "price": "p.price_color",
+        "rating": "p.star-rating",
+        "availability": "p.instock.availability",
+        "discount": ""
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-22T13:53:19.227Z"
     }
   ],
   "scrapers": [
@@ -88,51 +166,718 @@
       "totalRecordsCollected": 0
     },
     {
-      "id": "scr_1786820378399",
-      "monitorId": "mon_1786820378399",
+      "id": "scr_1787404727313",
+      "monitorId": "mon_1787404727313",
       "status": "HEALTHY",
       "successRate": 100,
-      "totalRecordsCollected": 1,
-      "lastRun": "2026-08-15T19:00:00.105Z",
-      "lastSuccessfulRun": "2026-08-15T19:00:00.105Z"
+      "totalRecordsCollected": 2,
+      "lastRun": "2026-08-22T13:55:58.872Z",
+      "lastSuccessfulRun": "2026-08-22T13:55:58.872Z"
+    },
+    {
+      "id": "scr_1787404817301",
+      "monitorId": "mon_1787404817301",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 3,
+      "lastRun": "2026-08-22T14:32:17.232Z",
+      "lastSuccessfulRun": "2026-08-22T14:32:17.232Z"
+    },
+    {
+      "id": "scr_1787406799227",
+      "monitorId": "mon_1787406799227",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 20,
+      "lastRun": "2026-08-22T13:55:15.798Z",
+      "lastSuccessfulRun": "2026-08-22T13:55:15.798Z"
     }
   ],
   "runs": [
     {
-      "id": "run_1786820400105",
-      "monitorId": "mon_1786820378399",
-      "timestamp": "2026-08-15T19:00:00.105Z",
+      "id": "run_1787409137232",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T14:32:17.232Z",
+      "status": "SUCCESS",
+      "recordsCount": 1,
+      "collectionId": "j_mt4h8qwa14xm2gqmlw"
+    },
+    {
+      "id": "run_1787406958872",
+      "monitorId": "mon_1787404727313",
+      "timestamp": "2026-08-22T13:55:58.872Z",
+      "status": "SUCCESS",
+      "recordsCount": 1,
+      "collectionId": "j_mt4fxwr42ileebsdtl"
+    },
+    {
+      "id": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "timestamp": "2026-08-22T13:55:15.798Z",
+      "status": "SUCCESS",
+      "recordsCount": 20,
+      "collectionId": "j_mt4fv08jv67r8pfj0"
+    },
+    {
+      "id": "run_1787406713678",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:51:53.678Z",
+      "status": "SUCCESS",
+      "recordsCount": 1,
+      "collectionId": "j_mt4fsdfh19eq73gdqj"
+    },
+    {
+      "id": "run_1787404849929",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:20:49.929Z",
       "status": "RECOVERED",
       "recordsCount": 1,
-      "collectionId": "j_msuqpy7m2228rs8ftz"
+      "collectionId": "j_mt4eokaq1anktfqa8z"
+    },
+    {
+      "id": "run_1787404744839",
+      "monitorId": "mon_1787404727313",
+      "timestamp": "2026-08-22T13:19:04.839Z",
+      "status": "RECOVERED",
+      "recordsCount": 1,
+      "collectionId": "j_mt4emkyd1tkbxq3r0p"
     }
   ],
   "records": [
     {
-      "id": "rec_1786820427461_muhl4",
-      "runId": "run_1786820400105",
-      "monitorId": "mon_1786820378399",
+      "id": "rec_1787409141679_ckfmt",
+      "runId": "run_1787409137232",
+      "monitorId": "mon_1787404817301",
       "data": {
-        "name": "Kookee Ceramic Condiment Jars and Containers Set of 3 with Tray and Spoon for Kitchen Food Storage, Used for Spices, Sauce Servers, Pickle, Vinegar, Sugar (280ml each), White (10681)",
-        "price": 1435,
-        "rating": 4.1,
-        "availability": "10 days Returnable  Amazon Delivered  Free Delivery",
-        "discount": "-10%"
+        "name": "boAt Nirvana Eutopia 2 ANC, (~45dB) Adaptive Hybrid ANC, 80H Playtime, 3D Spatial Audio, Dual Drivers, Hi-Res Ldac, ASAP™ Charge, AI-ENx™ and Adaptive Fit Wireless Bluetooth Headphones (Utopian White)",
+        "price": 5999,
+        "rating": 4.9,
+        "discount": "-40%"
       },
-      "timestamp": "2026-08-15T19:00:00.105Z"
+      "timestamp": "2026-08-22T14:32:17.232Z"
+    },
+    {
+      "id": "rec_1787406962310_3h0gn",
+      "runId": "run_1787406958872",
+      "monitorId": "mon_1787404727313",
+      "data": {
+        "name": "Apple iPhone 17 (Black, 256 GB)",
+        "price": 80900,
+        "rating": 4.6,
+        "availability": "In Stock",
+        "discount": "↓2%↓2%•"
+      },
+      "timestamp": "2026-08-22T13:55:58.872Z"
+    },
+    {
+      "id": "rec_1787406917111_tmfqa",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "It's Only the Himalayas",
+        "price": 45.17,
+        "rating": 2,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_egdmm",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Libertarianism for Beginners",
+        "price": 51.33,
+        "rating": 2,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_ypke6",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Mesaerion: The Best Science ...",
+        "price": 37.59,
+        "rating": 1,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_qti5e",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Olio",
+        "price": 23.88,
+        "rating": 1,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_wif61",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Our Band Could Be ...",
+        "price": 57.25,
+        "rating": 3,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_5gzn4",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Rip it Up and ...",
+        "price": 35.02,
+        "rating": 5,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_rafyk",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Scott Pilgrim's Precious Little ...",
+        "price": 52.29,
+        "rating": 5,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_6xwip",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Set Me Free",
+        "price": 17.46,
+        "rating": 5,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_g4blt",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Shakespeare's Sonnets",
+        "price": 20.66,
+        "rating": 4,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_dena7",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Starving Hearts (Triangular Trade ...",
+        "price": 13.99,
+        "rating": 2,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_x5nf9",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "The Black Maria",
+        "price": 52.15,
+        "rating": 1,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_87mdf",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "The Boys in the ...",
+        "price": 22.6,
+        "rating": 4,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_pguju",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "The Coming Woman: A ...",
+        "price": 17.93,
+        "rating": 3,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_2zl42",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "The Dirty Little Secrets ...",
+        "price": 33.34,
+        "rating": 4,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_zo953",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "The Requiem Red",
+        "price": 22.65,
+        "rating": 1,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_xciia",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Sapiens: A Brief History ...",
+        "price": 54.23,
+        "rating": 5,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_90ipv",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Sharp Objects",
+        "price": 47.82,
+        "rating": 4,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_wmqqr",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Soumission",
+        "price": 50.1,
+        "rating": 1,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_6jk68",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "Tipping the Velvet",
+        "price": 53.74,
+        "rating": 1,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406917111_uz444",
+      "runId": "run_1787406915798",
+      "monitorId": "mon_1787406799227",
+      "data": {
+        "name": "A Light in the ...",
+        "price": 51.77,
+        "rating": 3,
+        "availability": "In Stock"
+      },
+      "timestamp": "2026-08-22T13:55:15.798Z"
+    },
+    {
+      "id": "rec_1787406718723_gdfgh",
+      "runId": "run_1787406713678",
+      "monitorId": "mon_1787404817301",
+      "data": {
+        "name": "boAt Nirvana Eutopia 2 ANC, (~45dB) Adaptive Hybrid ANC, 80H Playtime, 3D Spatial Audio, Dual Drivers, Hi-Res Ldac, ASAP™ Charge, AI-ENx™ and Adaptive Fit Wireless Bluetooth Headphones (Utopian White)",
+        "price": 5999,
+        "rating": 4.9,
+        "discount": "-40%"
+      },
+      "timestamp": "2026-08-22T13:51:53.678Z"
+    },
+    {
+      "id": "rec_1787404857287_xa3lf",
+      "runId": "run_1787404849929",
+      "monitorId": "mon_1787404817301",
+      "data": {
+        "name": "boAt Nirvana Eutopia 2 ANC, (~45dB) Adaptive Hybrid ANC, 80H Playtime, 3D Spatial Audio, Dual Drivers, Hi-Res Ldac, ASAP™ Charge, AI-ENx™ and Adaptive Fit Wireless Bluetooth Headphones (Utopian White)",
+        "price": 5999,
+        "rating": 12,
+        "discount": "-40%"
+      },
+      "timestamp": "2026-08-22T13:20:49.929Z"
+    },
+    {
+      "id": "rec_1787404763082_xiu31",
+      "runId": "run_1787404744839",
+      "monitorId": "mon_1787404727313",
+      "data": {
+        "name": "Apple iPhone 17 (Black, 256 GB)",
+        "price": 80900,
+        "rating": 4.6,
+        "availability": "In Stock",
+        "discount": "↓2%↓2%•"
+      },
+      "timestamp": "2026-08-22T13:19:04.839Z"
     }
   ],
   "repairEvents": [
     {
-      "id": "rep_1786820427346_cgs02",
-      "monitorId": "mon_1786820378399",
-      "timestamp": "2026-08-15T19:00:27.346Z",
-      "fieldName": "discount",
-      "previousSelector": "",
-      "repairedSelector": ".a-color-price",
+      "id": "rep_1787406628822_gp4h7",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:50:28.822Z",
+      "fieldName": "rating",
+      "previousSelector": "#acrCustomerReviewText",
+      "repairedSelector": ".mvt-cm-cr-review-stars-mini",
       "recordsBefore": 0,
       "recordsAfter": 1,
       "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "i.mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "[data-acrstarslink-click-metrics]",
+          "validCount": 0,
+          "score": 15
+        },
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini-popover",
+          "validCount": 0,
+          "score": 15
+        }
+      ]
+    },
+    {
+      "id": "rep_1787406572335_2xlwq",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:49:32.335Z",
+      "fieldName": "rating",
+      "previousSelector": "#acrCustomerReviewText",
+      "repairedSelector": ".mvt-cm-cr-review-stars-mini",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "i.mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "[data-acrstarslink-click-metrics]",
+          "validCount": 0,
+          "score": 15
+        },
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini-popover",
+          "validCount": 0,
+          "score": 15
+        }
+      ]
+    },
+    {
+      "id": "rep_1787406532136_ai8q5",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:48:52.137Z",
+      "fieldName": "rating",
+      "previousSelector": "#acrCustomerReviewText",
+      "repairedSelector": ".mvt-cm-cr-review-stars-mini",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "i.mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "[data-acrstarslink-click-metrics]",
+          "validCount": 0,
+          "score": 15
+        },
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini-popover",
+          "validCount": 0,
+          "score": 15
+        }
+      ]
+    },
+    {
+      "id": "rep_1787406360255_5gg1s",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:46:00.255Z",
+      "fieldName": "rating",
+      "previousSelector": "#acrCustomerReviewText",
+      "repairedSelector": ".mvt-cm-cr-review-stars-mini",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "i.mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "[data-acrstarslink-click-metrics]",
+          "validCount": 0,
+          "score": 15
+        },
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini-popover",
+          "validCount": 0,
+          "score": 15
+        }
+      ]
+    },
+    {
+      "id": "rep_1787406112756_76n5l",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:41:52.756Z",
+      "fieldName": "rating",
+      "previousSelector": "#acrCustomerReviewText",
+      "repairedSelector": ".mvt-cm-cr-review-stars-mini",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "i.mvt-cm-cr-review-stars-mini",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-star-mini-5",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.a-color-base",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-icon-star-mini",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "[data-acrstarslink-click-metrics]",
+          "validCount": 0,
+          "score": 15
+        },
+        {
+          "selector": ".mvt-cm-cr-review-stars-mini-popover",
+          "validCount": 0,
+          "score": 15
+        }
+      ]
+    },
+    {
+      "id": "rep_1787404856988_nc3lj",
+      "monitorId": "mon_1787404817301",
+      "timestamp": "2026-08-22T13:20:56.988Z",
+      "fieldName": "discount",
+      "previousSelector": "#corePrice_desktop .reinventPriceMessage",
+      "repairedSelector": ".a-color-price",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 60,
       "status": "SUCCESS",
       "candidatesTested": [
         {
@@ -188,137 +933,329 @@
       ]
     },
     {
-      "id": "rep_1786820427346_nbwju",
-      "monitorId": "mon_1786820378399",
-      "timestamp": "2026-08-15T19:00:27.346Z",
+      "id": "rep_1787404762749_mwfrt",
+      "monitorId": "mon_1787404727313",
+      "timestamp": "2026-08-22T13:19:22.750Z",
+      "fieldName": "discount",
+      "previousSelector": "",
+      "repairedSelector": ".v1zwn2a",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".v1zwn2a",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".v1zwn221",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._7dzyg22",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1o6mltlg1",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1o6mltlb3",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1o6mltl17",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1o6mltl65",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.v1zwn2a",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.v1zwn20",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._1o6mltlg1",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1787404762749_nabc0",
+      "monitorId": "mon_1787404727313",
+      "timestamp": "2026-08-22T13:19:22.749Z",
       "fieldName": "availability",
-      "previousSelector": "#availability",
-      "repairedSelector": "a.a-size-small",
+      "previousSelector": ".availability",
+      "repairedSelector": "._1psv1zeel",
       "recordsBefore": 0,
       "recordsAfter": 1,
       "confidence": 100,
       "status": "SUCCESS",
       "candidatesTested": [
         {
-          "selector": "a.a-size-small",
+          "selector": "._1psv1zeel",
           "validCount": 1,
           "score": 100
         },
         {
-          "selector": "a.a-text-normal",
+          "selector": "._1psv1zei9",
           "validCount": 1,
           "score": 100
         },
         {
-          "selector": ".icon-farm-bottom-sheet-header",
+          "selector": "div._1psv1zeel",
           "validCount": 1,
           "score": 100
         },
         {
-          "selector": "div.icon-farm-bottom-sheet-header",
+          "selector": "div._1psv1zei9",
           "validCount": 1,
           "score": 100
         },
         {
-          "selector": ".c-f",
+          "selector": ".v1zwn22",
           "validCount": 0,
           "score": 0
         },
         {
-          "selector": ".larr",
+          "selector": ".v1zwn24",
           "validCount": 0,
           "score": 0
         },
         {
-          "selector": ".a-row",
+          "selector": ".v1zwn21m",
           "validCount": 0,
           "score": 0
         },
         {
-          "selector": ".a-end",
+          "selector": "._1psv1ze0",
           "validCount": 0,
           "score": 0
         },
         {
-          "selector": ".a-box",
+          "selector": "._1psv1zeb9",
           "validCount": 0,
           "score": 0
         },
         {
-          "selector": ".expand",
+          "selector": "div.v1zwn22",
           "validCount": 0,
           "score": 0
         }
       ]
     },
     {
-      "id": "rep_1786820427346_milay",
-      "monitorId": "mon_1786820378399",
-      "timestamp": "2026-08-15T19:00:27.346Z",
+      "id": "rep_1787404762749_k5can",
+      "monitorId": "mon_1787404727313",
+      "timestamp": "2026-08-22T13:19:22.749Z",
+      "fieldName": "rating",
+      "previousSelector": ".rating",
+      "repairedSelector": "a._1psv1zek9",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": "a._1psv1zek9",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._1psv1zei0",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._1psv1zefr",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._1psv1ze9x",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._1psv1ze7o",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div._1psv1zea9",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div._1psv1ze4l",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".CfNfim",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".BpfSJ2",
+          "validCount": 0,
+          "score": 0
+        },
+        {
+          "selector": ".mdepDZ",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1787404762749_8mb8p",
+      "monitorId": "mon_1787404727313",
+      "timestamp": "2026-08-22T13:19:22.749Z",
       "fieldName": "price",
-      "previousSelector": ".a-price .a-offscreen",
-      "repairedSelector": ".a-price-whole",
+      "previousSelector": "span._1psv1ze0._1psv1ze29._1psv1ze36._1psv1ze5f._1psv1ze6r._1psv1ze70._1psv1ze99._1psv1zedi._1psv1zei0._1psv1zek9._1psv1zel6._1psv1zeix._1psv1ze0._1psv1ze29._1psv1ze36._1psv1ze5f._1psv1ze6r._1psv1ze70._1psv1ze99._1psv1zedi._1psv1zei0._1psv1zek9._1psv1zel6._1psv1zeix",
+      "repairedSelector": ".v1zwn20",
       "recordsBefore": 0,
       "recordsAfter": 1,
       "confidence": 100,
       "status": "SUCCESS",
       "candidatesTested": [
         {
-          "selector": ".a-price-whole",
+          "selector": ".v1zwn20",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": "span.a-price-whole",
+          "selector": ".v1zwn21",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": ".dimension-values-list",
+          "selector": ".v1zwn21o",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": "ul.dimension-values-list",
+          "selector": "._7dzyg24x",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": ".dimension-values-carousel",
+          "selector": "._1psv1ze93",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": "ul.dimension-values-carousel",
+          "selector": "div.v1zwn20",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": ".inline-twister-dim-title-value",
+          "selector": "div.v1zwn21",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": "span.inline-twister-dim-title-value",
+          "selector": "div.v1zwn21o",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": ".inline-twister-dim-title-value-truncate-expanded",
+          "selector": "a._1psv1zek9",
           "validCount": 1,
-          "score": 115
+          "score": 100
         },
         {
-          "selector": "div.inline-twister-dim-title-value-truncate-expanded",
+          "selector": "a._1psv1zei0",
           "validCount": 1,
-          "score": 115
+          "score": 100
         }
       ]
     },
     {
-      "id": "rep_1786785147365_jvi1i",
+      "id": "rep_1787404762749_9kmqu",
+      "monitorId": "mon_1787404727313",
+      "timestamp": "2026-08-22T13:19:22.749Z",
+      "fieldName": "name",
+      "previousSelector": "div.v1zwn21m",
+      "repairedSelector": "h1.v1zwn26",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 30,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": "h1.v1zwn26",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "h1.v1zwn21m",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "h1._1psv1ze0",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "h1._1psv1zeb9",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "h1",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "title",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".uRvp6e",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".Eqa096",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".HrVJQA",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".uoZgvw",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1787394672439_4iwpq",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-15T09:12:27.365Z",
+      "timestamp": "2026-08-22T10:31:12.439Z",
       "fieldName": "discount",
       "previousSelector": ".discount",
       "repairedSelector": ".promo-text",
@@ -380,9 +1317,9 @@
       ]
     },
     {
-      "id": "rep_1786785147365_r9nv9",
+      "id": "rep_1787394672439_aehei",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-15T09:12:27.365Z",
+      "timestamp": "2026-08-22T10:31:12.439Z",
       "fieldName": "availability",
       "previousSelector": ".availability",
       "repairedSelector": ".stock-status",
@@ -444,9 +1381,9 @@
       ]
     },
     {
-      "id": "rep_1786785147365_g88zw",
+      "id": "rep_1787394672439_fv2p2",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-15T09:12:27.365Z",
+      "timestamp": "2026-08-22T10:31:12.439Z",
       "fieldName": "rating",
       "previousSelector": ".rating",
       "repairedSelector": ".rating-badge",
@@ -508,9 +1445,9 @@
       ]
     },
     {
-      "id": "rep_1786785147365_2y4mf",
+      "id": "rep_1787394672439_pc0s2",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-15T09:12:27.365Z",
+      "timestamp": "2026-08-22T10:31:12.439Z",
       "fieldName": "price",
       "previousSelector": ".price",
       "repairedSelector": ".price-value",
@@ -540,17 +1477,7 @@
           "score": 115
         },
         {
-          "selector": ".promo-text",
-          "validCount": 3,
-          "score": 100
-        },
-        {
           "selector": ".rating-badge",
-          "validCount": 3,
-          "score": 100
-        },
-        {
-          "selector": "span.promo-text",
           "validCount": 3,
           "score": 100
         },
@@ -568,13 +1495,23 @@
           "selector": ".product-title",
           "validCount": 1,
           "score": 33.3
+        },
+        {
+          "selector": "h3.product-title",
+          "validCount": 1,
+          "score": 33.3
+        },
+        {
+          "selector": "h3",
+          "validCount": 1,
+          "score": 33.3
         }
       ]
     },
     {
-      "id": "rep_1786785147365_wmejs",
+      "id": "rep_1787394672439_cbc8e",
       "monitorId": "mon_test_123",
-      "timestamp": "2026-08-15T09:12:27.365Z",
+      "timestamp": "2026-08-22T10:31:12.439Z",
       "fieldName": "name",
       "previousSelector": ".name",
       "repairedSelector": ".product-title",
@@ -638,130 +1575,604 @@
   ],
   "activityEvents": [
     {
-      "id": "act_1786820427464_byru7",
-      "timestamp": "2026-08-15T19:00:27.464Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"Amazon\".",
+      "id": "act_1787409141690_uhyy4",
+      "timestamp": "2026-08-22T14:32:21.690Z",
+      "message": "Extraction validated successfully (unresolved optional fields ignored).",
       "type": "success"
     },
     {
-      "id": "act_1786820403170_xkkzh",
-      "timestamp": "2026-08-15T19:00:03.170Z",
-      "message": "Extraction validation failed for \"Amazon\". Initiating self-healing...",
+      "id": "act_1787409141677_e5e3i",
+      "timestamp": "2026-08-22T14:32:21.677Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
       "type": "warning"
     },
     {
-      "id": "act_1786820403166_qwodd",
-      "timestamp": "2026-08-15T19:00:03.166Z",
+      "id": "act_1787409141456_db3kq",
+      "timestamp": "2026-08-22T14:32:21.456Z",
+      "message": "Generating candidate selectors for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787409141453_okp0c",
+      "timestamp": "2026-08-22T14:32:21.453Z",
+      "message": "Detected broken fields: availability",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787409141284_vjdfn",
+      "timestamp": "2026-08-22T14:32:21.284Z",
+      "message": "Self-healing initiated for monitor: mon_1787404817301",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787409141280_kt4fa",
+      "timestamp": "2026-08-22T14:32:21.280Z",
+      "message": "Extraction validation failed for \"headphoness\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787409141275_7zhmu",
+      "timestamp": "2026-08-22T14:32:21.275Z",
       "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
       "type": "info"
     },
     {
-      "id": "act_1786820381126_6sehg",
-      "timestamp": "2026-08-15T18:59:41.126Z",
-      "message": "Starting extraction run for monitor: \"Amazon\"",
+      "id": "act_1787409123393_y3wsq",
+      "timestamp": "2026-08-22T14:32:03.394Z",
+      "message": "Starting extraction run for monitor: \"headphoness\"",
       "type": "info"
     },
     {
-      "id": "act_1786820378403_o00wi",
-      "timestamp": "2026-08-15T18:59:38.403Z",
-      "message": "Created monitor: \"Amazon\" for URL: https://amzn.in/d/06dcjxdK",
+      "id": "act_1787406962315_fkjqh",
+      "timestamp": "2026-08-22T13:56:02.315Z",
+      "message": "Extraction successful for \"iphoneee\". Collected 1 records.",
       "type": "success"
     },
     {
-      "id": "act_1786820339058_jnlpb",
-      "timestamp": "2026-08-15T18:58:59.058Z",
-      "message": "Extraction successful for \"Amazon\". Collected 1 records.",
+      "id": "act_1787406917113_3fw1m",
+      "timestamp": "2026-08-22T13:55:17.113Z",
+      "message": "Extraction validated successfully (unresolved optional fields ignored).",
       "type": "success"
     },
     {
-      "id": "act_1786820200324_ad1qw",
-      "timestamp": "2026-08-15T18:56:40.324Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"Amazon\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786820182946_na6v0",
-      "timestamp": "2026-08-15T18:56:22.946Z",
-      "message": "Extraction validation failed for \"Amazon\". Initiating self-healing...",
+      "id": "act_1787406917108_hed1u",
+      "timestamp": "2026-08-22T13:55:17.108Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
       "type": "warning"
     },
     {
-      "id": "act_1786820182941_gd6xc",
-      "timestamp": "2026-08-15T18:56:22.941Z",
+      "id": "act_1787406917094_8oc7m",
+      "timestamp": "2026-08-22T13:55:17.094Z",
+      "message": "Generating candidate selectors for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787406917091_7tlfm",
+      "timestamp": "2026-08-22T13:55:17.091Z",
+      "message": "Detected broken fields: discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787406917069_ez0vw",
+      "timestamp": "2026-08-22T13:55:17.069Z",
+      "message": "Self-healing initiated for monitor: mon_1787406799227",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787406917065_bcow1",
+      "timestamp": "2026-08-22T13:55:17.065Z",
+      "message": "Extraction validation failed for \"books \". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787406917062_s0c5z",
+      "timestamp": "2026-08-22T13:55:17.062Z",
       "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
       "type": "info"
     },
     {
-      "id": "act_1786820166001_3wgnb",
-      "timestamp": "2026-08-15T18:56:06.001Z",
-      "message": "Starting extraction run for monitor: \"Amazon\"",
+      "id": "act_1787406802742_q09ce",
+      "timestamp": "2026-08-22T13:53:22.742Z",
+      "message": "Starting extraction run for monitor: \"books \"",
       "type": "info"
     },
     {
-      "id": "act_1786820162640_azp4r",
-      "timestamp": "2026-08-15T18:56:02.640Z",
-      "message": "Created monitor: \"Amazon\" for URL: https://amzn.in/d/06dcjxdK",
+      "id": "act_1787406799231_714o6",
+      "timestamp": "2026-08-22T13:53:19.231Z",
+      "message": "Created monitor: \"books \" for URL: https://books.toscrape.com/",
       "type": "success"
     },
     {
-      "id": "act_1786820042555_nnfd0",
-      "timestamp": "2026-08-15T18:54:02.555Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"Amazon\".",
+      "id": "act_1787406718726_n7j37",
+      "timestamp": "2026-08-22T13:51:58.726Z",
+      "message": "Extraction validated successfully (unresolved optional fields ignored).",
       "type": "success"
     },
     {
-      "id": "act_1786820028993_p24ls",
-      "timestamp": "2026-08-15T18:53:48.993Z",
-      "message": "Extraction validation failed for \"Amazon\". Initiating self-healing...",
+      "id": "act_1787406718719_q0s3u",
+      "timestamp": "2026-08-22T13:51:58.719Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
       "type": "warning"
     },
     {
-      "id": "act_1786820028991_2m75h",
-      "timestamp": "2026-08-15T18:53:48.991Z",
+      "id": "act_1787406718371_aaazj",
+      "timestamp": "2026-08-22T13:51:58.371Z",
+      "message": "Generating candidate selectors for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787406718367_bdgtm",
+      "timestamp": "2026-08-22T13:51:58.367Z",
+      "message": "Detected broken fields: availability",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787406717996_4yx9y",
+      "timestamp": "2026-08-22T13:51:57.996Z",
+      "message": "Self-healing initiated for monitor: mon_1787404817301",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787406717990_1xyba",
+      "timestamp": "2026-08-22T13:51:57.990Z",
+      "message": "Extraction validation failed for \"headphoness\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787406717985_7uxla",
+      "timestamp": "2026-08-22T13:51:57.985Z",
       "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
       "type": "info"
     },
     {
-      "id": "act_1786820010720_t6wo2",
-      "timestamp": "2026-08-15T18:53:30.720Z",
-      "message": "Starting extraction run for monitor: \"Amazon\"",
+      "id": "act_1787406679827_1ohox",
+      "timestamp": "2026-08-22T13:51:19.827Z",
+      "message": "Starting extraction run for monitor: \"headphoness\"",
       "type": "info"
     },
     {
-      "id": "act_1786820007430_0k4nw",
-      "timestamp": "2026-08-15T18:53:27.430Z",
-      "message": "Created monitor: \"Amazon\" for URL: https://amzn.in/d/06dcjxdK",
+      "id": "act_1787404857290_lf7vo",
+      "timestamp": "2026-08-22T13:20:57.290Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"headphoness\".",
       "type": "success"
     },
     {
-      "id": "act_1786819694846_dn69o",
-      "timestamp": "2026-08-15T18:48:14.846Z",
-      "message": "Self-healing succeeded. Extraction recovered for \"Amazon\".",
-      "type": "success"
-    },
-    {
-      "id": "act_1786819670920_bu01j",
-      "timestamp": "2026-08-15T18:47:50.920Z",
-      "message": "Extraction validation failed for \"Amazon\". Initiating self-healing...",
+      "id": "act_1787404853466_9ebgi",
+      "timestamp": "2026-08-22T13:20:53.466Z",
+      "message": "Extraction validation failed for \"headphoness\". Initiating self-healing...",
       "type": "warning"
     },
     {
-      "id": "act_1786819670916_p6zk1",
-      "timestamp": "2026-08-15T18:47:50.916Z",
+      "id": "act_1787404853461_pahll",
+      "timestamp": "2026-08-22T13:20:53.461Z",
       "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
       "type": "info"
     },
     {
-      "id": "act_1786819648219_n1ydm",
-      "timestamp": "2026-08-15T18:47:28.219Z",
-      "message": "Starting extraction run for monitor: \"Amazon\"",
+      "id": "act_1787404822472_38uav",
+      "timestamp": "2026-08-22T13:20:22.472Z",
+      "message": "Starting extraction run for monitor: \"headphoness\"",
       "type": "info"
     },
     {
-      "id": "act_1786819631173_phdb8",
-      "timestamp": "2026-08-15T18:47:11.173Z",
-      "message": "Created monitor: \"Amazon\" for URL: https://amzn.in/d/06dcjxdK",
+      "id": "act_1787404817305_ukplo",
+      "timestamp": "2026-08-22T13:20:17.305Z",
+      "message": "Created monitor: \"headphoness\" for URL: https://amzn.in/d/0i2PtosU",
       "type": "success"
+    },
+    {
+      "id": "act_1787404763085_ka2vc",
+      "timestamp": "2026-08-22T13:19:23.085Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"iphoneee\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787404750097_2505x",
+      "timestamp": "2026-08-22T13:19:10.097Z",
+      "message": "Extraction validation failed for \"iphoneee\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404750091_l3fzx",
+      "timestamp": "2026-08-22T13:19:10.091Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404730008_assjc",
+      "timestamp": "2026-08-22T13:18:50.008Z",
+      "message": "Starting extraction run for monitor: \"iphoneee\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404727317_zz35b",
+      "timestamp": "2026-08-22T13:18:47.317Z",
+      "message": "Created monitor: \"iphoneee\" for URL: https://dl.flipkart.com/s/k32RrtuuuN",
+      "type": "success"
+    },
+    {
+      "id": "act_1787404486216_a6zua",
+      "timestamp": "2026-08-22T13:14:46.216Z",
+      "message": "Self-healing failed to recover extraction for \"Electronics Products Live Monitor\".",
+      "type": "error"
+    },
+    {
+      "id": "act_1787404486208_9x3om",
+      "timestamp": "2026-08-22T13:14:46.208Z",
+      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404486189_ablpo",
+      "timestamp": "2026-08-22T13:14:46.189Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404485899_57cpl",
+      "timestamp": "2026-08-22T13:14:45.899Z",
+      "message": "Generating candidate selectors for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404485896_xm9vf",
+      "timestamp": "2026-08-22T13:14:45.896Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404485603_hnmjm",
+      "timestamp": "2026-08-22T13:14:45.603Z",
+      "message": "Generating candidate selectors for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404485599_6qyqb",
+      "timestamp": "2026-08-22T13:14:45.599Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"rating\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404485233_tw4kd",
+      "timestamp": "2026-08-22T13:14:45.233Z",
+      "message": "Generating candidate selectors for field \"rating\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404485229_3v9m0",
+      "timestamp": "2026-08-22T13:14:45.229Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"price\" (Required: true)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404484908_36096",
+      "timestamp": "2026-08-22T13:14:44.908Z",
+      "message": "Generating candidate selectors for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404484901_83d6n",
+      "timestamp": "2026-08-22T13:14:44.901Z",
+      "message": "Field \"name\" successfully repaired: \"div.v1zwn21m\" -> \".mdepDZ\" (Score: 100%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787404484445_m16qk",
+      "timestamp": "2026-08-22T13:14:44.445Z",
+      "message": "Generating candidate selectors for field \"name\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404484440_dy7qk",
+      "timestamp": "2026-08-22T13:14:44.440Z",
+      "message": "Detected broken fields: name, price, rating, availability, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404484430_8wcuu",
+      "timestamp": "2026-08-22T13:14:44.430Z",
+      "message": "Repaired container selector: \"div.OmE16y\" -> \"li\" (0 containers found)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787404484086_3537s",
+      "timestamp": "2026-08-22T13:14:44.086Z",
+      "message": "Container selector \"div.OmE16y\" returned 0 records. Healing container...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404483652_y9y5a",
+      "timestamp": "2026-08-22T13:14:43.652Z",
+      "message": "Self-healing initiated for monitor: mon_1787404456475",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404483646_j932d",
+      "timestamp": "2026-08-22T13:14:43.646Z",
+      "message": "Extraction validation failed for \"Electronics Products Live Monitor\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787404483640_h3bft",
+      "timestamp": "2026-08-22T13:14:43.641Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404464458_q8vts",
+      "timestamp": "2026-08-22T13:14:24.458Z",
+      "message": "Starting extraction run for monitor: \"Electronics Products Live Monitor\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787404456480_q7awr",
+      "timestamp": "2026-08-22T13:14:16.480Z",
+      "message": "Created monitor: \"Electronics Products Live Monitor\" for URL: https://dl.flipkart.com/s/k32RrtuuuN",
+      "type": "success"
+    },
+    {
+      "id": "act_1787403295173_7cqaq",
+      "timestamp": "2026-08-22T12:54:55.173Z",
+      "message": "Self-healing failed to recover extraction for \"iphonee\".",
+      "type": "error"
+    },
+    {
+      "id": "act_1787403295168_m8xc7",
+      "timestamp": "2026-08-22T12:54:55.168Z",
+      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787403295153_hflrr",
+      "timestamp": "2026-08-22T12:54:55.153Z",
+      "message": "Field \"discount\" successfully repaired: \".s1VP01\" -> \".v1zwn221\" (Score: 26.3%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787403290759_k5d10",
+      "timestamp": "2026-08-22T12:54:50.759Z",
+      "message": "Generating candidate selectors for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787403290756_5d1at",
+      "timestamp": "2026-08-22T12:54:50.756Z",
+      "message": "Field \"availability\" successfully repaired: \".s1VP01\" -> \".v1zwn21m\" (Score: 36.8%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787403289482_7t6g9",
+      "timestamp": "2026-08-22T12:54:49.482Z",
+      "message": "Generating candidate selectors for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787403289478_cyryp",
+      "timestamp": "2026-08-22T12:54:49.478Z",
+      "message": "Field \"rating\" successfully repaired: \".r-13awgt0\" -> \"a._1psv1zek9\" (Score: 21.1%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787403284862_6f5q1",
+      "timestamp": "2026-08-22T12:54:44.862Z",
+      "message": "Generating candidate selectors for field \"rating\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787403284858_ehuz2",
+      "timestamp": "2026-08-22T12:54:44.858Z",
+      "message": "Field \"price\" successfully repaired: \".NXPqFj\" -> \".v1zwn20\" (Score: 21.1%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787403267444_zx1gd",
+      "timestamp": "2026-08-22T12:54:27.444Z",
+      "message": "Generating candidate selectors for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787403267438_nr35i",
+      "timestamp": "2026-08-22T12:54:27.438Z",
+      "message": "Field \"name\" successfully repaired: \".v1zwn21m\" -> \".v1zwn21m\" (Score: 57.9%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787403243498_61r3b",
+      "timestamp": "2026-08-22T12:54:03.498Z",
+      "message": "Generating candidate selectors for field \"name\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787403243493_k5nmm",
+      "timestamp": "2026-08-22T12:54:03.493Z",
+      "message": "Detected broken fields: name, price, rating, availability, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787403242571_ibd1x",
+      "timestamp": "2026-08-22T12:54:02.571Z",
+      "message": "Self-healing initiated for monitor: mon_1787403216506",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787403242563_g1chh",
+      "timestamp": "2026-08-22T12:54:02.563Z",
+      "message": "Extraction validation failed for \"iphonee\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787403242558_duswa",
+      "timestamp": "2026-08-22T12:54:02.558Z",
+      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787403219203_tcu2g",
+      "timestamp": "2026-08-22T12:53:39.203Z",
+      "message": "Starting extraction run for monitor: \"iphonee\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787403216513_vw09a",
+      "timestamp": "2026-08-22T12:53:36.513Z",
+      "message": "Created monitor: \"iphonee\" for URL: https://dl.flipkart.com/s/k32RrtuuuN",
+      "type": "success"
+    },
+    {
+      "id": "act_1787402457737_hf0dd",
+      "timestamp": "2026-08-22T12:40:57.737Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"iphonee\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787402442131_5ar7n",
+      "timestamp": "2026-08-22T12:40:42.131Z",
+      "message": "Extraction validation failed for \"iphonee\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402418049_vkzhp",
+      "timestamp": "2026-08-22T12:40:18.049Z",
+      "message": "Starting extraction run for monitor: \"iphonee\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787402415166_tirwh",
+      "timestamp": "2026-08-22T12:40:15.166Z",
+      "message": "Created monitor: \"iphonee\" for URL: https://www.flipkart.com/apple-iphone-17-black-256-gb/p/itm6eb39da622cdd",
+      "type": "success"
+    },
+    {
+      "id": "act_1787402265838_daruy",
+      "timestamp": "2026-08-22T12:37:45.838Z",
+      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402265835_sxzzc",
+      "timestamp": "2026-08-22T12:37:45.835Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402265741_7mgvb",
+      "timestamp": "2026-08-22T12:37:45.741Z",
+      "message": "Generating candidate selectors for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787402265739_tj6yj",
+      "timestamp": "2026-08-22T12:37:45.739Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402265634_a5coy",
+      "timestamp": "2026-08-22T12:37:45.634Z",
+      "message": "Generating candidate selectors for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787402265632_ptg8f",
+      "timestamp": "2026-08-22T12:37:45.632Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"rating\" (Required: false)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402265531_fvu1c",
+      "timestamp": "2026-08-22T12:37:45.531Z",
+      "message": "Generating candidate selectors for field \"rating\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787402265528_ym90t",
+      "timestamp": "2026-08-22T12:37:45.528Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"price\" (Required: true)",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402265419_yuirh",
+      "timestamp": "2026-08-22T12:37:45.419Z",
+      "message": "Generating candidate selectors for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787402265417_o8mlx",
+      "timestamp": "2026-08-22T12:37:45.417Z",
+      "message": "Field \"name\" successfully repaired: \"div.v1zwn21m.v1zwn27._1psv1zeb9._1psv1ze0._1psv1zek9\" -> \".mdepDZ\" (Score: 100%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787402265289_zs08q",
+      "timestamp": "2026-08-22T12:37:45.289Z",
+      "message": "Generating candidate selectors for field \"name\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787402265286_oilca",
+      "timestamp": "2026-08-22T12:37:45.286Z",
+      "message": "Detected broken fields: name, price, rating, availability, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402265281_h4zg8",
+      "timestamp": "2026-08-22T12:37:45.281Z",
+      "message": "Repaired container selector: \"div.OmE16y[style*='width:58.33']\" -> \"li\" (15 containers found)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787402265077_8nxgc",
+      "timestamp": "2026-08-22T12:37:45.078Z",
+      "message": "Container selector \"div.OmE16y[style*='width:58.33']\" returned 0 records. Healing container...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787402264905_lvivi",
+      "timestamp": "2026-08-22T12:37:44.905Z",
+      "message": "Self-healing initiated for monitor: mon_1787401985163",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787402029891_ihh4p",
+      "timestamp": "2026-08-22T12:33:49.891Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"iphone\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787402023425_lq8t2",
+      "timestamp": "2026-08-22T12:33:43.425Z",
+      "message": "Extraction validation failed for \"iphone\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787401992037_3eye6",
+      "timestamp": "2026-08-22T12:33:12.037Z",
+      "message": "Starting extraction run for monitor: \"iphone\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787401985168_redsj",
+      "timestamp": "2026-08-22T12:33:05.168Z",
+      "message": "Created monitor: \"iphone\" for URL: https://www.flipkart.com/apple-iphone-17-black-256-gb/p/itm6eb39da622cdd",
+      "type": "success"
+    },
+    {
+      "id": "act_1787401326114_keueo",
+      "timestamp": "2026-08-22T12:22:06.114Z",
+      "message": "Self-healing failed to recover extraction for \"iphonee\".",
+      "type": "error"
+    },
+    {
+      "id": "act_1787401326111_y8skn",
+      "timestamp": "2026-08-22T12:22:06.111Z",
+      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787401326106_t2ivw",
+      "timestamp": "2026-08-22T12:22:06.106Z",
+      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
+      "type": "warning"
     }
   ],
   "activeDemoVersion": 1

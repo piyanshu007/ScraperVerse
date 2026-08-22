@@ -165,7 +165,39 @@ Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
 ---
 
-## 🧪 E2E Verification Tests
+## Collector Setup via Bright Data CLI
+
+The Scraper Studio collector used by WebPulse AI was created and configured using the official **Bright Data CLI**:
+
+```bash
+# Step 1 — Authenticate
+npx -p @brightdata/cli bdata login
+
+# Step 2 — Create the scraper from the target URL
+npx -p @brightdata/cli bdata scraper create <TARGET_URL> "product name, price, rating, availability and discount"
+
+# Step 3 — Run it to verify output
+npx -p @brightdata/cli bdata scraper run <COLLECTOR_ID> <TARGET_URL>
+
+# Step 4 — If the site changes, heal the scraper
+npx -p @brightdata/cli bdata scraper heal <COLLECTOR_ID> "describe what broke"
+npx -p @brightdata/cli bdata scraper approve <COLLECTOR_ID>
+```
+
+The returned **Collector ID** (format: `c_*`) is stored as `BRIGHTDATA_COLLECTOR_ID` in `.env`.
+
+WebPulse uses this same ID at runtime to trigger runs programmatically — equivalent to `bdata scraper run`, but driven by the dashboard automatically, with self-healing on top.
+
+```
+bdata scraper create  →  BRIGHTDATA_COLLECTOR_ID in .env
+                      →  WebPulse POST /dca/trigger?collector=<ID>
+                      →  WebPulse GET  /dca/dataset?id=<COLLECTION_ID>
+                      →  Schema validation + auto self-healing if degraded
+```
+
+---
+
+## E2E Verification Tests
 
 To verify the selector repair flow locally without hitting API limits, run the automated E2E test script:
 ```bash

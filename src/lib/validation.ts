@@ -43,7 +43,15 @@ export function validateRecord(record: Record<string, any>, schema: SchemaConfig
 
     // Check type
     if (config.type === 'number') {
-      const numVal = Number(val);
+      let numVal = Number(val);
+      if (isNaN(numVal) && typeof val === 'string') {
+        const cleaned = val.replace(/,/g, '');
+        const match = cleaned.match(/[\d.]+/);
+        if (match) {
+          numVal = parseFloat(match[0]);
+        }
+      }
+
       if (isNaN(numVal)) {
         errors[field] = 'Must be a number';
         isValid = false;
@@ -71,6 +79,28 @@ export function validateRecord(record: Record<string, any>, schema: SchemaConfig
 }
 
 export function validateDataset(records: Record<string, any>[], schema: SchemaConfig): ValidationResult {
+  // Normalize numeric fields in the incoming records first so they are saved correctly in db and validate correctly!
+  for (const record of records) {
+    for (const [field, config] of Object.entries(schema)) {
+      if (config.type === 'number' && record[field] !== undefined && record[field] !== null && record[field] !== '') {
+        const val = record[field];
+        if (typeof val !== 'number') {
+          let numVal = Number(val);
+          if (isNaN(numVal) && typeof val === 'string') {
+            const cleaned = val.replace(/,/g, '');
+            const match = cleaned.match(/[\d.]+/);
+            if (match) {
+              numVal = parseFloat(match[0]);
+            }
+          }
+          if (!isNaN(numVal)) {
+            record[field] = numVal;
+          }
+        }
+      }
+    }
+  }
+
   const totalRecords = records.length;
   let validRecordsCount = 0;
   
@@ -147,7 +177,7 @@ export function validateDataset(records: Record<string, any>[], schema: SchemaCo
 
     if (config.required && failureRate > 0) {
       failedFields.push(field);
-    } else if (!config.required && status.missingCount === totalRecords) {
+    } else if (!config.required && (status.missingCount + status.invalidTypeCount + status.outOfRangeCount) === totalRecords) {
       // Optional field completely missing points to a broken selector
       failedFields.push(field);
     }

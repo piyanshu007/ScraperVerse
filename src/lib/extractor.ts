@@ -90,6 +90,11 @@ export function extractData(
       const cleanElement = element.clone();
       cleanElement.find('script, style').remove();
       const textVal = cleanElement.text().trim();
+      if (fieldName === 'price' && textVal.length > 20) continue;
+      if (fieldName === 'name' && textVal.length > 200) continue;
+      if (fieldName === 'rating' && textVal.length > 30) continue;
+      if (fieldName === 'discount' && textVal.length > 40) continue;
+      if (fieldName === 'availability' && textVal.length > 60) continue;
 
       if (fieldName === 'price') {
         let foundPrice = false;
@@ -169,8 +174,123 @@ export function extractData(
         }
       } else if (fieldName === 'availability') {
         let cleanVal = textVal.split('\n').map(s => s.trim()).filter(Boolean)[0] || '';
-        if (cleanVal.length > 80) {
-          cleanVal = cleanVal.substring(0, 80).trim() + '...';
+
+        // ── Variation swatch parsing ─────────────────────────────────────────
+        // Always scan for colour/size swatches — show per-variant stock status
+        // regardless of whether the main text is generic or specific.
+        // Selectors cover Amazon, common Shopify/WooCommerce variation widgets.
+        const swatchSelectors = [
+          // Amazon
+          '#variation_color_name li',
+          '#variation_size_name li',
+          '#variation_style_name li',
+          '.inline-twister-row-content li',
+          '.inline-twister-swatch',
+          // Generic e-commerce colour/size swatches
+          '.swatch-element',
+          '.color-swatch',
+          '.size-swatch',
+          '.swatches li',
+          '.swatches .swatch',
+          '.variants li',
+          '.product-variants li',
+          '[data-variant-id]',
+          // WooCommerce
+          '.variable-item',
+          '.woocommerce-variation-add-to-cart .variations tr',
+        ];
+
+        const variations: { name: string; inStock: boolean }[] = [];
+        const seenNames = new Set<string>();
+
+        try {
+          $(el).find(swatchSelectors.join(', ')).each((_, swatch) => {
+            if (variations.length >= 50) return; // cap at 50 to prevent OOM
+            const $sw = $(swatch);
+
+            // Skip nested swatches (already counted via parent)
+            if ($sw.parents(swatchSelectors.join(', ')).length > 0) return;
+
+            // Resolve display name: image alt > title attr > data attributes > text
+            let name = (
+              $sw.find('img').first().attr('alt') ||
+              $sw.attr('title') ||
+              $sw.attr('data-value') ||
+              $sw.attr('aria-label') ||
+              $sw.text()
+            )?.trim() || '';
+
+            // Strip common boilerplate phrases
+            name = name
+              .replace(/click to select/gi, '')
+              .replace(/select/gi, '')
+              .replace(/click to/gi, '')
+              .replace(/\s+/g, ' ')
+              .trim();
+
+            if (!name || seenNames.has(name.toLowerCase())) return;
+            seenNames.add(name.toLowerCase());
+
+            // Determine stock status from class names and aria attributes
+            const cls = ($sw.attr('class') || '').toLowerCase();
+            const ariaDisabled = $sw.attr('aria-disabled');
+            const ariaLabel = ($sw.attr('aria-label') || '').toLowerCase();
+
+            const isOutOfStock =
+              cls.includes('outofstock') ||
+              cls.includes('out-of-stock') ||
+              cls.includes('unavailable') ||
+              cls.includes('inactive') ||
+              cls.includes('disabled') ||
+              cls.includes('soldout') ||
+              cls.includes('sold-out') ||
+              ariaDisabled === 'true' ||
+              ariaLabel.includes('out of stock') ||
+              ariaLabel.includes('unavailable') ||
+              ariaLabel.includes('sold out');
+
+            variations.push({ name, inStock: !isOutOfStock });
+          });
+        } catch {
+          // Swallowed — swatch scan is best-effort and must not crash extraction
+        }
+
+        if (variations.length > 0) {
+          const inStockVars = variations.filter(v => v.inStock).map(v => v.name);
+          const outOfStockVars = variations.filter(v => !v.inStock).map(v => v.name);
+
+          let variationStatus = '';
+          if (inStockVars.length > 0) variationStatus += `In Stock: ${inStockVars.join(', ')}`;
+          if (outOfStockVars.length > 0) {
+            if (variationStatus) variationStatus += ' | ';
+            variationStatus += `Out of Stock: ${outOfStockVars.join(', ')}`;
+          }
+
+          // Replace generic/empty availability text with the detailed variation status
+          const isGeneric = !cleanVal ||
+            /see all|options|buying options|sellers|available from|check options/i.test(cleanVal);
+
+          if (isGeneric) {
+            cleanVal = variationStatus || cleanVal;
+          } else {
+            // Existing text is meaningful (e.g. "In Stock") — append variation detail
+            cleanVal = `${cleanVal} (${variationStatus})`;
+          }
+        }
+
+        // Cap final string to avoid extremely long cells in the data table
+        // Normalize availability text to clean 'In Stock' / 'Out of Stock'
+        if (cleanVal) {
+          const lower = cleanVal.toLowerCase();
+          if (lower.includes('out of stock') || lower.includes('sold out') || lower.includes('unavailable') || lower.includes('sold-out')) {
+            cleanVal = 'Out of Stock';
+          } else {
+            cleanVal = 'In Stock';
+          }
+        }
+
+        if (cleanVal.length > 200) {
+          cleanVal = cleanVal.substring(0, 200).trim() + '...';
         }
         record[fieldName] = cleanVal;
       } else if (fieldName === 'discount') {

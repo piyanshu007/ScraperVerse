@@ -81,25 +81,42 @@ const DEFAULT_STATE: DatabaseState = {
   activeDemoVersion: 1,
 };
 
+let memoryCache: DatabaseState | null = (global as any).__dbCache || null;
+
 export function readDb(): DatabaseState {
+  if (memoryCache) {
+    return memoryCache;
+  }
   try {
     if (!fs.existsSync(DB_PATH)) {
-      fs.writeFileSync(DB_PATH, JSON.stringify(DEFAULT_STATE, null, 2), 'utf-8');
-      return DEFAULT_STATE;
+      try {
+        fs.writeFileSync(DB_PATH, JSON.stringify(DEFAULT_STATE, null, 2), 'utf-8');
+      } catch (writeError) {
+        console.warn('Filesystem read-only, initializing in memory:', writeError);
+      }
+      memoryCache = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      (global as any).__dbCache = memoryCache;
+      return memoryCache!;
     }
     const content = fs.readFileSync(DB_PATH, 'utf-8');
-    return JSON.parse(content);
+    memoryCache = JSON.parse(content);
+    (global as any).__dbCache = memoryCache;
+    return memoryCache!;
   } catch (error) {
     console.error('Error reading DB:', error);
-    return DEFAULT_STATE;
+    memoryCache = JSON.parse(JSON.stringify(DEFAULT_STATE));
+    (global as any).__dbCache = memoryCache;
+    return memoryCache!;
   }
 }
 
 export function writeDb(state: DatabaseState): void {
+  memoryCache = state;
+  (global as any).__dbCache = memoryCache;
   try {
     fs.writeFileSync(DB_PATH, JSON.stringify(state, null, 2), 'utf-8');
   } catch (error) {
-    console.error('Error writing DB:', error);
+    console.warn('Filesystem read-only, saved state in memory:', error);
   }
 }
 

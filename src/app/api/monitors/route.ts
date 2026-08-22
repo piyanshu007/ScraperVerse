@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readDb, writeDb, logActivity, Monitor, Scraper } from '@/lib/db';
 
+declare global {
+  // eslint-disable-next-line no-var
+  var _demoVersion: 1 | 2;
+}
+
 export async function GET() {
   const db = readDb();
-  return NextResponse.json(db);
+  return NextResponse.json({
+    ...db,
+    activeDemoVersion: global._demoVersion ?? 1,
+  });
 }
 
 export async function POST(request: NextRequest) {

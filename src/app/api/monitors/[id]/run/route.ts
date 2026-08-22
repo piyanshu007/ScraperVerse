@@ -106,7 +106,7 @@ export async function POST(
     // Validate the scraped data (if Bright Data succeeded but maybe needs healing)
     const validationReport = validateDataset(scrapeResult.records, monitor.schema);
 
-    // Scenario A: Extraction is healthy
+    // Scenario A: Extraction is healthy and contains records
     if (validationReport.isValid && scrapeResult.records.length > 0) {
       const successRun: ExtractionRun = {
         id: runId,
@@ -170,13 +170,62 @@ export async function POST(
       }
     }
 
-    const healingResult = await healScraper(monitorId, rawHtml, config, monitor.schema);
+    const healingResult = await healScraper(monitorId, rawHtml, config, monitor.schema, scrapeResult.records);
 
     if (healingResult.success) {
       if (healingResult.events.length > 0) {
         // Re-run extraction locally on the saved HTML using the repaired configuration
-        const recoveredRecords = extractData(rawHtml, healingResult.repairedConfig);
+        // If rawHtml is empty, extract from the HTML records if available
+        let testHtml = rawHtml;
+        if (!testHtml && scrapeResult.records.length > 0) {
+          for (const rec of scrapeResult.records) {
+            const h = rec['_html'] ?? rec['html'] ?? rec.data?.['_html'] ?? rec.data?.['html'];
+            if (typeof h === 'string' && h.trim().length > 100) {
+              testHtml = h;
+              break;
+            }
+          }
+        }
+
+        const recoveredRecords = testHtml ? extractData(testHtml, healingResult.repairedConfig) : [];
         const recoveryValidation = validateDataset(recoveredRecords, monitor.schema);
+
+        // If the healed extraction yields 0 records, it's not a successful recovery!
+        if (recoveredRecords.length === 0) {
+          const failedHealingRun: ExtractionRun = {
+            id: runId,
+            monitorId,
+            timestamp,
+            status: 'FAILED',
+            recordsCount: 0,
+            collectionId: scrapeResult.collectionId,
+          };
+
+          const freshDb = readDb();
+          freshDb.runs.unshift(failedHealingRun);
+          
+          const freshScraper = freshDb.scrapers.find(s => s.monitorId === monitorId);
+          if (freshScraper) {
+            freshScraper.lastRun = timestamp;
+            freshScraper.status = 'FAILED';
+            
+            const runs = freshDb.runs.filter(r => r.monitorId === monitorId);
+            const successRuns = runs.filter(r => r.status !== 'FAILED');
+            freshScraper.successRate = Math.round((successRuns.length / runs.length) * 100);
+          }
+
+          writeDb(freshDb);
+          logActivity(`Self-healing completed but recovered 0 records for "${monitor.name}". Run marked as FAILED.`, 'error');
+
+          return NextResponse.json({
+            run: failedHealingRun,
+            scraper: freshScraper || scraper,
+            records: [],
+            validation: recoveryValidation,
+            selfHealingAttempted: true,
+            selfHealingLog: healingResult,
+          });
+        }
 
         const recoveredRun: ExtractionRun = {
           id: runId,
@@ -229,6 +278,43 @@ export async function POST(
       } else {
         // success is true, but no selectors changed. Means either everything was already valid
         // or optional fields couldn't be resolved (which is fine). Save original records.
+        // BUT if original records count is 0, this is a failure!
+        if (scrapeResult.records.length === 0) {
+          const failedHealingRun: ExtractionRun = {
+            id: runId,
+            monitorId,
+            timestamp,
+            status: 'FAILED',
+            recordsCount: 0,
+            collectionId: scrapeResult.collectionId,
+          };
+
+          const freshDb = readDb();
+          freshDb.runs.unshift(failedHealingRun);
+          
+          const freshScraper = freshDb.scrapers.find(s => s.monitorId === monitorId);
+          if (freshScraper) {
+            freshScraper.lastRun = timestamp;
+            freshScraper.status = 'FAILED';
+            
+            const runs = freshDb.runs.filter(r => r.monitorId === monitorId);
+            const successRuns = runs.filter(r => r.status !== 'FAILED');
+            freshScraper.successRate = Math.round((successRuns.length / runs.length) * 100);
+          }
+
+          writeDb(freshDb);
+          logActivity(`Self-healing aborted: no fields to repair and original dataset is empty. Run marked as FAILED.`, 'error');
+
+          return NextResponse.json({
+            run: failedHealingRun,
+            scraper: freshScraper || scraper,
+            records: [],
+            validation: validationReport,
+            selfHealingAttempted: true,
+            selfHealingLog: healingResult,
+          });
+        }
+
         const successRun: ExtractionRun = {
           id: runId,
           monitorId,
@@ -299,8 +385,8 @@ export async function POST(
       freshScraper.status = 'FAILED';
       
       const runs = freshDb.runs.filter(r => r.monitorId === monitorId);
-      const successRuns = runs.filter(r => r.status !== 'FAILED');
-      freshScraper.successRate = Math.round((successRuns.length / runs.length) * 100);
+      const successRuns = freshDb.runs.filter(r => r.status !== 'FAILED');
+      freshScraper.successRate = Math.round((successRuns.length / freshDb.runs.length) * 100);
     }
 
     writeDb(freshDb);
