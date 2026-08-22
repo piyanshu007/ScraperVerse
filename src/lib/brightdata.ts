@@ -181,6 +181,7 @@ export async function scrapeWithBrightData(
       }
 
       if (Array.isArray(json)) {
+        console.log('[BrightData] Raw JSON from collector:', JSON.stringify(json));
         const records = processRecords(json);
         console.log(`[BrightData] Done — ${json.length} raw → ${records.length} valid records.`);
         return {
@@ -203,6 +204,7 @@ export async function scrapeWithBrightData(
         .map(line => { try { return JSON.parse(line); } catch { return null; } })
         .filter(Boolean);
 
+      console.log('[BrightData] Raw NDJSON from collector:', JSON.stringify(rawRecords));
       const records = processRecords(rawRecords);
       console.log(`[BrightData] Done (NDJSON) — ${rawRecords.length} raw → ${records.length} valid records.`);
       return {
