@@ -76,11 +76,15 @@ export function extractData(
       let element;
       try {
         element = $(el).find(selector);
+        // Fallback: If container-relative search returns nothing, but it is an ID selector, try document-level
+        if ((!element || element.length === 0) && selector.includes('#')) {
+          element = $(selector);
+        }
       } catch (e) {
         // Ignore invalid CSS selector syntax errors
         continue;
       }
-      if (element.length === 0) {
+      if (!element || element.length === 0) {
         continue;
       }
 

@@ -401,7 +401,7 @@ export default function Home() {
   const failedRuns = runs.filter(r => r.status === 'FAILED').length;
   const totalRecords = scrapers.reduce((a, s) => a + s.totalRecordsCollected, 0);
   const avgPrice = records.length
-    ? Math.round(records.reduce((a, r) => a + (Number(r.data.price) || 0), 0) / records.length)
+    ? Math.round(records.reduce((a, r) => a + (Number(r.data?.price) || 0), 0) / records.length)
     : 0;
   const getCurrencySymbol = (recMonitorId?: string) => {
     const mon = monitors.find(m => m.id === recMonitorId);
@@ -414,7 +414,7 @@ export default function Home() {
   };
   const latestRecord = records[0];
   const activeCurrencySymbol = latestRecord ? getCurrencySymbol(latestRecord.monitorId) : '₹';
-  const outOfStock = records.filter(r => r.data.availability?.toLowerCase().includes('out')).length;
+  const outOfStock = records.filter(r => r.data?.availability?.toLowerCase().includes('out')).length;
 
   // Resolve discount value from any known alias field in the record data
   const DISCOUNT_ALIASES = [
@@ -437,7 +437,7 @@ export default function Home() {
     return '';
   };
 
-  const discounted = records.filter(r => !!getDiscount(r.data)).length;
+  const discounted = records.filter(r => !!getDiscount(r.data || {})).length;
 
   // ═══════════════════════════════════════════ LANDING ═══════════════════════
   if (!showDashboard) {
