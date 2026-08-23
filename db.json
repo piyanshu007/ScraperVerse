@@ -38,12 +38,58 @@
         }
       },
       "createdAt": "2026-08-22T10:31:12.402Z"
+    },
+    {
+      "id": "mon_1787509022028",
+      "name": "books",
+      "url": "https://books.toscrape.com/",
+      "selectors": {
+        "container": "article.product_pod",
+        "name": "h3 a",
+        "price": ".price_color",
+        "rating": ".star-rating",
+        "availability": ".availability",
+        "discount": ""
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-23T18:17:02.056Z"
     }
   ],
   "scrapers": [
     {
       "id": "scr_test_123",
       "monitorId": "mon_test_123",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 0
+    },
+    {
+      "id": "scr_1787509022056",
+      "monitorId": "mon_1787509022028",
       "status": "HEALTHY",
       "successRate": 100,
       "totalRecordsCollected": 0
@@ -374,6 +420,156 @@
     }
   ],
   "activityEvents": [
+    {
+      "id": "act_1787509024508_pcd1s",
+      "timestamp": "2026-08-23T18:17:04.508Z",
+      "message": "Starting extraction run for monitor: \"books\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787509022060_90zs5",
+      "timestamp": "2026-08-23T18:17:02.060Z",
+      "message": "Created monitor: \"books\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
+    {
+      "id": "act_1787508885737_8ql6y",
+      "timestamp": "2026-08-23T18:14:45.737Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"book\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787508885695_ntcyk",
+      "timestamp": "2026-08-23T18:14:45.696Z",
+      "message": "Self-healing saved. Final confidence: 100%.",
+      "type": "success"
+    },
+    {
+      "id": "act_1787508885660_22afe",
+      "timestamp": "2026-08-23T18:14:45.660Z",
+      "message": "Field \"discount\" repaired: \".badge\" → \".badge\" (score: 35%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787508884532_jc95y",
+      "timestamp": "2026-08-23T18:14:44.532Z",
+      "message": "Generating candidates for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508884527_jkf47",
+      "timestamp": "2026-08-23T18:14:44.527Z",
+      "message": "Healing broken fields: discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508884468_4nm82",
+      "timestamp": "2026-08-23T18:14:44.468Z",
+      "message": "Self-healing initiated for monitor: mon_1787508706775",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508884466_7duyn",
+      "timestamp": "2026-08-23T18:14:44.466Z",
+      "message": "Extraction validation failed for \"book\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508884464_cbklf",
+      "timestamp": "2026-08-23T18:14:44.464Z",
+      "message": "HTML parsed successfully — 20 records extracted.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508882390_b5cnz",
+      "timestamp": "2026-08-23T18:14:42.390Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508878993_7irrd",
+      "timestamp": "2026-08-23T18:14:38.993Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://books.toscrape.com/",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508858277_vglfg",
+      "timestamp": "2026-08-23T18:14:18.277Z",
+      "message": "Starting extraction run for monitor: \"book\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508727743_7j2hb",
+      "timestamp": "2026-08-23T18:12:07.743Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"book\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787508727704_yodoc",
+      "timestamp": "2026-08-23T18:12:07.704Z",
+      "message": "Self-healing saved. Final confidence: 100%.",
+      "type": "success"
+    },
+    {
+      "id": "act_1787508727687_fj5fz",
+      "timestamp": "2026-08-23T18:12:07.687Z",
+      "message": "Field \"discount\" repaired: \"\" → \".badge\" (score: 35%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787508727067_7i2jx",
+      "timestamp": "2026-08-23T18:12:07.067Z",
+      "message": "Generating candidates for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508727066_2f5u0",
+      "timestamp": "2026-08-23T18:12:07.066Z",
+      "message": "Healing broken fields: discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508727036_xyon6",
+      "timestamp": "2026-08-23T18:12:07.036Z",
+      "message": "Self-healing initiated for monitor: mon_1787508706775",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508727034_vymf1",
+      "timestamp": "2026-08-23T18:12:07.034Z",
+      "message": "Extraction validation failed for \"book\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508727032_qy73u",
+      "timestamp": "2026-08-23T18:12:07.032Z",
+      "message": "HTML parsed successfully — 20 records extracted.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508725481_wwbuv",
+      "timestamp": "2026-08-23T18:12:05.481Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508723455_6ua7u",
+      "timestamp": "2026-08-23T18:12:03.455Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://books.toscrape.com/",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508709588_9ghe3",
+      "timestamp": "2026-08-23T18:11:49.588Z",
+      "message": "Starting extraction run for monitor: \"book\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508706824_9metw",
+      "timestamp": "2026-08-23T18:11:46.825Z",
+      "message": "Created monitor: \"book\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
     {
       "id": "act_1787508534692_1j5i4",
       "timestamp": "2026-08-23T18:08:54.692Z",

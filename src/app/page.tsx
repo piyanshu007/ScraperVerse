@@ -836,10 +836,10 @@ export default function Home() {
                           <table className="data-table">
                             <thead><tr><th>Name</th><th>Status</th><th>Integrity</th><th>Records</th><th>Action</th></tr></thead>
                             <tbody>
-                              {monitors.map(mon => {
+                              {monitors.map((mon, idx) => {
                                 const scr = scrapers.find(s => s.monitorId === mon.id);
                                 return (
-                                  <tr key={mon.id}>
+                                  <tr key={mon.id || idx}>
                                     <td style={{ fontWeight: 700 }}>{mon.name}</td>
                                     <td><StatusBadge status={runningId === mon.id ? 'RUNNING' : (scr?.status || 'HEALTHY')} /></td>
                                     <td style={{ color: 'var(--green)', fontWeight: 800 }}>{scr?.successRate ?? 100}%</td>
@@ -868,8 +868,8 @@ export default function Home() {
                         <div style={{ overflowY: 'auto', flex: 1, maxHeight: '280px', display: 'flex', flexDirection: 'column', gap: '0' }}>
                           {activityEvents.length === 0 ? (
                             <div style={{ padding: '30px', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--white-muted)' }}>No activity yet.</div>
-                          ) : activityEvents.map(ev => (
-                            <div key={ev.id} style={{ padding: '10px 14px', borderBottom: '1px solid var(--border-subtle)' }}>
+                          ) : activityEvents.map((ev, idx) => (
+                            <div key={ev.id || idx} style={{ padding: '10px 14px', borderBottom: '1px solid var(--border-subtle)' }}>
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', overflow: 'hidden', marginBottom: '3px' }}>
                                 <span style={{
                                   fontFamily: 'var(--font-mono)', fontSize: '9px', fontWeight: 800, textTransform: 'uppercase',
@@ -975,10 +975,10 @@ export default function Home() {
                       <div className="card" style={{ padding: '60px', textAlign: 'center', border: '2px dashed var(--border-subtle)', boxShadow: 'none', fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--white-muted)' }}>
                         No monitors configured. Create one using the form.
                       </div>
-                    ) : monitors.map(mon => {
+                    ) : monitors.map((mon, idx) => {
                       const scr = scrapers.find(s => s.monitorId === mon.id);
                       return (
-                        <div key={mon.id} className="card card-green">
+                        <div key={mon.id || idx} className="card card-green">
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', overflow: 'hidden', marginBottom: '14px' }}>
                             <div>
                               <div style={{ fontWeight: 900, fontSize: '16px', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', marginBottom: '4px' }}>{mon.name}</div>
@@ -1061,8 +1061,8 @@ export default function Home() {
                         <table className="data-table">
                           <thead><tr><th>Field</th><th>Previous Selector</th><th>Repaired Selector</th><th>Confidence</th><th>Time</th><th>Status</th></tr></thead>
                           <tbody>
-                            {repairEvents.map(ev => (
-                              <tr key={ev.id}>
+                            {repairEvents.map((ev, idx) => (
+                              <tr key={ev.id || idx}>
                                 <td style={{ color: 'var(--white)', fontWeight: 800 }}>{ev.fieldName}</td>
                                 <td style={{ color: 'var(--red)' }}>{ev.previousSelector}</td>
                                 <td style={{ color: 'var(--green)', fontWeight: 800 }}>{ev.repairedSelector}</td>
@@ -1092,8 +1092,8 @@ export default function Home() {
                       <table className="data-table">
                         <thead><tr><th>Product Name</th><th>Price</th><th>Rating</th><th>Availability</th><th>Discount</th><th>Scraped At</th></tr></thead>
                         <tbody>
-                          {records.map(rec => (
-                            <tr key={rec.id}>
+                          {records.map((rec, idx) => (
+                            <tr key={rec.id || idx}>
                               <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data?.name || '—'}</td>
                               <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data?.price || '—'}</td>
                               <td>{rec.data?.rating ? `${rec.data.rating} / 5` : '—'}</td>
