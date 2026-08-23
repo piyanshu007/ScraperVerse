@@ -40,7 +40,7 @@
       "createdAt": "2026-08-22T10:31:12.402Z"
     },
     {
-      "id": "mon_1787509022028",
+      "id": "mon_1787509159914",
       "name": "books",
       "url": "https://books.toscrape.com/",
       "selectors": {
@@ -49,7 +49,7 @@
         "price": ".price_color",
         "rating": ".star-rating",
         "availability": ".availability",
-        "discount": ""
+        "discount": ".badge"
       },
       "schema": {
         "name": {
@@ -76,7 +76,7 @@
           "required": false
         }
       },
-      "createdAt": "2026-08-23T18:17:02.056Z"
+      "createdAt": "2026-08-23T18:19:19.939Z"
     }
   ],
   "scrapers": [
@@ -88,16 +88,332 @@
       "totalRecordsCollected": 0
     },
     {
-      "id": "scr_1787509022056",
-      "monitorId": "mon_1787509022028",
+      "id": "scr_1787509159939",
+      "monitorId": "mon_1787509159914",
       "status": "HEALTHY",
       "successRate": 100,
-      "totalRecordsCollected": 0
+      "totalRecordsCollected": 20,
+      "lastRun": "2026-08-23T18:19:36.252Z",
+      "lastSuccessfulRun": "2026-08-23T18:19:36.252Z"
     }
   ],
-  "runs": [],
-  "records": [],
+  "runs": [
+    {
+      "id": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "timestamp": "2026-08-23T18:19:36.252Z",
+      "status": "RECOVERED",
+      "recordsCount": 20,
+      "collectionId": "j_mt64sx6n3y0ml5c02"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_1787509180549_hk400",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "It's Only the Himalayas",
+        "price": 45.17,
+        "rating": 2,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_avj9d",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Libertarianism for Beginners",
+        "price": 51.33,
+        "rating": 2,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_0rynp",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Mesaerion: The Best Science ...",
+        "price": 37.59,
+        "rating": 1,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_411dp",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Olio",
+        "price": 23.88,
+        "rating": 1,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_6p82d",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Our Band Could Be ...",
+        "price": 57.25,
+        "rating": 3,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_p1g80",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Rip it Up and ...",
+        "price": 35.02,
+        "rating": 5,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_9v5vn",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Scott Pilgrim's Precious Little ...",
+        "price": 52.29,
+        "rating": 5,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_ac0qm",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Set Me Free",
+        "price": 17.46,
+        "rating": 5,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_i76qh",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Shakespeare's Sonnets",
+        "price": 20.66,
+        "rating": 4,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_wwaph",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Starving Hearts (Triangular Trade ...",
+        "price": 13.99,
+        "rating": 2,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_ouqwe",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "The Black Maria",
+        "price": 52.15,
+        "rating": 1,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_jxayr",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "The Boys in the ...",
+        "price": 22.6,
+        "rating": 4,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_kvtg5",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "The Coming Woman: A ...",
+        "price": 17.93,
+        "rating": 3,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_9legh",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "The Dirty Little Secrets ...",
+        "price": 33.34,
+        "rating": 4,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_6etpn",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "The Requiem Red",
+        "price": 22.65,
+        "rating": 1,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_hafw8",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Sapiens: A Brief History ...",
+        "price": 54.23,
+        "rating": 5,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_3pgbr",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Sharp Objects",
+        "price": 47.82,
+        "rating": 4,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_kjobi",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Soumission",
+        "price": 50.1,
+        "rating": 1,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_zj302",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "Tipping the Velvet",
+        "price": 53.74,
+        "rating": 1,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    },
+    {
+      "id": "rec_1787509180549_zi0s2",
+      "runId": "run_1787509176252",
+      "monitorId": "mon_1787509159914",
+      "data": {
+        "name": "A Light in the ...",
+        "price": 51.77,
+        "rating": 3,
+        "availability": "In stock"
+      },
+      "timestamp": "2026-08-23T18:19:36.252Z"
+    }
+  ],
   "repairEvents": [
+    {
+      "id": "rep_1787509180535_mvk8c",
+      "monitorId": "mon_1787509159914",
+      "timestamp": "2026-08-23T18:19:40.535Z",
+      "fieldName": "discount",
+      "previousSelector": "",
+      "repairedSelector": ".badge",
+      "recordsBefore": 20,
+      "recordsAfter": 0,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".badge",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": ".a-badge-text",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": ".savingsPercentage",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "#dealprice_savings",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "#regularprice_savings .a-color-price",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": ".reinventPriceSavingsPercentageMargin",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"off\"]",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"save\"]",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"deal\"]",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"sale\"]",
+          "validCount": 0,
+          "score": 35
+        }
+      ]
+    },
     {
       "id": "rep_1787394672439_4iwpq",
       "monitorId": "mon_test_123",
@@ -420,6 +736,138 @@
     }
   ],
   "activityEvents": [
+    {
+      "id": "act_1787509180551_893eo",
+      "timestamp": "2026-08-23T18:19:40.551Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"books\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787509180536_y19du",
+      "timestamp": "2026-08-23T18:19:40.536Z",
+      "message": "Self-healing saved. Final confidence: 100%.",
+      "type": "success"
+    },
+    {
+      "id": "act_1787509180528_2chi3",
+      "timestamp": "2026-08-23T18:19:40.528Z",
+      "message": "Field \"discount\" repaired: \"\" → \".badge\" (score: 35%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787509180031_68bh2",
+      "timestamp": "2026-08-23T18:19:40.031Z",
+      "message": "Generating candidates for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787509180030_sya8v",
+      "timestamp": "2026-08-23T18:19:40.030Z",
+      "message": "Healing broken fields: discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509179993_6tohn",
+      "timestamp": "2026-08-23T18:19:39.993Z",
+      "message": "Self-healing initiated for monitor: mon_1787509159914",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509179992_9o4un",
+      "timestamp": "2026-08-23T18:19:39.992Z",
+      "message": "Extraction validation failed for \"books\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509179990_t3w55",
+      "timestamp": "2026-08-23T18:19:39.990Z",
+      "message": "HTML parsed successfully — 20 records extracted.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787509178717_bblkg",
+      "timestamp": "2026-08-23T18:19:38.717Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509176252_j3hoc",
+      "timestamp": "2026-08-23T18:19:36.252Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://books.toscrape.com/",
+      "type": "info"
+    },
+    {
+      "id": "act_1787509162341_jq6qi",
+      "timestamp": "2026-08-23T18:19:22.341Z",
+      "message": "Starting extraction run for monitor: \"books\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787509159943_33qbu",
+      "timestamp": "2026-08-23T18:19:19.943Z",
+      "message": "Created monitor: \"books\" for URL: https://books.toscrape.com/",
+      "type": "success"
+    },
+    {
+      "id": "act_1787509043782_ebs28",
+      "timestamp": "2026-08-23T18:17:23.782Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"books\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787509043713_4wkh0",
+      "timestamp": "2026-08-23T18:17:23.713Z",
+      "message": "Self-healing saved. Final confidence: 100%.",
+      "type": "success"
+    },
+    {
+      "id": "act_1787509043696_kkfg6",
+      "timestamp": "2026-08-23T18:17:23.696Z",
+      "message": "Field \"discount\" repaired: \"\" → \".badge\" (score: 35%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787509041764_hforn",
+      "timestamp": "2026-08-23T18:17:21.764Z",
+      "message": "Generating candidates for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787509041758_k5wmu",
+      "timestamp": "2026-08-23T18:17:21.759Z",
+      "message": "Healing broken fields: discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509041596_adqkj",
+      "timestamp": "2026-08-23T18:17:21.596Z",
+      "message": "Self-healing initiated for monitor: mon_1787509022028",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509041594_4rc5c",
+      "timestamp": "2026-08-23T18:17:21.594Z",
+      "message": "Extraction validation failed for \"books\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509041590_aj02s",
+      "timestamp": "2026-08-23T18:17:21.590Z",
+      "message": "HTML parsed successfully — 20 records extracted.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787509040299_0v3x3",
+      "timestamp": "2026-08-23T18:17:20.299Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787509038173_n84i1",
+      "timestamp": "2026-08-23T18:17:18.173Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://books.toscrape.com/",
+      "type": "info"
+    },
     {
       "id": "act_1787509024508_pcd1s",
       "timestamp": "2026-08-23T18:17:04.508Z",
@@ -886,90 +1334,6 @@
       "id": "act_1787467247048_xoiy5",
       "timestamp": "2026-08-23T06:40:47.048Z",
       "message": "Created monitor: \"Lamp\" for URL: https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
-      "type": "success"
-    },
-    {
-      "id": "act_1787394812253_2tyeq",
-      "timestamp": "2026-08-22T10:33:32.253Z",
-      "message": "Self-healing failed to recover extraction for \"iphone\".",
-      "type": "error"
-    },
-    {
-      "id": "act_1787394812252_mv907",
-      "timestamp": "2026-08-22T10:33:32.252Z",
-      "message": "Self-healing completed but did not result in a valid extraction schema. Changes discarded.",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787394812153_7tj4b",
-      "timestamp": "2026-08-22T10:33:32.153Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"discount\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787394808214_neb9w",
-      "timestamp": "2026-08-22T10:33:28.214Z",
-      "message": "Generating candidate selectors for field \"discount\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787394808213_liv83",
-      "timestamp": "2026-08-22T10:33:28.213Z",
-      "message": "Could not find a valid repair candidate for optional or required field \"availability\" (Required: false)",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787394804337_eqi53",
-      "timestamp": "2026-08-22T10:33:24.337Z",
-      "message": "Generating candidate selectors for field \"availability\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787394804336_t89ni",
-      "timestamp": "2026-08-22T10:33:24.336Z",
-      "message": "Field \"price\" successfully repaired: \"#corePriceDisplay_desktop_feature_div .a-price .a-offscreen\" -> \".celwidget\" (Score: 100%)",
-      "type": "success"
-    },
-    {
-      "id": "act_1787394801957_m0c0f",
-      "timestamp": "2026-08-22T10:33:21.957Z",
-      "message": "Generating candidate selectors for field \"price\"...",
-      "type": "info"
-    },
-    {
-      "id": "act_1787394801956_mral6",
-      "timestamp": "2026-08-22T10:33:21.956Z",
-      "message": "Detected broken fields: price, availability, discount",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787394801903_fpc4m",
-      "timestamp": "2026-08-22T10:33:21.903Z",
-      "message": "Self-healing initiated for monitor: mon_1787394774908",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787394801903_sdl3h",
-      "timestamp": "2026-08-22T10:33:21.903Z",
-      "message": "Extraction validation failed for \"iphone\". Initiating self-healing...",
-      "type": "warning"
-    },
-    {
-      "id": "act_1787394801903_yqehk",
-      "timestamp": "2026-08-22T10:33:21.903Z",
-      "message": "Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.",
-      "type": "info"
-    },
-    {
-      "id": "act_1787394779894_87h1x",
-      "timestamp": "2026-08-22T10:32:59.894Z",
-      "message": "Starting extraction run for monitor: \"iphone\"",
-      "type": "info"
-    },
-    {
-      "id": "act_1787394774909_t0r6z",
-      "timestamp": "2026-08-22T10:32:54.909Z",
-      "message": "Created monitor: \"iphone\" for URL: https://www.amazon.in/iPhone-17-Pro-Max-Promotion/dp/B0FQF331K6/ref=sr_1_2_sspa?crid=1QV6SZ7Q1JP9G&dib=eyJ2IjoiMSJ9.rMduK01d7EdABmFW0LOUrx9o1NUDRqTR_Ek4CgN-5unIB7IavA-PNO2yLMT-2HuJN-2LXTQxe2D6n47LzlEkxVbFeXlCHM3-VT24yzjyEE93cH5iAIC4kkZMaKOWBZ7kFFSAJ51_P726yRjiQzybAptCSh4vqeF4gzYjNk07s8hKpfkmc4QZMzg695vHTC6aa6Be0FSqNCXS1PaMfebHm0eOWXl6OcHCqXVSLvUaLnA.9voCkzebmnX9zJwJ9ExW2AkHLbTk1O3OOUktN18YdQA&dib_tag=se&keywords=iphone%2B17%2Bpro&qid=1787394279&sprefix=ipj%2Caps%2C344&sr=8-2-spons&aref=f0IlNXU6pG&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1",
       "type": "success"
     }
   ],

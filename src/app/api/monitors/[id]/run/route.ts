@@ -20,11 +20,21 @@ export async function POST(
     const useRealBrightData = body.useRealBrightData || false;
 
     const db = readDb();
-    const monitor = db.monitors.find(m => m.id === monitorId);
-    const scraper = db.scrapers.find(s => s.monitorId === monitorId);
+    let monitor = db.monitors.find(m => m.id === monitorId) || body.monitor;
+    let scraper = db.scrapers.find(s => s.monitorId === monitorId) || body.scraper;
 
-    if (!monitor || !scraper) {
-      return NextResponse.json({ error: 'Monitor or Scraper not found' }, { status: 404 });
+    if (!monitor) {
+      return NextResponse.json({ error: 'Monitor not found' }, { status: 404 });
+    }
+
+    if (!scraper) {
+      scraper = {
+        id: `scr_${Date.now()}`,
+        monitorId,
+        status: 'HEALTHY',
+        successRate: 100,
+        totalRecordsCollected: 0,
+      };
     }
 
     // Extract current configuration
