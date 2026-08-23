@@ -415,7 +415,29 @@ export default function Home() {
   const latestRecord = records[0];
   const activeCurrencySymbol = latestRecord ? getCurrencySymbol(latestRecord.monitorId) : '₹';
   const outOfStock = records.filter(r => r.data.availability?.toLowerCase().includes('out')).length;
-  const discounted  = records.filter(r => r.data.discount).length;
+
+  // Resolve discount value from any known alias field in the record data
+  const DISCOUNT_ALIASES = [
+    'discount', 'savings', 'saving', 'offer', 'deal', 'badge', 'promo', 'promotion',
+    'percentage_off', 'percentageOff', 'discount_percentage', 'discountPercentage',
+    'discount_amount', 'discountAmount', 'offer_text', 'offerText', 'save',
+    'coupon', 'sale_badge', 'saleBadge',
+  ];
+  const getDiscount = (data: Record<string, any>): string => {
+    for (const key of DISCOUNT_ALIASES) {
+      const v = data[key];
+      if (v !== undefined && v !== null && String(v).trim() !== '') return String(v).trim();
+    }
+    // Scan all keys for anything that looks like a discount (contains %, 'off', 'save')
+    for (const [key, v] of Object.entries(data)) {
+      if (DISCOUNT_ALIASES.includes(key)) continue; // already checked
+      const s = String(v ?? '').trim();
+      if (s && /(%|\boff\b|\bsave\b|\bdiscount\b)/i.test(s) && s.length < 50) return s;
+    }
+    return '';
+  };
+
+  const discounted = records.filter(r => !!getDiscount(r.data)).length;
 
   // ═══════════════════════════════════════════ LANDING ═══════════════════════
   if (!showDashboard) {
@@ -902,7 +924,7 @@ export default function Home() {
                               <td style={{ color: rec.data.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
                                 {rec.data.availability || '—'}
                               </td>
-                              <td style={{ color: '#facc15', fontWeight: 700 }}>{rec.data.discount || '—'}</td>
+                              <td style={{ color: '#facc15', fontWeight: 700 }}>{getDiscount(rec.data) || '—'}</td>
                               <td style={{ color: 'var(--white-muted)' }}>{new Date(rec.timestamp).toLocaleTimeString()}</td>
                             </tr>
                           ))}
