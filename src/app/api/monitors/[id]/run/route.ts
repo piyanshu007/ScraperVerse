@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readDb, writeDb, logActivity, ExtractionRun, ExtractionRecord } from '@/lib/db';
-import { scrapeWithBrightData } from '@/lib/brightdata';
+import { scrapeWithBrightData, fetchWithWebUnlocker } from '@/lib/brightdata';
 import { validateDataset } from '@/lib/validation';
 import { healScraper } from '@/lib/self-healing';
 import { extractData, fetchWithRedirect } from '@/lib/extractor';
@@ -38,34 +38,62 @@ export async function POST(
     const runId = `run_${Date.now()}`;
     const timestamp = new Date().toISOString();
 
-    // ── NATIVE FALLBACK FOR BRIGHT DATA FAILURES / TIMEOUTS ──
+    // ── 3-TIER FALLBACK STRATEGY ──────────────────────────────────────────────
+    // Tier 1: BrightData Scraper Studio collector (already ran above)
+    // Tier 2: BrightData Web Unlocker — works for ANY URL, bypasses bot detection
+    // Tier 3: Plain local fetch — last resort, may be blocked by major sites
     let rawHtml = scrapeResult.rawHtml;
     
-    // If Bright Data timed out (FAILED) or returned 0 records, try Native Fallback immediately
-    if (scrapeResult.status === 'FAILED' || (scrapeResult.records && scrapeResult.records.length === 0)) {
-      if (!rawHtml) {
+    const collectorFailed =
+      scrapeResult.status === 'FAILED' ||
+      !scrapeResult.records ||
+      scrapeResult.records.length === 0;
+
+    if (collectorFailed && !rawHtml) {
+      // ── Tier 2: BrightData Web Unlocker ──────────────────────────────────
+      let absoluteUrl = monitor.url;
+      if (monitor.url.startsWith('/')) {
+        const origin = request.nextUrl.origin || 'http://localhost:3000';
+        absoluteUrl = `${origin}${monitor.url}`;
+      }
+
+      logActivity(`Collector returned 0 records — trying BrightData Web Unlocker for ${absoluteUrl}`, 'info');
+      console.log(`[Tier2] Web Unlocker attempting: ${absoluteUrl}`);
+
+      const unlockerResult = await fetchWithWebUnlocker(absoluteUrl);
+
+      if (unlockerResult.html && unlockerResult.html.length > 500) {
+        rawHtml = unlockerResult.html;
+        console.log(`[Tier2] Web Unlocker succeeded — HTML length: ${rawHtml.length}`);
+        logActivity(`BrightData Web Unlocker fetched HTML (${rawHtml.length} bytes).`, 'info');
+      } else {
+        // ── Tier 3: Plain local fetch ─────────────────────────────────────
+        console.warn(`[Tier2] Web Unlocker failed (${unlockerResult.error}) — falling back to plain fetch (Tier 3)`);
+        logActivity(`Web Unlocker failed: ${unlockerResult.error || 'no HTML'}. Trying local fetch (may be blocked).`, 'warning');
         try {
-          let absoluteUrl = monitor.url;
-          if (monitor.url.startsWith('/')) {
-            const origin = request.nextUrl.origin || 'http://localhost:3000';
-            absoluteUrl = `${origin}${monitor.url}`;
-          }
           const htmlRes = await fetchWithRedirect(absoluteUrl);
           if (htmlRes.ok) {
             rawHtml = await htmlRes.text();
+            console.log(`[Tier3] Plain fetch succeeded — HTML length: ${rawHtml.length}`);
+          } else {
+            console.warn(`[Tier3] Plain fetch returned HTTP ${htmlRes.status}`);
           }
         } catch (e: any) {
-          console.error("Failed to fetch raw HTML for fallback:", e);
+          console.error('[Tier3] Plain fetch failed:', e.message);
         }
       }
 
+      // Parse the fetched HTML with our selector-based extractor
       if (rawHtml) {
         const fallbackRecords = extractData(rawHtml, config);
-        // If native fallback succeeds, merge it into scrapeResult to undergo validation and healing!
         if (fallbackRecords.length > 0) {
-          logActivity(`Bright Data failed, but WebPulse Native Fallback successfully retrieved page HTML and parsed elements.`, 'info');
+          logActivity(`HTML parsed successfully — ${fallbackRecords.length} records extracted.`, 'info');
           scrapeResult.records = fallbackRecords;
           scrapeResult.status = 'SUCCESS';
+          scrapeResult.rawHtml = rawHtml;
+        } else {
+          // HTML fetched but our selectors found nothing — set rawHtml so self-healing can run
+          console.log('[Fallback] HTML fetched but 0 records matched. Self-healing will attempt to find selectors.');
           scrapeResult.rawHtml = rawHtml;
         }
       }
