@@ -375,6 +375,36 @@
   ],
   "activityEvents": [
     {
+      "id": "act_1787508534692_1j5i4",
+      "timestamp": "2026-08-23T18:08:54.692Z",
+      "message": "Extraction run failed: Unknown error",
+      "type": "error"
+    },
+    {
+      "id": "act_1787508530933_wfiwm",
+      "timestamp": "2026-08-23T18:08:50.933Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787508528643_eajuy",
+      "timestamp": "2026-08-23T18:08:48.643Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://amzn.in/d/0d8d79oc",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508502507_jo4m4",
+      "timestamp": "2026-08-23T18:08:22.507Z",
+      "message": "Starting extraction run for monitor: \"amazon\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787508497754_bhwv8",
+      "timestamp": "2026-08-23T18:08:17.754Z",
+      "message": "Created monitor: \"amazon\" for URL: https://amzn.in/d/0d8d79oc",
+      "type": "success"
+    },
+    {
       "id": "act_1787467658240_zni4i",
       "timestamp": "2026-08-23T06:47:38.240Z",
       "message": "Self-healing succeeded. Extraction recovered for \"laptop\".",

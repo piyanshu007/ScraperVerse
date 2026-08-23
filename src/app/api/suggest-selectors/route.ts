@@ -190,7 +190,7 @@ If the domain is unknown, suggest generic selectors that work for most Shopify/W
           'X-Title': 'ScraperVerse AI Selector Suggestion',
         },
         body: JSON.stringify({
-          model: 'nvidia/llama-3.1-nemotron-70b-instruct',
+          model: 'google/gemini-2.5-flash:free',
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userContent },

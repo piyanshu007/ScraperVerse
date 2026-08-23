@@ -281,8 +281,14 @@ export default function Home() {
       const deletedIds = getDeletedIds();
 
       if (localData) {
+        // Update server monitors with client selectors if they exist in local storage
         for (const lm of localData.monitors || []) {
-          if (!mergedMonitors.some(m => m.id === lm.id)) mergedMonitors.push(lm);
+          const sIdx = mergedMonitors.findIndex(m => m.id === lm.id);
+          if (sIdx !== -1) {
+            mergedMonitors[sIdx].selectors = lm.selectors;
+          } else {
+            mergedMonitors.push(lm);
+          }
         }
         for (const ls of localData.scrapers || []) {
           if (!mergedScrapers.some(s => s.monitorId === ls.monitorId)) mergedScrapers.push(ls);
