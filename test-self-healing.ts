@@ -1,8 +1,8 @@
 import assert from 'assert';
-import { getDemoTargetHtml } from '../src/lib/brightdata';
-import { extractData } from '../src/lib/extractor';
-import { validateDataset } from '../src/lib/validation';
-import { healScraper } from '../src/lib/self-healing';
+import { getDemoTargetHtml } from './src/lib/brightdata';
+import { extractData } from './src/lib/extractor';
+import { validateDataset } from './src/lib/validation';
+import { healScraper } from './src/lib/self-healing';
 
 // Mock DB-like environment locally for the test
 import fs from 'fs';
