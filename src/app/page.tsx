@@ -196,6 +196,48 @@ function Stat({ label, value, sub, accent }: { label: string; value: string | nu
 
 export default function Home() {
   const [showDashboard, setShowDashboard] = useState(false);
+
+  // LocalStorage Helpers to handle Vercel serverless statelessness
+  const loadLocalDb = () => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const stored = localStorage.getItem('scraperverse_db');
+      return stored ? JSON.parse(stored) : null;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  };
+
+  const saveLocalDb = (data: any) => {
+    if (typeof window === 'undefined') return;
+    try {
+      localStorage.setItem('scraperverse_db', JSON.stringify(data));
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const getDeletedIds = (): string[] => {
+    if (typeof window === 'undefined') return [];
+    try {
+      const stored = localStorage.getItem('scraperverse_deleted_ids');
+      return stored ? JSON.parse(stored) : [];
+    } catch { return []; }
+  };
+
+  const addDeletedId = (id: string) => {
+    if (typeof window === 'undefined') return;
+    try {
+      const ids = getDeletedIds();
+      if (!ids.includes(id)) {
+        ids.push(id);
+        localStorage.setItem('scraperverse_deleted_ids', JSON.stringify(ids));
+      }
+    } catch { /* silent */ }
+  };
+
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [monitors, setMonitors] = useState<Monitor[]>([]);
   const [scrapers, setScrapers] = useState<Scraper[]>([]);
@@ -228,13 +270,64 @@ export default function Home() {
     try {
       const res = await fetch('/api/monitors');
       const data = await res.json();
-      setMonitors(data.monitors || []);
-      setScrapers(data.scrapers || []);
-      setRuns(data.runs || []);
-      setRecords(data.records || []);
-      setRepairEvents(data.repairEvents || []);
-      setActivityEvents(data.activityEvents || []);
+      
+      const localData = loadLocalDb();
+      const mergedMonitors = [...(data.monitors || [])];
+      const mergedScrapers = [...(data.scrapers || [])];
+      const mergedRuns = [...(data.runs || [])];
+      const mergedRecords = [...(data.records || [])];
+      const mergedRepairEvents = [...(data.repairEvents || [])];
+      const mergedActivityEvents = [...(data.activityEvents || [])];
+
+      const deletedIds = getDeletedIds();
+
+      if (localData) {
+        for (const lm of localData.monitors || []) {
+          if (!mergedMonitors.some(m => m.id === lm.id)) mergedMonitors.push(lm);
+        }
+        for (const ls of localData.scrapers || []) {
+          if (!mergedScrapers.some(s => s.monitorId === ls.monitorId)) mergedScrapers.push(ls);
+        }
+        for (const lr of localData.runs || []) {
+          if (!mergedRuns.some(r => r.id === lr.id)) mergedRuns.push(lr);
+        }
+        for (const lr of localData.records || []) {
+          if (!mergedRecords.some(r => r.id === lr.id)) mergedRecords.push(lr);
+        }
+        for (const lr of localData.repairEvents || []) {
+          if (!mergedRepairEvents.some(r => r.id === lr.id)) mergedRepairEvents.push(lr);
+        }
+      }
+
+      // Filter out deleted monitors and their associated data
+      const filteredMonitors = mergedMonitors.filter((m: any) => !deletedIds.includes(m.id));
+      const filteredScrapers = mergedScrapers.filter((s: any) => !deletedIds.includes(s.monitorId));
+      const filteredRuns = mergedRuns.filter((r: any) => !deletedIds.includes(r.monitorId));
+      const filteredRecords = mergedRecords.filter((r: any) => !deletedIds.includes(r.monitorId));
+      const filteredRepairEvents = mergedRepairEvents.filter((r: any) => !deletedIds.includes(r.monitorId));
+      const filteredActivityEvents = mergedActivityEvents;
+
+      filteredRuns.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      filteredRecords.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      filteredRepairEvents.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      filteredActivityEvents.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+      setMonitors(filteredMonitors);
+      setScrapers(filteredScrapers);
+      setRuns(filteredRuns);
+      setRecords(filteredRecords);
+      setRepairEvents(filteredRepairEvents);
+      setActivityEvents(filteredActivityEvents);
       setDemoVersion(data.activeDemoVersion || 1);
+
+      saveLocalDb({
+        monitors: filteredMonitors,
+        scrapers: filteredScrapers,
+        runs: filteredRuns,
+        records: filteredRecords,
+        repairEvents: filteredRepairEvents,
+        activityEvents: filteredActivityEvents
+      });
     } catch { /* silent */ }
     finally { if (!silent) setLoading(false); }
   };
@@ -384,11 +477,28 @@ export default function Home() {
     }
   };
 
-  const handleDeleteMonitor = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this monitor?')) return;
+  const handleDeleteMonitor = (id: string) => {
+    setConfirmDeleteId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!confirmDeleteId) return;
+    const id = confirmDeleteId;
+    setConfirmDeleteId(null);
     try {
       await fetch(`/api/monitors/${id}`, { method: 'DELETE' });
+      // Track this ID as deleted so it stays gone on refresh
+      addDeletedId(id);
+      // Also remove from localStorage
+      const local = loadLocalDb() || { monitors: [], scrapers: [], runs: [], records: [], repairEvents: [], activityEvents: [] };
+      local.monitors = local.monitors.filter((m: any) => m.id !== id);
+      local.scrapers = local.scrapers.filter((s: any) => s.monitorId !== id);
+      local.runs = local.runs.filter((r: any) => r.monitorId !== id);
+      local.records = local.records.filter((r: any) => r.monitorId !== id);
+      local.repairEvents = local.repairEvents.filter((r: any) => r.monitorId !== id);
+      saveLocalDb(local);
       await fetchDb(true);
+      addLog(`[SUCCESS] Monitor deleted successfully.`);
     } catch (e: any) {
       addLog(`[ERROR] Failed to delete monitor: ${e.message}`);
     }
@@ -918,13 +1028,13 @@ export default function Home() {
                         <tbody>
                           {records.map(rec => (
                             <tr key={rec.id}>
-                              <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data.name || '—'}</td>
-                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data.price || '—'}</td>
-                              <td>{rec.data.rating ? `${rec.data.rating} / 5` : '—'}</td>
-                              <td style={{ color: rec.data.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
-                                {rec.data.availability || '—'}
+                              <td style={{ fontWeight: 700, color: 'var(--white)' }}>{rec.data?.name || '—'}</td>
+                              <td style={{ color: 'var(--green)', fontWeight: 800 }}>{getCurrencySymbol(rec.monitorId)}{rec.data?.price || '—'}</td>
+                              <td>{rec.data?.rating ? `${rec.data?.rating} / 5` : '—'}</td>
+                              <td style={{ color: rec.data?.availability?.toLowerCase().includes('out') ? 'var(--red)' : 'var(--green)', fontWeight: 700 }}>
+                                {rec.data?.availability || '—'}
                               </td>
-                              <td style={{ color: '#facc15', fontWeight: 700 }}>{getDiscount(rec.data) || '—'}</td>
+                              <td style={{ color: '#facc15', fontWeight: 700 }}>{getDiscount(rec.data || {}) || '—'}</td>
                               <td style={{ color: 'var(--white-muted)' }}>{new Date(rec.timestamp).toLocaleTimeString()}</td>
                             </tr>
                           ))}
@@ -973,6 +1083,61 @@ export default function Home() {
             </>
           )}
         </div>
+        {/* ══════════════════════ DELETE CONFIRM MODAL ══════════════════════ */}
+        {confirmDeleteId && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(14,0,31,0.85)', backdropFilter: 'blur(6px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '20px',
+          }}>
+            <div style={{
+              background: 'var(--bg-card)',
+              border: '3px solid var(--magenta)',
+              boxShadow: '8px 8px 0 #000, 10px 10px 0 var(--magenta)',
+              padding: '32px',
+              maxWidth: '400px',
+              width: '100%',
+              fontFamily: 'var(--font-mono)',
+            }}>
+              <div style={{
+                fontSize: '18px', fontWeight: 400, color: 'var(--yellow)',
+                textTransform: 'uppercase', letterSpacing: '2px',
+                textShadow: '2px 2px 0 var(--magenta)',
+                marginBottom: '12px', display: 'flex', gap: '10px', alignItems: 'center',
+              }}>
+                <span style={{ fontSize: '22px' }}>⚠</span> Confirm Delete
+              </div>
+              <div style={{
+                fontFamily: 'var(--font-mono)', fontSize: '13px',
+                color: 'var(--white-muted)', marginBottom: '24px', lineHeight: '1.6',
+              }}>
+                Are you sure you want to delete this monitor?<br />
+                <span style={{ color: 'var(--magenta)', fontWeight: 700 }}>This action cannot be undone.</span><br />
+                All associated runs, records, and repair history will be permanently removed.
+              </div>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button
+                  onClick={confirmDelete}
+                  className="btn"
+                  style={{
+                    flex: 1, background: 'var(--magenta)', color: '#fff',
+                    border: '3px solid #000',
+                    boxShadow: '4px 4px 0 #000, 5px 5px 0 var(--yellow)',
+                    fontSize: '13px', letterSpacing: '1.5px',
+                  }}>
+                  🗑 Delete
+                </button>
+                <button
+                  onClick={() => setConfirmDeleteId(null)}
+                  className="btn btn-outline"
+                  style={{ flex: 1, fontSize: '13px', letterSpacing: '1.5px' }}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
