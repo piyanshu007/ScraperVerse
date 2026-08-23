@@ -486,9 +486,42 @@ export default function Home() {
         if (data.scraper) {
           local.scrapers = [data.scraper, ...local.scrapers.filter((s: any) => s.monitorId !== monitorId)];
         }
-        if (data.records) {
-          local.records = [...data.records, ...local.records];
+
+        // Wrap raw field objects into proper ExtractionRecord shape so UI can display them
+        if (data.records && data.records.length > 0) {
+          const now = new Date().toISOString();
+          const wrappedRecords = data.records.map((rec: any, i: number) => {
+            // Already a proper ExtractionRecord if it has an id field
+            if (rec.id && rec.monitorId) return rec;
+            return {
+              id: `rec_${Date.now()}_${i}_${Math.random().toString(36).substr(2, 5)}`,
+              runId: data.run.id,
+              monitorId,
+              data: rec,
+              timestamp: now,
+            };
+          });
+          // Deduplicate by id
+          const existingIds = new Set(local.records.map((r: any) => r.id));
+          const newRecs = wrappedRecords.filter((r: any) => !existingIds.has(r.id));
+          local.records = [...newRecs, ...local.records];
+
+          // Immediately update React state so data shows without waiting for fetchDb
+          setRecords(prev => {
+            const prevIds = new Set(prev.map(r => r.id));
+            const truly_new = newRecs.filter((r: any) => !prevIds.has(r.id));
+            return [...truly_new, ...prev];
+          });
+          setRuns(prev => {
+            const existing = prev.find(r => r.id === data.run.id);
+            if (existing) return prev;
+            return [data.run, ...prev];
+          });
+          if (data.scraper) {
+            setScrapers(prev => [data.scraper, ...prev.filter(s => s.monitorId !== monitorId)]);
+          }
         }
+
         if (data.selfHealingLog?.events) {
           const newRep = data.selfHealingLog.events.map((e: any) => ({
             id: 'rep_' + Date.now() + '_' + Math.random(),
