@@ -77,6 +77,123 @@
         }
       },
       "createdAt": "2026-08-22T10:32:54.908Z"
+    },
+    {
+      "id": "mon_1787467247047",
+      "name": "Lamp",
+      "url": "https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
+      "selectors": {
+        "container": "#dp-container",
+        "name": "#productTitle",
+        "price": ".a-price-whole",
+        "rating": "#acrPopover .a-icon-alt",
+        "availability": "#availability > span",
+        "discount": ".savingsPercentage"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-23T06:40:47.047Z"
+    },
+    {
+      "id": "mon_1787467355449",
+      "name": "one plus",
+      "url": "https://www.amazon.in/OnePlus-Segments-Dimensity-Processor-Recording/dp/B0GVYDLJJQ/ref=sr_1_1_sspa?crid=1EZEK5CXZURQO&dib=eyJ2IjoiMSJ9.H5c07fabTmRtqX8Tz-JswP_aC9cRF8-RavTTTHT2idIgnioS48Ro50YLmlbXhk5TT6pdPDwy94huR0C172wZ1hU30FklKtCr0senGOHIB-4kUZy-dJ-wq9_bdYl0a4Xtc3t6VkQvWBXj5xNcdw_7OqV5qdmNBqK-5AtuLIAWyldAkTY6xPqCKAVwFyXlB3C4BxmjRkBMJDQUQ-PyUYagQcM_wE6gXeuY_SmREysZT3s.DVc3OO3J3TDtJ5IExX9c7i_wIGlFHA59-RK9dHCEDeo&dib_tag=se&keywords=mobile+phone+under+20000&qid=1787467314&sprefix=mobi%2Caps%2C318&sr=8-1-spons&aref=nNqm7vxaZn&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+      "selectors": {
+        "container": "#centerCol",
+        "name": "#productTitle",
+        "price": ".a-price-whole",
+        "rating": "#acrPopover .a-icon-alt",
+        "availability": ".expand",
+        "discount": ".savingsPercentage"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-23T06:42:35.449Z"
+    },
+    {
+      "id": "mon_1787467623911",
+      "name": "laptop",
+      "url": "https://www.flipkart.com/motorola-motobook-60-full-metal-2-8k-oled-i5-14th-gen-intel-core-5-series-2-210h-16-gb-512-gb-ssd-windows-11-home-14irh10r-thin-light-laptop/p/itm9a50f9400e0e0?pid=COMHAUZWVNJSFAMN&lid=LSTCOMHAUZWVNJSFAMNCQMECQ&marketplace=FLIPKART&q=laptop&store=6bo%2Fb5g&srno=s_1_1&otracker=search&otracker1=search&fm=organic&iid=en_MfIw0S9PZDqwu02KowYW_fqzR8iBgJCiDoekfRsYCfrMMnsdtk2gICw9vJPsMVtaDC_pR6mFM_ZYy8VHtjLWdUbBIYYTiNiRveGOnHrm2UbirNjk2vsMvvenjzGJJcG5&ppt=None&ppn=None&ssid=8z389a568w0000001787467511006&qH=312f91285e048e09&ov_redirect=true",
+      "selectors": {
+        "container": ".fWi7J_ .yiQOTv .CTTtEa[style*='flex-direction:row']",
+        "name": "span.B_NuCI, h1, [class*='productTitle']",
+        "price": ".OmE16y",
+        "rating": "._1o6mltljs",
+        "availability": "a._1psv1zedi",
+        "discount": ".badge"
+      },
+      "schema": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "price": {
+          "type": "number",
+          "required": true,
+          "min": 0
+        },
+        "rating": {
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 5
+        },
+        "availability": {
+          "type": "string",
+          "required": false
+        },
+        "discount": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "createdAt": "2026-08-23T06:47:03.911Z"
     }
   ],
   "scrapers": [
@@ -94,9 +211,60 @@
       "successRate": 0,
       "totalRecordsCollected": 0,
       "lastRun": "2026-08-22T10:33:19.976Z"
+    },
+    {
+      "id": "scr_1787467247047",
+      "monitorId": "mon_1787467247047",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 1,
+      "lastRun": "2026-08-23T06:41:10.338Z",
+      "lastSuccessfulRun": "2026-08-23T06:41:10.338Z"
+    },
+    {
+      "id": "scr_1787467355449",
+      "monitorId": "mon_1787467355449",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 1,
+      "lastRun": "2026-08-23T06:42:59.418Z",
+      "lastSuccessfulRun": "2026-08-23T06:42:59.418Z"
+    },
+    {
+      "id": "scr_1787467623911",
+      "monitorId": "mon_1787467623911",
+      "status": "HEALTHY",
+      "successRate": 100,
+      "totalRecordsCollected": 1,
+      "lastRun": "2026-08-23T06:47:33.913Z",
+      "lastSuccessfulRun": "2026-08-23T06:47:33.913Z"
     }
   ],
   "runs": [
+    {
+      "id": "run_1787467653913",
+      "monitorId": "mon_1787467623911",
+      "timestamp": "2026-08-23T06:47:33.913Z",
+      "status": "RECOVERED",
+      "recordsCount": 1,
+      "collectionId": "j_mt5g2pjl1zirxdhtbq"
+    },
+    {
+      "id": "run_1787467379418",
+      "monitorId": "mon_1787467355449",
+      "timestamp": "2026-08-23T06:42:59.418Z",
+      "status": "RECOVERED",
+      "recordsCount": 1,
+      "collectionId": "j_mt5fwyk31lojj2yp6s"
+    },
+    {
+      "id": "run_1787467270338",
+      "monitorId": "mon_1787467247047",
+      "timestamp": "2026-08-23T06:41:10.338Z",
+      "status": "RECOVERED",
+      "recordsCount": 1,
+      "collectionId": "j_mt5fum251yd2zn3xc"
+    },
     {
       "id": "run_1787394799976",
       "monitorId": "mon_1787394774908",
@@ -106,8 +274,623 @@
       "collectionId": "j_mt48pbr11vg8vlxowa"
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "id": "rec_1787467658240_yb3ri",
+      "runId": "run_1787467653913",
+      "monitorId": "mon_1787467623911",
+      "data": {
+        "name": "MOTOROLA Motobook 60 Full Metal 2.8K OLED (i5 14th Gen) Intel Cor...more",
+        "price": 4,
+        "rating": 4.4,
+        "availability": "4.4| 3,784Location not setSelect delivery location1 Year Onsite Warranty"
+      },
+      "timestamp": "2026-08-23T06:47:33.913Z"
+    },
+    {
+      "id": "rec_1787467386125_kxz09",
+      "runId": "run_1787467379418",
+      "monitorId": "mon_1787467355449",
+      "data": {
+        "name": "OnePlus Nord CE6 Lite | 6GB+128GB | Hyper Black | Segment's Fastest Dimensity 7400 Apex Processor | 7000mAh Battery | Segment's Highest 144Hz Refresh Rate | 50MP Main Camera, 4K Video Recording",
+        "price": 28999,
+        "rating": 4.2,
+        "availability": "In Stock: Hyper Black, Vivid Mint, 6GB+128GB, 8GB+128GB, 8GB+256GB",
+        "discount": "-9%"
+      },
+      "timestamp": "2026-08-23T06:42:59.418Z"
+    },
+    {
+      "id": "rec_1787467278440_9vg4j",
+      "runId": "run_1787467270338",
+      "monitorId": "mon_1787467247047",
+      "data": {
+        "name": "Xech Digital Clock with Pen Stand, Ambient Night Light & Mobile Holder | 3-Colour Ambient Light, Touch Control | Rechargeable Night Lamp for Office, Study & Bedside (Nova Digital)",
+        "price": 496,
+        "rating": 4.2,
+        "availability": "In stock (In Stock: Nova Digital, Nova)",
+        "discount": "-77%"
+      },
+      "timestamp": "2026-08-23T06:41:10.338Z"
+    }
+  ],
   "repairEvents": [
+    {
+      "id": "rep_1787467658173_k54d4",
+      "monitorId": "mon_1787467623911",
+      "timestamp": "2026-08-23T06:47:38.173Z",
+      "fieldName": "discount",
+      "previousSelector": "div._3Ay6Sb, [class*='discount']",
+      "repairedSelector": ".badge",
+      "recordsBefore": 0,
+      "recordsAfter": 0,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".badge",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": ".a-badge-text",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": ".savingsPercentage",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "#dealprice_savings",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "#regularprice_savings .a-color-price",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": ".reinventPriceSavingsPercentageMargin",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"off\"]",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"save\"]",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"deal\"]",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"sale\"]",
+          "validCount": 0,
+          "score": 35
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467658173_dbyzu",
+      "monitorId": "mon_1787467623911",
+      "timestamp": "2026-08-23T06:47:38.173Z",
+      "fieldName": "availability",
+      "previousSelector": "[class*='stock'], [class*='availability']",
+      "repairedSelector": "a._1psv1zedi",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": "a._1psv1zedi",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".in-stock",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": ".out-of-stock",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": ".product-stock",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": "#availability span",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": "#availability .a-size-medium",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": "[class*=\"stock\"]",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": "[class*=\"inventory\"]",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": "[class*=\"availability\"]",
+          "validCount": 0,
+          "score": 20
+        },
+        {
+          "selector": ".CTTtEa",
+          "validCount": 0,
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467658173_4ii1p",
+      "monitorId": "mon_1787467623911",
+      "timestamp": "2026-08-23T06:47:38.173Z",
+      "fieldName": "rating",
+      "previousSelector": "div._3LWZlK, [class*='rating']",
+      "repairedSelector": "._1o6mltljs",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": "._1o6mltljs",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1psv1ze29",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1psv1zek9",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1psv1zei0",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1psv1zedi",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1psv1ze9x",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1psv1ze7o",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "._1psv1zefr",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._1psv1zeb9",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a._1o6mltljs",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467658173_8nxnx",
+      "monitorId": "mon_1787467623911",
+      "timestamp": "2026-08-23T06:47:38.173Z",
+      "fieldName": "price",
+      "previousSelector": "div.Nx9bFq, div._30jeq3, [class*='price']",
+      "repairedSelector": ".OmE16y",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".OmE16y",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".asbjxx",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".v1zwn22",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".v1zwn24",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".v1zwn25",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".r-eqz5dr",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".v1zwn21o",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".v1zwn21m",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.OmE16y",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.asbjxx",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467386060_jyu6n",
+      "monitorId": "mon_1787467355449",
+      "timestamp": "2026-08-23T06:43:06.060Z",
+      "fieldName": "discount",
+      "previousSelector": "#corePrice_feature_div .savings-percent",
+      "repairedSelector": ".savingsPercentage",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".savingsPercentage",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": ".reinventPriceSavingsPercentageMargin",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": "[class*=\"off\"]",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": "[class*=\"savings\"]",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": "[class*=\"percent\"]",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": ".a-color-price",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": ".a-size-large.a-color-price",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "#cmrsSummary_feature_div",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div#cmrsSummary_feature_div",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "#premiumBylineInfo_feature_div",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467386060_jirpp",
+      "monitorId": "mon_1787467355449",
+      "timestamp": "2026-08-23T06:43:06.060Z",
+      "fieldName": "availability",
+      "previousSelector": "#availability span",
+      "repairedSelector": ".expand",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".expand",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.expand",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-size-small",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "a.a-declarative",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon-popover",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-letter-space",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-icon-popover",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "span.a-size-small",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "#expandTitleToggle",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-popover-trigger",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467386060_kjycw",
+      "monitorId": "mon_1787467355449",
+      "timestamp": "2026-08-23T06:43:06.060Z",
+      "fieldName": "price",
+      "previousSelector": "#corePrice_feature_div .a-price .a-offscreen",
+      "repairedSelector": ".a-price-whole",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".a-price-whole",
+          "validCount": 1,
+          "score": 120
+        },
+        {
+          "selector": "[class*=\"price\"]",
+          "validCount": 1,
+          "score": 120
+        },
+        {
+          "selector": "#title",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "h1#title",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "i.a-icon",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".celwidget",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-section",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "#acrPopover",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-icon-alt",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467278369_jkja2",
+      "monitorId": "mon_1787467247047",
+      "timestamp": "2026-08-23T06:41:18.369Z",
+      "fieldName": "discount",
+      "previousSelector": "#corePriceDisplay_desktop_feature_div .a-color-base",
+      "repairedSelector": ".savingsPercentage",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".savingsPercentage",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": ".reinventPriceSavingsPercentageMargin",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": "[class*=\"percent\"]",
+          "validCount": 1,
+          "score": 135
+        },
+        {
+          "selector": ".a-size-large.a-color-price",
+          "validCount": 1,
+          "score": 115
+        },
+        {
+          "selector": "img",
+          "validCount": 1,
+          "score": 95
+        },
+        {
+          "selector": ".badge",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": ".a-badge-text",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "#dealprice_savings",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "#regularprice_savings .a-color-price",
+          "validCount": 0,
+          "score": 35
+        },
+        {
+          "selector": "[class*=\"off\"]",
+          "validCount": 0,
+          "score": 35
+        }
+      ]
+    },
+    {
+      "id": "rep_1787467278369_3zf2e",
+      "monitorId": "mon_1787467247047",
+      "timestamp": "2026-08-23T06:41:18.369Z",
+      "fieldName": "price",
+      "previousSelector": "#corePriceDisplay_desktop_feature_div .a-offscreen",
+      "repairedSelector": ".a-price-whole",
+      "recordsBefore": 0,
+      "recordsAfter": 1,
+      "confidence": 100,
+      "status": "SUCCESS",
+      "candidatesTested": [
+        {
+          "selector": ".a-price-whole",
+          "validCount": 1,
+          "score": 120
+        },
+        {
+          "selector": ".a-price .a-offscreen",
+          "validCount": 1,
+          "score": 120
+        },
+        {
+          "selector": "[class*=\"price\"]",
+          "validCount": 1,
+          "score": 120
+        },
+        {
+          "selector": ".c-f",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.c-f",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-section",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".celwidget",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": ".a-list-item",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.a-section",
+          "validCount": 1,
+          "score": 100
+        },
+        {
+          "selector": "div.celwidget",
+          "validCount": 1,
+          "score": 100
+        }
+      ]
+    },
     {
       "id": "rep_1787394672439_4iwpq",
       "monitorId": "mon_test_123",
@@ -430,6 +1213,294 @@
     }
   ],
   "activityEvents": [
+    {
+      "id": "act_1787467658240_zni4i",
+      "timestamp": "2026-08-23T06:47:38.240Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"laptop\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467658173_tdodm",
+      "timestamp": "2026-08-23T06:47:38.173Z",
+      "message": "Self-healing saved. Final confidence: 100%.",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467658169_xruex",
+      "timestamp": "2026-08-23T06:47:38.169Z",
+      "message": "Field \"discount\" repaired: \"div._3Ay6Sb, [class*='discount']\" → \".badge\" (score: 35%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467657671_4hwuc",
+      "timestamp": "2026-08-23T06:47:37.671Z",
+      "message": "Generating candidates for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467657671_i72z9",
+      "timestamp": "2026-08-23T06:47:37.671Z",
+      "message": "Field \"availability\" repaired: \"[class*='stock'], [class*='availability']\" → \"a._1psv1zedi\" (score: 100%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467657177_rm02a",
+      "timestamp": "2026-08-23T06:47:37.177Z",
+      "message": "Generating candidates for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467657177_8224t",
+      "timestamp": "2026-08-23T06:47:37.177Z",
+      "message": "Field \"rating\" repaired: \"div._3LWZlK, [class*='rating']\" → \"._1o6mltljs\" (score: 100%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467656759_dnvqx",
+      "timestamp": "2026-08-23T06:47:36.759Z",
+      "message": "Generating candidates for field \"rating\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467656758_ex97c",
+      "timestamp": "2026-08-23T06:47:36.758Z",
+      "message": "Field \"price\" repaired: \"div.Nx9bFq, div._30jeq3, [class*='price']\" → \".OmE16y\" (score: 100%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467656512_om33l",
+      "timestamp": "2026-08-23T06:47:36.512Z",
+      "message": "Generating candidates for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467656512_v02ji",
+      "timestamp": "2026-08-23T06:47:36.512Z",
+      "message": "Healing broken fields: price, rating, availability, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467656414_ohh6n",
+      "timestamp": "2026-08-23T06:47:36.414Z",
+      "message": "Self-healing initiated for monitor: mon_1787467623911",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467656413_uhwil",
+      "timestamp": "2026-08-23T06:47:36.413Z",
+      "message": "Extraction validation failed for \"laptop\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467656413_mdsmf",
+      "timestamp": "2026-08-23T06:47:36.413Z",
+      "message": "HTML parsed successfully — 1 records extracted.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467655500_iaxmu",
+      "timestamp": "2026-08-23T06:47:35.500Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467653913_zd2ea",
+      "timestamp": "2026-08-23T06:47:33.913Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://www.flipkart.com/motorola-motobook-60-full-metal-2-8k-oled-i5-14th-gen-intel-core-5-series-2-210h-16-gb-512-gb-ssd-windows-11-home-14irh10r-thin-light-laptop/p/itm9a50f9400e0e0?pid=COMHAUZWVNJSFAMN&lid=LSTCOMHAUZWVNJSFAMNCQMECQ&marketplace=FLIPKART&q=laptop&store=6bo%2Fb5g&srno=s_1_1&otracker=search&otracker1=search&fm=organic&iid=en_MfIw0S9PZDqwu02KowYW_fqzR8iBgJCiDoekfRsYCfrMMnsdtk2gICw9vJPsMVtaDC_pR6mFM_ZYy8VHtjLWdUbBIYYTiNiRveGOnHrm2UbirNjk2vsMvvenjzGJJcG5&ppt=None&ppn=None&ssid=8z389a568w0000001787467511006&qH=312f91285e048e09&ov_redirect=true",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467628210_5q25x",
+      "timestamp": "2026-08-23T06:47:08.210Z",
+      "message": "Starting extraction run for monitor: \"laptop\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467623912_s3qjb",
+      "timestamp": "2026-08-23T06:47:03.912Z",
+      "message": "Created monitor: \"laptop\" for URL: https://www.flipkart.com/motorola-motobook-60-full-metal-2-8k-oled-i5-14th-gen-intel-core-5-series-2-210h-16-gb-512-gb-ssd-windows-11-home-14irh10r-thin-light-laptop/p/itm9a50f9400e0e0?pid=COMHAUZWVNJSFAMN&lid=LSTCOMHAUZWVNJSFAMNCQMECQ&marketplace=FLIPKART&q=laptop&store=6bo%2Fb5g&srno=s_1_1&otracker=search&otracker1=search&fm=organic&iid=en_MfIw0S9PZDqwu02KowYW_fqzR8iBgJCiDoekfRsYCfrMMnsdtk2gICw9vJPsMVtaDC_pR6mFM_ZYy8VHtjLWdUbBIYYTiNiRveGOnHrm2UbirNjk2vsMvvenjzGJJcG5&ppt=None&ppn=None&ssid=8z389a568w0000001787467511006&qH=312f91285e048e09&ov_redirect=true",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467386125_h5bvm",
+      "timestamp": "2026-08-23T06:43:06.125Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"one plus\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467386060_trq5q",
+      "timestamp": "2026-08-23T06:43:06.060Z",
+      "message": "Self-healing saved. Final confidence: 100%.",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467386058_u9yq5",
+      "timestamp": "2026-08-23T06:43:06.058Z",
+      "message": "Field \"discount\" repaired: \"#corePrice_feature_div .savings-percent\" → \".savingsPercentage\" (score: 135%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467385703_c118g",
+      "timestamp": "2026-08-23T06:43:05.703Z",
+      "message": "Generating candidates for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467385703_2j28t",
+      "timestamp": "2026-08-23T06:43:05.703Z",
+      "message": "Field \"availability\" repaired: \"#availability span\" → \".expand\" (score: 100%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467385355_73cjv",
+      "timestamp": "2026-08-23T06:43:05.355Z",
+      "message": "Generating candidates for field \"availability\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467385354_qp20d",
+      "timestamp": "2026-08-23T06:43:05.355Z",
+      "message": "Field \"price\" repaired: \"#corePrice_feature_div .a-price .a-offscreen\" → \".a-price-whole\" (score: 120%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467383786_kaqmt",
+      "timestamp": "2026-08-23T06:43:03.786Z",
+      "message": "Generating candidates for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467383786_z5hox",
+      "timestamp": "2026-08-23T06:43:03.786Z",
+      "message": "Healing broken fields: price, availability, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467383701_0og72",
+      "timestamp": "2026-08-23T06:43:03.701Z",
+      "message": "Self-healing initiated for monitor: mon_1787467355449",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467383700_flt94",
+      "timestamp": "2026-08-23T06:43:03.700Z",
+      "message": "Extraction validation failed for \"one plus\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467383700_r9s3q",
+      "timestamp": "2026-08-23T06:43:03.700Z",
+      "message": "HTML parsed successfully — 1 records extracted.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467381734_57tni",
+      "timestamp": "2026-08-23T06:43:01.734Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467379418_vfvxl",
+      "timestamp": "2026-08-23T06:42:59.418Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://www.amazon.in/OnePlus-Segments-Dimensity-Processor-Recording/dp/B0GVYDLJJQ/ref=sr_1_1_sspa?crid=1EZEK5CXZURQO&dib=eyJ2IjoiMSJ9.H5c07fabTmRtqX8Tz-JswP_aC9cRF8-RavTTTHT2idIgnioS48Ro50YLmlbXhk5TT6pdPDwy94huR0C172wZ1hU30FklKtCr0senGOHIB-4kUZy-dJ-wq9_bdYl0a4Xtc3t6VkQvWBXj5xNcdw_7OqV5qdmNBqK-5AtuLIAWyldAkTY6xPqCKAVwFyXlB3C4BxmjRkBMJDQUQ-PyUYagQcM_wE6gXeuY_SmREysZT3s.DVc3OO3J3TDtJ5IExX9c7i_wIGlFHA59-RK9dHCEDeo&dib_tag=se&keywords=mobile+phone+under+20000&qid=1787467314&sprefix=mobi%2Caps%2C318&sr=8-1-spons&aref=nNqm7vxaZn&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467359757_3p605",
+      "timestamp": "2026-08-23T06:42:39.757Z",
+      "message": "Starting extraction run for monitor: \"one plus\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467355449_pcslh",
+      "timestamp": "2026-08-23T06:42:35.449Z",
+      "message": "Created monitor: \"one plus\" for URL: https://www.amazon.in/OnePlus-Segments-Dimensity-Processor-Recording/dp/B0GVYDLJJQ/ref=sr_1_1_sspa?crid=1EZEK5CXZURQO&dib=eyJ2IjoiMSJ9.H5c07fabTmRtqX8Tz-JswP_aC9cRF8-RavTTTHT2idIgnioS48Ro50YLmlbXhk5TT6pdPDwy94huR0C172wZ1hU30FklKtCr0senGOHIB-4kUZy-dJ-wq9_bdYl0a4Xtc3t6VkQvWBXj5xNcdw_7OqV5qdmNBqK-5AtuLIAWyldAkTY6xPqCKAVwFyXlB3C4BxmjRkBMJDQUQ-PyUYagQcM_wE6gXeuY_SmREysZT3s.DVc3OO3J3TDtJ5IExX9c7i_wIGlFHA59-RK9dHCEDeo&dib_tag=se&keywords=mobile+phone+under+20000&qid=1787467314&sprefix=mobi%2Caps%2C318&sr=8-1-spons&aref=nNqm7vxaZn&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467278441_ufy9o",
+      "timestamp": "2026-08-23T06:41:18.441Z",
+      "message": "Self-healing succeeded. Extraction recovered for \"Lamp\".",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467278369_4ezsw",
+      "timestamp": "2026-08-23T06:41:18.369Z",
+      "message": "Self-healing saved. Final confidence: 100%.",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467278360_pb81u",
+      "timestamp": "2026-08-23T06:41:18.360Z",
+      "message": "Field \"discount\" repaired: \"#corePriceDisplay_desktop_feature_div .a-color-base\" → \".savingsPercentage\" (score: 135%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467276771_fz8fd",
+      "timestamp": "2026-08-23T06:41:16.771Z",
+      "message": "Generating candidates for field \"discount\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467276771_n891k",
+      "timestamp": "2026-08-23T06:41:16.771Z",
+      "message": "Field \"price\" repaired: \"#corePriceDisplay_desktop_feature_div .a-offscreen\" → \".a-price-whole\" (score: 120%)",
+      "type": "success"
+    },
+    {
+      "id": "act_1787467274652_2wqf1",
+      "timestamp": "2026-08-23T06:41:14.652Z",
+      "message": "Generating candidates for field \"price\"...",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467274652_csg1u",
+      "timestamp": "2026-08-23T06:41:14.652Z",
+      "message": "Healing broken fields: price, discount",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467274555_iqkps",
+      "timestamp": "2026-08-23T06:41:14.555Z",
+      "message": "Self-healing initiated for monitor: mon_1787467247047",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467274555_5rqah",
+      "timestamp": "2026-08-23T06:41:14.555Z",
+      "message": "Extraction validation failed for \"Lamp\". Initiating self-healing...",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467274554_49iwm",
+      "timestamp": "2026-08-23T06:41:14.554Z",
+      "message": "HTML parsed successfully — 1 records extracted.",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467272528_2s9z8",
+      "timestamp": "2026-08-23T06:41:12.528Z",
+      "message": "Web Unlocker failed: All Web Unlocker zones failed (Zone \"web_unlocker1\" HTTP 400: zone \"web_unlocker1\" not found | Zone \"web_unlocker\" HTTP 400: zone \"web_unlocker\" not found | Zone \"unlocker\" HTTP 400: zone \"unlocker\" not found). dca/html-fetch: 404 — <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<. Trying local fetch (may be blocked).",
+      "type": "warning"
+    },
+    {
+      "id": "act_1787467270338_0lz50",
+      "timestamp": "2026-08-23T06:41:10.338Z",
+      "message": "Collector returned 0 records — trying BrightData Web Unlocker for https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467250467_bptfn",
+      "timestamp": "2026-08-23T06:40:50.467Z",
+      "message": "Starting extraction run for monitor: \"Lamp\"",
+      "type": "info"
+    },
+    {
+      "id": "act_1787467247048_xoiy5",
+      "timestamp": "2026-08-23T06:40:47.048Z",
+      "message": "Created monitor: \"Lamp\" for URL: https://www.amazon.in/Xech-Digital-Ambient-3-Colour-Rechargeable/dp/B0GD7DSJZK/ref=sr_1_13?dib=eyJ2IjoiMSJ9.5C5Clq4Z92qCVjyHSaIbSLs7xISCFf-0_3zoAR0N9m44w3YmBStmg8R6oLWxRfSHM-F-iTLmDDom7iScuI8sceyJI5yLKLrc9Js-Cqkv2aZJ7HUeKd5PUD5dX45zvcQgCFeHc3PDbbrnXIMKOOuPkM8HdkYO0wt6shkly02H-L4_lFTnGIXbLaiUCi_52YvZ7P8sP8FYZq7If7HvGGPQAr64DOr-rS5KzhGiIC3ZFmDmmrk5vawWb-MdHd0tbNRMgCfjQmqJGNrYQ3GHkMRktr9pps2O4T556KygROcGeW0.EBLPKHfoizcjh_ef7l141wCF7t5wfxsFKUuAtvTBRas&dib_tag=se&keywords=gifts%2Bfor%2Bcollege%2Bstudents&qid=1783604728&sr=8-13&th=1",
+      "type": "success"
+    },
     {
       "id": "act_1787394812253_2tyeq",
       "timestamp": "2026-08-22T10:33:32.253Z",

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
 import { fetchWithRedirect } from '@/lib/extractor';
+import { fetchWithWebUnlocker } from '@/lib/brightdata';
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Offline preset selectors for common platforms
@@ -117,6 +119,25 @@ export async function POST(request: NextRequest) {
       }
     } catch (e: any) {
       fetchError = e.message || 'Network error';
+    }
+
+    // 2b. If plain fetch failed (bot-blocked, etc.), try BrightData Web Unlocker to get real HTML
+    if (!cleanHtml && process.env.BRIGHTDATA_API_KEY) {
+      try {
+        console.log(`[SuggestSelectors] Plain fetch failed (${fetchError}) — trying Web Unlocker for HTML…`);
+        const unlockerResult = await fetchWithWebUnlocker(absoluteUrl);
+        if (unlockerResult.html && unlockerResult.html.length > 500) {
+          const $ = cheerio.load(unlockerResult.html);
+          $('script, style, svg, path, img, iframe, link, meta, noscript, header, footer, nav').remove();
+          cleanHtml = ($('body').html() || $.html()).substring(0, 14000);
+          fetchError = ''; // cleared — we now have real HTML
+          console.log(`[SuggestSelectors] Web Unlocker provided ${cleanHtml.length} bytes of HTML for AI analysis`);
+        } else {
+          console.warn(`[SuggestSelectors] Web Unlocker also failed: ${unlockerResult.error}`);
+        }
+      } catch (e: any) {
+        console.warn(`[SuggestSelectors] Web Unlocker exception: ${e.message}`);
+      }
     }
 
     // 3. If OpenRouter key is missing or invalid, return presets immediately

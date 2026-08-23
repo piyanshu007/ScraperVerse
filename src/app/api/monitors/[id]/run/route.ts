@@ -5,6 +5,10 @@ import { validateDataset } from '@/lib/validation';
 import { healScraper } from '@/lib/self-healing';
 import { extractData, fetchWithRedirect } from '@/lib/extractor';
 
+// Allow up to 300 seconds — covers BrightData collector poll (90s) + Web Unlocker + self-healing
+export const maxDuration = 300;
+
+
 export async function POST(
   request: NextRequest,
   props: { params: Promise<{ id: string }> }

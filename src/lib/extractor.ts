@@ -279,11 +279,36 @@ export function extractData(
         }
         record[fieldName] = cleanVal;
       } else if (fieldName === 'discount') {
-        let cleanVal = textVal.split('\n').map(s => s.trim()).filter(Boolean)[0] || '';
-        if (cleanVal.length > 50) {
-          cleanVal = cleanVal.substring(0, 50).trim() + '...';
+        // Try data-discount or data-savings attribute first (structured data)
+        const attrDiscount = element.attr('data-discount') || element.attr('data-savings') || element.attr('data-percent-off');
+        if (attrDiscount && attrDiscount.trim()) {
+          record[fieldName] = attrDiscount.trim().substring(0, 80);
+        } else {
+          let cleanVal = textVal.split('\n').map(s => s.trim()).filter(Boolean)[0] || '';
+
+          // If selector returned empty text, try looking for adjacent struck-through price (del/s)
+          // and compute implied discount from it and the current price
+          if (!cleanVal && record['price'] !== undefined) {
+            const parent = element.parent();
+            const struckPrice = parent.find('del, s, .a-text-price, [class*="original"], [class*="list-price"]').first().text().trim();
+            if (struckPrice) {
+              const origMatch = struckPrice.match(/[\d,]+(?:\.\d+)?/);
+              if (origMatch) {
+                const orig = parseFloat(origMatch[0].replace(/,/g, ''));
+                const current = Number(record['price']);
+                if (!isNaN(orig) && !isNaN(current) && orig > current) {
+                  const pct = Math.round(((orig - current) / orig) * 100);
+                  cleanVal = `${pct}% off`;
+                }
+              }
+            }
+          }
+
+          if (cleanVal.length > 80) {
+            cleanVal = cleanVal.substring(0, 80).trim() + '...';
+          }
+          record[fieldName] = cleanVal;
         }
-        record[fieldName] = cleanVal;
       } else {
         record[fieldName] = textVal;
       }

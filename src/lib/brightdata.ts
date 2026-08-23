@@ -181,7 +181,9 @@ export async function scrapeWithBrightData(
   console.log(`[BrightData] Collection ID: ${collectionId} — polling…`);
 
   // ── Step 2: Poll ───────────────────────────────────────────────────────────
-  const MAX_ATTEMPTS = 60;
+  // 18 attempts × 5s = 90 seconds max. Fast enough to escalate to Web Unlocker
+  // if the collector is stalled (e.g. hardcoded URL) without timing out Vercel.
+  const MAX_ATTEMPTS = 18;
   const POLL_INTERVAL_MS = 5000;
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
@@ -289,34 +291,57 @@ export async function fetchWithWebUnlocker(url: string): Promise<{ html: string;
 
   console.log(`[BrightData] Web Unlocker fetching: ${url}`);
 
-  try {
-    // Primary: Web Unlocker REST API (requires Web Unlocker zone enabled in BrightData dashboard)
-    const res = await fetch('https://api.brightdata.com/request', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        zone: 'web_unlocker1',
-        url,
-        format: 'raw',
-        country: 'us',
-      }),
-    });
+  // Try the configured zone name first, then common variants in order.
+  // Many BrightData accounts use 'web_unlocker1' but some use 'web_unlocker' or 'unlocker'.
+  const configuredZone = process.env.BRIGHTDATA_WEB_UNLOCKER_ZONE || 'web_unlocker1';
+  const zoneVariants = [configuredZone, 'web_unlocker1', 'web_unlocker', 'unlocker'].filter(
+    (z, i, arr) => arr.indexOf(z) === i // deduplicate while preserving order
+  );
 
-    if (res.ok) {
-      const html = await res.text();
-      if (html && html.length > 500) {
-        console.log(`[BrightData] Web Unlocker fetched HTML (${html.length} bytes) for ${url}`);
-        return { html };
+  const lastErrors: string[] = [];
+
+  for (const zone of zoneVariants) {
+    try {
+      console.log(`[BrightData] Trying Web Unlocker zone "${zone}"...`);
+      const res = await fetch('https://api.brightdata.com/request', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          zone,
+          url,
+          format: 'raw',
+          country: 'us',
+        }),
+      });
+
+      if (res.ok) {
+        const html = await res.text();
+        if (html && html.length > 500) {
+          console.log(`[BrightData] Web Unlocker zone "${zone}" OK — ${html.length} bytes for ${url}`);
+          return { html };
+        }
+        const msg = `Zone "${zone}" returned short/empty body (${html.length} bytes)`;
+        console.warn(`[BrightData] ${msg}`);
+        lastErrors.push(msg);
+      } else {
+        const errText = await res.text();
+        const msg = `Zone "${zone}" HTTP ${res.status}: ${errText.substring(0, 150)}`;
+        console.warn(`[BrightData] ${msg}`);
+        lastErrors.push(msg);
       }
+    } catch (e: any) {
+      const msg = `Zone "${zone}" exception: ${e.message}`;
+      console.warn(`[BrightData] ${msg}`);
+      lastErrors.push(msg);
     }
+  }
 
-    const errText = res.ok ? 'Empty response' : await res.text();
-    console.warn(`[BrightData] Web Unlocker primary endpoint failed (${res.status}): ${errText.substring(0, 300)}`);
-
-    // Fallback: older /dca/html-fetch endpoint some BrightData plans support
+  // Legacy fallback: older /dca/html-fetch endpoint some BrightData plans support
+  try {
+    console.log(`[BrightData] Trying legacy dca/html-fetch endpoint…`);
     const fallbackRes = await fetch(
       `https://api.brightdata.com/dca/html-fetch?url=${encodeURIComponent(url)}`,
       { headers: { 'Authorization': `Bearer ${apiKey}` } }
@@ -325,21 +350,23 @@ export async function fetchWithWebUnlocker(url: string): Promise<{ html: string;
     if (fallbackRes.ok) {
       const html = await fallbackRes.text();
       if (html && html.length > 500) {
-        console.log(`[BrightData] Web Unlocker (fallback endpoint) fetched HTML (${html.length} bytes) for ${url}`);
+        console.log(`[BrightData] dca/html-fetch fallback OK — ${html.length} bytes for ${url}`);
         return { html };
       }
     }
 
     const fallbackErr = await fallbackRes.text().catch(() => 'unknown');
+    const allErrors = lastErrors.join(' | ');
     return {
       html: '',
-      error: `Web Unlocker both endpoints failed. Primary: ${res.status}. Fallback: ${fallbackRes.status} — ${fallbackErr.substring(0, 100)}`,
+      error: `All Web Unlocker zones failed (${allErrors}). dca/html-fetch: ${fallbackRes.status} — ${fallbackErr.substring(0, 100)}`,
     };
   } catch (e: any) {
-    console.error(`[BrightData] Web Unlocker exception:`, e.message);
-    return { html: '', error: e.message };
+    console.error(`[BrightData] Web Unlocker all attempts failed:`, e.message);
+    return { html: '', error: `All attempts failed: ${e.message}. Zones tried: ${lastErrors.join(' | ')}` };
   }
 }
+
 
 /** Returns true if real Bright Data credentials are configured */
 export function hasBrightDataCredentials(): boolean {
