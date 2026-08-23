@@ -7,70 +7,94 @@ export interface ScrapeResult {
   rawHtml: string;
   status: 'SUCCESS' | 'FAILED';
   error?: string;
+  tier?: 'collector' | 'web-unlocker' | 'local';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Universal field normalizer
+// Maps the 50+ field-name variations that different BrightData collectors,
+// Amazon scrapers, and generic e-commerce crawlers return → our schema.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const NAME_KEYS = [
+  'name', 'title', 'product_name', 'productName', 'product_title', 'productTitle',
+  'item_name', 'itemName', 'listing_title', 'listingTitle', 'heading',
+  'prodTitle', 'prod_title', 'label', 'brand_name', 'display_name',
+];
+
+const PRICE_KEYS = [
+  'price', 'selling_price', 'sellingPrice', 'sale_price', 'salePrice',
+  'final_price', 'finalPrice', 'current_price', 'currentPrice', 'actual_price',
+  'actualPrice', 'offer_price', 'offerPrice', 'discounted_price', 'discountedPrice',
+  'price_amount', 'priceAmount', 'buy_price', 'buyPrice', 'listed_price', 'listedPrice',
+  'unit_price', 'unitPrice', 'cost', 'amount',
+];
+
+const RATING_KEYS = [
+  'rating', 'stars', 'star_rating', 'starRating', 'stars_rating', 'starsRating',
+  'review_rating', 'reviewRating', 'ratings', 'rating_value', 'ratingValue',
+  'average_rating', 'averageRating', 'score', 'review_score', 'reviewScore',
+  'product_rating', 'productRating', 'overall_rating', 'overallRating',
+];
+
+const AVAILABILITY_KEYS = [
+  'availability', 'stock', 'in_stock', 'inStock', 'stock_status', 'stockStatus',
+  'available', 'stock_availability', 'stockAvailability', 'inventory_status',
+  'inventoryStatus', 'is_available', 'isAvailable', 'is_in_stock', 'isInStock',
+  'product_availability', 'productAvailability', 'fulfillment_availability',
+];
+
+const DISCOUNT_KEYS = [
+  'discount', 'offer', 'savings', 'discount_percentage', 'discountPercentage',
+  'discount_amount', 'discountAmount', 'deal', 'badge', 'offer_text', 'offerText',
+  'promotion', 'promo', 'save', 'coupon', 'percentage_off', 'percentageOff',
+];
+
+function pickFirst(record: Record<string, unknown>, keys: string[]): unknown {
+  for (const key of keys) {
+    if (record[key] !== undefined && record[key] !== null && record[key] !== '') {
+      return record[key];
+    }
+  }
+  return undefined;
+}
+
+function toNumber(val: unknown): number | undefined {
+  if (typeof val === 'number') return val;
+  if (typeof val === 'string') {
+    const cleaned = val.replace(/[^\d.]/g, '');
+    const n = parseFloat(cleaned);
+    return isNaN(n) ? undefined : n;
+  }
+  return undefined;
 }
 
 /**
- * Normalize a raw Bright Data record to our standard field names.
- * Bright Data returns fields like `title`, `selling_price`, `stars`, etc.
- * We map these to: name, price, rating, availability, discount.
+ * Normalizes a raw BrightData record (with any field names) into our ExtractedRecord schema.
+ * Also passes through any extra fields (images, URLs, etc.) via spread.
  */
-function normalizeRecord(raw: Record<string, unknown>): Record<string, unknown> {
-  const r: Record<string, unknown> = {};
+export function normalizeRecord(raw: Record<string, unknown>): ExtractedRecord {
+  const name = pickFirst(raw, NAME_KEYS);
+  const priceRaw = pickFirst(raw, PRICE_KEYS);
+  const ratingRaw = pickFirst(raw, RATING_KEYS);
+  const availability = pickFirst(raw, AVAILABILITY_KEYS);
+  const discount = pickFirst(raw, DISCOUNT_KEYS);
 
-  // Name / title
-  r.name = raw.name ?? raw.title ?? raw.product_name ?? raw.product_title ?? raw.item_name ?? '';
+  const normalized: ExtractedRecord = { ...raw }; // keep all original fields too
 
-  // Price — try numeric fields first, then string fields
-  const priceRaw =
-    raw.price ?? raw.selling_price ?? raw.final_price ?? raw.current_price ??
-    raw.discounted_price ?? raw.sale_price ?? raw.offer_price ?? raw.mrp ?? '';
-  if (typeof priceRaw === 'number') {
-    r.price = priceRaw;
-  } else if (typeof priceRaw === 'string') {
-    const cleaned = priceRaw.replace(/[^\d.]/g, '');
-    r.price = cleaned ? parseFloat(cleaned) : '';
-  } else {
-    r.price = '';
+  if (name !== undefined) normalized.name = String(name);
+  if (priceRaw !== undefined) {
+    const p = toNumber(priceRaw);
+    if (p !== undefined) normalized.price = p;
   }
-
-  // Rating
-  const ratingRaw = raw.rating ?? raw.stars ?? raw.star_rating ?? raw.review_stars ?? raw.avg_rating ?? '';
-  if (typeof ratingRaw === 'number') {
-    r.rating = ratingRaw;
-  } else if (typeof ratingRaw === 'string') {
-    const m = String(ratingRaw).match(/[\d.]+/);
-    r.rating = m ? parseFloat(m[0]) : '';
-  } else {
-    r.rating = '';
+  if (ratingRaw !== undefined) {
+    const r = toNumber(ratingRaw);
+    if (r !== undefined) normalized.rating = r;
   }
+  if (availability !== undefined) normalized.availability = String(availability);
+  if (discount !== undefined) normalized.discount = String(discount);
 
-  // Availability
-  const availRaw = raw.availability ?? raw.stock ?? raw.in_stock ?? raw.stock_status ?? raw.availability_status ?? '';
-  if (typeof availRaw === 'boolean') {
-    r.availability = availRaw ? 'In Stock' : 'Out of Stock';
-  } else {
-    const lower = String(availRaw).toLowerCase();
-    if (lower.includes('out') || lower.includes('unavailable') || lower.includes('sold out')) {
-      r.availability = 'Out of Stock';
-    } else if (availRaw) {
-      r.availability = 'In Stock';
-    } else {
-      r.availability = '';
-    }
-  }
-
-  // Discount
-  r.discount = raw.discount ?? raw.discount_percentage ?? raw.savings ?? raw.you_save ?? raw.badge ?? '';
-  if (r.discount && typeof r.discount === 'string' && !String(r.discount).includes('%')) {
-    r.discount = String(r.discount).trim() || '';
-  }
-
-  // Pass through any extra fields (url, image, etc.)
-  for (const [k, v] of Object.entries(raw)) {
-    if (!(k in r)) r[k] = v;
-  }
-
-  return r;
+  return normalized;
 }
 
 /** Filter + normalize raw Bright Data records — remove empty/invalid rows */
@@ -81,9 +105,14 @@ function processRecords(raw: unknown[]): Record<string, unknown>[] {
     .filter(r => !!(r.name || r.price)); // must have at least a name or price to be valid
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Tier 1 — BrightData Scraper Studio collector
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Trigger a Bright Data Data Collector job and poll until results arrive.
- * Always uses real Bright Data — no local fallback.
+ * NOTE: This works reliably only when the collector is configured with a
+ *       dynamic input URL (not a hardcoded one inside Scraper Studio).
  */
 export async function scrapeWithBrightData(
   url: string,
@@ -181,7 +210,7 @@ export async function scrapeWithBrightData(
       }
 
       if (Array.isArray(json)) {
-        console.log('[BrightData] Raw JSON from collector:', JSON.stringify(json));
+        console.log('[BrightData] Raw JSON from collector:', JSON.stringify(json).substring(0, 3000));
         const records = processRecords(json);
         console.log(`[BrightData] Done — ${json.length} raw → ${records.length} valid records.`);
         return {
@@ -190,12 +219,18 @@ export async function scrapeWithBrightData(
           isMock: false,
           rawHtml: '',
           status: records.length > 0 ? 'SUCCESS' : 'FAILED',
+          tier: 'collector',
         };
       }
     }
 
     // ── NDJSON / text response ────────────────────────────────────────────────
-    if (contentType.includes('text/plain') || contentType.includes('application/x-ndjson') || contentType.includes('text/ndjson') || contentType.includes('application/jsonl')) {
+    if (
+      contentType.includes('text/plain') ||
+      contentType.includes('application/x-ndjson') ||
+      contentType.includes('text/ndjson') ||
+      contentType.includes('application/jsonl')
+    ) {
       const text = await dataRes.text();
       const rawRecords = text
         .trim()
@@ -204,8 +239,8 @@ export async function scrapeWithBrightData(
         .map(line => { try { return JSON.parse(line); } catch { return null; } })
         .filter(Boolean);
 
-      console.log('[BrightData] Raw NDJSON from collector:', JSON.stringify(rawRecords));
-      const records = processRecords(rawRecords);
+      console.log('[BrightData] Raw NDJSON from collector:', JSON.stringify(rawRecords).substring(0, 3000));
+      const records = processRecords(rawRecords as unknown[]);
       console.log(`[BrightData] Done (NDJSON) — ${rawRecords.length} raw → ${records.length} valid records.`);
       return {
         records: records as ExtractedRecord[],
@@ -213,6 +248,7 @@ export async function scrapeWithBrightData(
         isMock: false,
         rawHtml: '',
         status: records.length > 0 ? 'SUCCESS' : 'FAILED',
+        tier: 'collector',
       };
     }
 
@@ -224,8 +260,85 @@ export async function scrapeWithBrightData(
     isMock: false,
     rawHtml: '',
     status: 'FAILED',
-    error: 'Timed out waiting for Bright Data results (90 s).',
+    error: 'Timed out waiting for Bright Data results (5 min).',
   };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tier 2 — BrightData Web Unlocker
+// Works for ANY URL — BrightData rotates proxies + handles JS rendering/captchas
+// Returns raw HTML that is then parsed locally by our extractData() pipeline.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Fetches a URL via BrightData Web Unlocker and returns the raw HTML.
+ * This bypasses bot detection on Amazon, Flipkart, and any other site.
+ *
+ * Uses the BrightData Web Unlocker REST API:
+ *   POST https://api.brightdata.com/request
+ *   body: { zone: 'web_unlocker1', url, format: 'raw', country: 'us' }
+ *
+ * Falls back to the /dca/html-fetch endpoint for older account types.
+ */
+export async function fetchWithWebUnlocker(url: string): Promise<{ html: string; error?: string }> {
+  const apiKey = process.env.BRIGHTDATA_API_KEY!;
+
+  if (!apiKey) {
+    return { html: '', error: 'BRIGHTDATA_API_KEY not set' };
+  }
+
+  console.log(`[BrightData] Web Unlocker fetching: ${url}`);
+
+  try {
+    // Primary: Web Unlocker REST API (requires Web Unlocker zone enabled in BrightData dashboard)
+    const res = await fetch('https://api.brightdata.com/request', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        zone: 'web_unlocker1',
+        url,
+        format: 'raw',
+        country: 'us',
+      }),
+    });
+
+    if (res.ok) {
+      const html = await res.text();
+      if (html && html.length > 500) {
+        console.log(`[BrightData] Web Unlocker fetched HTML (${html.length} bytes) for ${url}`);
+        return { html };
+      }
+    }
+
+    const errText = res.ok ? 'Empty response' : await res.text();
+    console.warn(`[BrightData] Web Unlocker primary endpoint failed (${res.status}): ${errText.substring(0, 300)}`);
+
+    // Fallback: older /dca/html-fetch endpoint some BrightData plans support
+    const fallbackRes = await fetch(
+      `https://api.brightdata.com/dca/html-fetch?url=${encodeURIComponent(url)}`,
+      { headers: { 'Authorization': `Bearer ${apiKey}` } }
+    );
+
+    if (fallbackRes.ok) {
+      const html = await fallbackRes.text();
+      if (html && html.length > 500) {
+        console.log(`[BrightData] Web Unlocker (fallback endpoint) fetched HTML (${html.length} bytes) for ${url}`);
+        return { html };
+      }
+    }
+
+    const fallbackErr = await fallbackRes.text().catch(() => 'unknown');
+    return {
+      html: '',
+      error: `Web Unlocker both endpoints failed. Primary: ${res.status}. Fallback: ${fallbackRes.status} — ${fallbackErr.substring(0, 100)}`,
+    };
+  } catch (e: any) {
+    console.error(`[BrightData] Web Unlocker exception:`, e.message);
+    return { html: '', error: e.message };
+  }
 }
 
 /** Returns true if real Bright Data credentials are configured */
