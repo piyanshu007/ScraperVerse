@@ -199,7 +199,7 @@ If the domain is unknown, suggest generic selectors that work for most Shopify/W
             { role: 'user', content: userContent },
           ],
           temperature: 0.1,
-          response_format: { type: 'json_object' },
+          // Note: response_format is NOT used — Gemini models on OpenRouter don't support it
         }),
       });
 
@@ -213,22 +213,28 @@ If the domain is unknown, suggest generic selectors that work for most Shopify/W
         const content = openRouterData.choices?.[0]?.message?.content;
 
         if (content) {
-          // 6. Parse JSON from LLM response (handle markdown fences gracefully)
+          // 6. Parse JSON from LLM response — strip all markdown fence variants first
           let jsonText = content.trim();
+          // Remove ```json ... ``` or ``` ... ``` fences
+          jsonText = jsonText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+          // Extract the first { ... } block
           const startIdx = jsonText.indexOf('{');
           const endIdx = jsonText.lastIndexOf('}');
           if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
             jsonText = jsonText.substring(startIdx, endIdx + 1);
-          } else if (jsonText.startsWith('```')) {
-            jsonText = jsonText.replace(/^```(?:json)?\n?/i, '').replace(/\n?```$/i, '');
           }
 
-          const selectors = JSON.parse(jsonText.trim());
-          if (!cleanHtml) {
-            selectors._note = `Page HTML could not be fetched (${fetchError}). Selectors are AI-inferred from the URL — verify them manually or run the monitor to trigger self-healing.`;
+          try {
+            const selectors = JSON.parse(jsonText.trim());
+            if (!cleanHtml) {
+              selectors._note = `Page HTML could not be fetched (${fetchError}). Selectors are AI-inferred from the URL — verify them manually or run the monitor to trigger self-healing.`;
+            }
+            return NextResponse.json(selectors);
+          } catch (parseErr: any) {
+            console.warn('[SuggestSelectors] JSON parse failed:', parseErr.message, '| raw content:', content.substring(0, 300));
+            openRouterFailed = true;
+            openRouterError = `AI returned invalid JSON: ${parseErr.message}`;
           }
-          return NextResponse.json(selectors);
-        } else {
           openRouterFailed = true;
           openRouterError = 'Empty response from AI';
         }

@@ -66,7 +66,18 @@ export function extractData(
   const $ = typeof htmlOrCheerio === 'string' ? cheerio.load(htmlOrCheerio) : htmlOrCheerio;
   const records: ExtractedRecord[] = [];
 
-  const containers = $(config.containerSelector);
+  let containers = $(config.containerSelector);
+
+  // ── Single-page fallback ─────────────────────────────────────────────────
+  // If the container selector finds 0 elements (common for single-product
+  // PDP pages where the configured selector is overly specific), fall back to
+  // treating the entire document body as ONE container.  This ensures we
+  // always attempt field extraction rather than silently returning 0 records.
+  const usingDocumentFallback = containers.length === 0;
+  if (usingDocumentFallback) {
+    containers = $('body') as unknown as ReturnType<typeof $>;
+  }
+
   containers.each((_, el) => {
     const record: ExtractedRecord = {};
     let hasAnyData = false;
