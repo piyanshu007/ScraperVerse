@@ -8,7 +8,17 @@ import { fetchWithWebUnlocker } from '@/lib/brightdata';
 // Offline preset selectors for common platforms
 // Used when OpenRouter is unavailable or returns an error
 // ─────────────────────────────────────────────────────────────────────────────
-function getPresetSelectors(url: string): Record<string, string> | null {
+function getPresetSelectors(url: string): Record<string, string> {
+  const GENERIC_PRESET: Record<string, string> = {
+    container: '.product, .product-item, article, .item, .card',
+    name: 'h1, h2, .product-title, .product-name, .title',
+    price: '.price, .product-price, [class*="price"]',
+    rating: '.rating, .stars, [class*="rating"], [class*="star"]',
+    availability: '.availability, .stock, [class*="stock"]',
+    discount: '.discount, .badge, [class*="discount"], [class*="save"]',
+    _note: 'AI unavailable — using generic preset selectors. Run the monitor to trigger self-healing for this specific site.',
+  };
+
   try {
     const hostname = new URL(url).hostname.toLowerCase();
 
@@ -72,18 +82,11 @@ function getPresetSelectors(url: string): Record<string, string> | null {
       };
     }
 
-    // Generic Shopify / WooCommerce / standard product page
-    return {
-      container: '.product, .product-item, article, .item, .card',
-      name: 'h1, h2, .product-title, .product-name, .title',
-      price: '.price, .product-price, [class*="price"]',
-      rating: '.rating, .stars, [class*="rating"], [class*="star"]',
-      availability: '.availability, .stock, [class*="stock"]',
-      discount: '.discount, .badge, [class*="discount"], [class*="save"]',
-      _note: 'AI unavailable — using generic preset selectors. Run the monitor to trigger self-healing for this specific site.',
-    };
+    // Generic fallback for any other site
+    return GENERIC_PRESET;
   } catch {
-    return null;
+    // URL parsing failed — return generic preset rather than null
+    return GENERIC_PRESET;
   }
 }
 
@@ -236,14 +239,11 @@ If the domain is unknown, suggest generic selectors that work for most Shopify/W
       console.warn('[SuggestSelectors] OpenRouter exception:', openRouterError);
     }
 
-    // 7. Fallback to presets if OpenRouter failed
+    // 7. Fallback to presets if OpenRouter failed — ALWAYS return something useful
     if (openRouterFailed) {
       const presets = getPresetSelectors(absoluteUrl);
-      if (presets) {
-        presets._note = `AI suggestion failed (${openRouterError}). Using built-in preset selectors for this platform. Run the monitor to trigger self-healing for fine-tuning.`;
-        return NextResponse.json(presets);
-      }
-      return NextResponse.json({ error: `AI failed: ${openRouterError}` }, { status: 500 });
+      presets._note = `AI key issue (${openRouterError.substring(0, 80)}). Using built-in preset selectors. Run the monitor to trigger self-healing.`;
+      return NextResponse.json(presets);
     }
 
     return NextResponse.json({ error: 'Unknown error in suggest-selectors' }, { status: 500 });
